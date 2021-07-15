@@ -19,7 +19,8 @@ class UsersController extends Controller
 
     public function users()
     {
-        return view("admin.users.index");
+        $auth = auth()->user();
+        return view("admin.users.index",compact("auth"));
     }
 
     public function sellers()
@@ -51,7 +52,7 @@ class UsersController extends Controller
 
     public function index()
     {
-        return response(UsersResource::collection(User::where("status", 1)->get()));
+        return response(UsersResource::collection(User::latest()->where("status", 1)->get()));
     }
 
     public function acceptSeller(User $user)
@@ -134,6 +135,9 @@ class UsersController extends Controller
 
     public function getCustomerProfile()
     {
+        if (auth()->check() && (auth()->user()->hasrole("admin") || auth()->user()->hasrole("seller"))) {
+            return redirect("/profile");
+        }
         return view("home.profile");
     }
 
@@ -141,29 +145,16 @@ class UsersController extends Controller
     {
 
         $validators = validator()->make($request->all(), [
-            'name' => ['required', 'string', 'max:255'],
-            'phone' => ['required', 'string', 'max:255'],
+            'address' => ['required', 'max:255'],
+            'phone' => 'required|regex:/^(07[8,2,3,9])[0-9]{7}$/',
             'email' => ['required', 'string', 'max:255', 'unique:users,email,' . $user->id],
 
         ]);
         if ($validators->fails()) {
             return response()->json($validators->errors(), 422);
         }
-        $avatar = $user->avatar;
-        $user->update(["name" => $request->name, "email" => $request->email]);
+        $user->update(["address" => $request->address, "email" => $request->email, "phone" => $request->phone]);
 
-        if ($request['shop_name'] && trim($request['shop_name']) != "")
-            $user->update(["shop_name" => $request->shop_name]);
-
-        if ($request->hasFile("avatar")) {
-            if ($avatar != null && file_exists(public_path(Storage::url($avatar)))) {
-                unlink(public_path(Storage::url($avatar)));
-            }
-
-            $request->avatar->store("public/avatar");
-            $user->update(["avatar" => $request->avatar->store("avatar")]);
-
-        }
         if ($request->old_password && trim($request->old_password) != "") {
 
             $old_password = $user->getAuthPassword();
@@ -187,8 +178,7 @@ class UsersController extends Controller
 
     public function details()
     {
-
-        return User::with(["province", "district", "sector", "cell", "village"])->where("id", auth()->user()->id)->first();
+        return User::where("id", auth()->user()->id)->first();
     }
 
 }

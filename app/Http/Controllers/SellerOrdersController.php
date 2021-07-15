@@ -22,14 +22,4 @@ class SellerOrdersController extends Controller
         return view("seller.orders.index", compact('orders'));
     }
 
-    public function allOrders()
-    {
-
-        $orders = OrderProduct::where("seller_id", auth()->user()->id)->where("paid",1)->orderByDesc("order_id")->get()
-            ->groupBy(function ($val) {
-                return $val->order_id;
-            });
-        return view("seller.orders.all_orders", compact('orders'));
-    }
-
 }

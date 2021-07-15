@@ -14,7 +14,7 @@ class SellerChatList extends JsonResource
             "id" => $this->id,
             "name" => $this->name,
             "type" => "Customer - " . $this->email,
-            "avatar" => $this->avatar ? Storage::url($this->avatar) : '/img/user.png'
+            "avatar" => '/img/user.png'
         ];
     }
 }

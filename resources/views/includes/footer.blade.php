@@ -1,282 +1,128 @@
 @include("includes.cart_modal")
 <!-- section start -->
 
-
-<footer class="footer-3">
-    <section class="instagram section-b-space">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 offset-md-2">
-                    <div class="instagram-banner">
-                        <h5>follow us <span>#Tajyire</span></h5>
+<div class="footer-area">
+    <div class="footer-container">
+        <div class="footer-top">
+            <div class="mx-5">
+                <div class="row">
+                    <div class="col-md-6 col-lg-4 mb-md-30px mb-lm-30px">
+                        <div class="single-wedge">
+                            <h4 class="footer-herading">ABOUT US</h4>
+                            <p class="text-infor">We are a team of designers and developers that create high quality
+                                HTML template</p>
+                            <div class="need-help">
+                                <p class="phone-info">
+                                    NEED HELP?
+                                    <span>
+                                        0123456789 <br/>
+                                        0123456789
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="slide-10 no-arrow slick-instagram">
-                        <div>
-                            <a href="#">
-                                <div class="instagram-box">
-                                    <img src="/commerce/assets/images/insta/1.jpg" alt="" class=" img-fluid">
-                                    <div class="overlay">
-                                        <i class="fa fa-instagram" aria-hidden="true"></i>
-                                    </div>
-                                </div>
-                            </a>
+                    <div class="col-md-6 col-lg-2 mb-md-30px mb-lm-30px">
+                        <div class="single-wedge">
+                            <h4 class="footer-herading">Information</h4>
+                            <div class="footer-links">
+                                <ul>
+                                    <li><a href="#">Delivery</a></li>
+                                    <li><a href="#">About Us</a></li>
+                                    <li><a href="#">Secure Payment</a></li>
+                                    <li><a href="/contact-us">Contact Us</a></li>
+                                    <li><a href="#">Sitemap</a></li>
+                                    <li><a href="#">Stores</a></li>
+                                </ul>
+                            </div>
                         </div>
-                        <div>
-                            <a href="#">
-                                <div class="instagram-box">
-                                    <img src="/commerce/assets/images/insta/2.jpg" alt="" class=" img-fluid">
-                                    <div class="overlay">
-                                        <i class="fa fa-instagram" aria-hidden="true"></i>
-                                    </div>
-                                </div>
-                            </a>
+                    </div>
+                    <div class="col-md-6 col-lg-2 mb-sm-30px mb-lm-30px">
+                        <div class="single-wedge">
+                            <h4 class="footer-herading">CUSTOM LINKS</h4>
+                            <div class="footer-links">
+                                <ul>
+                                    <li><a href="#">Legal Notice</a></li>
+                                    <li><a href="#">Prices Drop</a></li>
+                                    <li><a href="#">New Products</a></li>
+                                    <li><a href="#">Best Sales</a></li>
+                                    <li><a href="#">Login</a></li>
+                                    <li><a href="#">My Account</a></li>
+                                </ul>
+                            </div>
                         </div>
-                        <div>
-                            <a href="#">
-                                <div class="instagram-box">
-                                    <img src="/commerce/assets/images/insta/3.jpg" alt="" class=" img-fluid">
-                                    <div class="overlay">
-                                        <i class="fa fa-instagram" aria-hidden="true"></i>
+                    </div>
+                    <div class="col-md-6 col-lg-4 ">
+                        <div class="single-wedge">
+                            <h4 class="footer-herading">NEWSLETTER</h4>
+                            <div class="subscrib-text">
+                                <p>You may unsubscribe at any moment. For that purpose, please find our contact info
+                                    in the legal notice.</p>
+                            </div>
+                            <div id="mc_embed_signup" class="subscribe-form">
+                                <form
+                                    id="mc-embedded-subscribe-form"
+                                    class="validate"
+                                    novalidate=""
+                                    target="_blank"
+                                    name="mc-embedded-subscribe-form"
+                                    method="post"
+                                    action="http://devitems.us11.list-manage.com/subscribe/post?u=6bbb9b6f5827bd842d9640c82&amp;id=05d85f18ef"
+                                >
+                                    <div id="mc_embed_signup_scroll" class="mc-form">
+                                        <input class="email" type="email" required=""
+                                               placeholder="Enter your email here.." name="EMAIL" value=""/>
+                                        <div class="mc-news" aria-hidden="true"
+                                             style="position: absolute; left: -5000px;">
+                                            <input type="text" value="" tabindex="-1"
+                                                   name="b_6bbb9b6f5827bd842d9640c82_05d85f18ef"/>
+                                        </div>
+                                        <div class="clear">
+                                            <input id="mc-embedded-subscribe" class="button" type="submit"
+                                                   name="subscribe" value="Sign Up"/>
+                                        </div>
                                     </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div>
-                            <a href="#">
-                                <div class="instagram-box">
-                                    <img src="/commerce/assets/images/insta/4.jpg" alt="" class=" img-fluid">
-                                    <div class="overlay">
-                                        <i class="fa fa-instagram" aria-hidden="true"></i>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div>
-                            <a href="#">
-                                <div class="instagram-box">
-                                    <img src="/commerce/assets/images/insta/5.jpg" alt="" class=" img-fluid">
-                                    <div class="overlay">
-                                        <i class="fa fa-instagram" aria-hidden="true"></i>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div>
-                            <a href="#">
-                                <div class="instagram-box">
-                                    <img src="/commerce/assets/images/insta/6.jpg" alt="" class=" img-fluid">
-                                    <div class="overlay">
-                                        <i class="fa fa-instagram" aria-hidden="true"></i>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div>
-                            <a href="#">
-                                <div class="instagram-box">
-                                    <img src="/commerce/assets/images/insta/7.jpg" alt="" class=" img-fluid">
-                                    <div class="overlay">
-                                        <i class="fa fa-instagram" aria-hidden="true"></i>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div>
-                            <a href="#">
-                                <div class="instagram-box">
-                                    <img src="/commerce/assets/images/insta/8.jpg" alt="" class=" img-fluid">
-                                    <div class="overlay">
-                                        <i class="fa fa-instagram" aria-hidden="true"></i>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div>
-                            <a href="#">
-                                <div class="instagram-box">
-                                    <img src="/commerce/assets/images/insta/9.jpg" alt="" class=" img-fluid">
-                                    <div class="overlay">
-                                        <i class="fa fa-instagram" aria-hidden="true"></i>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div>
-                            <a href="#">
-                                <div class="instagram-box">
-                                    <img src="/commerce/assets/images/insta/10.jpg" alt="" class=" img-fluid">
-                                    <div class="overlay">
-                                        <i class="fa fa-instagram" aria-hidden="true"></i>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div>
-                            <a href="#">
-                                <div class="instagram-box">
-                                    <img src="/commerce/assets/images/insta/2.jpg" alt="" class=" img-fluid">
-                                    <div class="overlay">
-                                        <i class="fa fa-instagram" aria-hidden="true"></i>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div>
-                            <a href="#">
-                                <div class="instagram-box">
-                                    <img src="/commerce/assets/images/insta/4.jpg" alt="" class=" img-fluid">
-                                    <div class="overlay">
-                                        <i class="fa fa-instagram" aria-hidden="true"></i>
-                                    </div>
-                                </div>
-                            </a>
+                                </form>
+                            </div>
+                            <div class="social-info">
+                                <ul>
+                                    <li>
+                                        <a href="#"><i class="icon-social-facebook"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="icon-social-twitter"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="icon-social-instagram"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="icon-social-google"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="icon-social-instagram"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-    <div class="footer-section">
-        <div class="container">
-            <div class="row border-cls section-b-space section-t-space">
-                <div class="col-xl-4 col-lg-12 about-section">
-                    <div class="footer-title footer-mobile-title">
-                        <h4>about</h4>
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+
+                        <p class="copy-text"> © 2021 <strong>David's High Deals</strong></p>
                     </div>
-                    <div class="footer-content">
-                        <div class="footer-logo">
-{{--                            <img src="/commerce/assets/images/icon/logo3.png" alt="">--}}
-                            <img src="/img/logo.png" style="height: 8rem" alt="">
-                        </div>
-                        <p>Online fast, secure and accurate e-commerce in Rwanda.</p>
-                        <div class="footer-social">
-                            <ul>
-                                <li>
-                                    <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa fa-rss" aria-hidden="true"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-8 col-lg-12">
-                    <div class="row height-cls">
-                        <div class="col-lg-4 footer-link">
-                            <div>
-                                <div class="footer-title">
-                                    <h4>quick link</h4>
-                                </div>
-                                <div class="footer-content">
-                                    <ul>
-                                        <li><a href="#">store location</a></li>
-                                        <li><a href="#">my account</a></li>
-                                        <li><a href="#">order tracking</a></li>
-                                        <li><a href="#">size guide</a></li>
-                                        <li><a href="#">my cart</a></li>
-                                        <li><a href="#">FAQ</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 footer-link">
-                            <div>
-                                <div class="footer-title">
-                                    <h4>category</h4>
-                                </div>
-                                <div class="footer-content">
-                                    <ul>
-                                        <li><a href="#">fashion</a></li>
-                                        <li><a href="#">shoes</a></li>
-                                        <li><a href="#">cosmetic</a></li>
-                                        <li><a href="#">mobile</a></li>
-                                        <li><a href="#">electronics</a></li>
-                                        <li><a href="#">bags</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 footer-link">
-                            <div>
-                                <div class="footer-title">
-                                    <h4>contact us</h4>
-                                </div>
-                                <div class="footer-content">
-                                    <ul class="contact-list">
-                                        <li><i class="fa fa-map-marker"></i>IKAZE House 3rd Floor, Kisiment Gasabo Remera
-                                        </li>
-                                        <li><i class="fa fa-phone"></i>Call Us: +250781 917 486 / +250 789 713 127</li>
-                                        <li style="text-transform: none"><i class="fa fa-envelope-o"></i>Email Us: support@tajyire.rw</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <div class="footer-bottom">
-                        <ul>
-                            <li><a href="#">mens</a></li>
-                            <li><a href="#">womens</a></li>
-                            <li><a href="#">clothing</a></li>
-                            <li><a href="#">accessories</a></li>
-                            <li><a href="#">featured</a></li>
-                            <li><a href="#">service</a></li>
-                            <li><a href="#">cart</a></li>
-                            <li><a href="#">my order</a></li>
-                        </ul>
+                    <div class="col-md-6 text-right">
+                        <img class="payment-img" src="assets/images/icons/payment.png" alt=""/>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="sub-footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-6 col-md-6 col-sm-12">
-                    <div class="footer-end">
-                        <p><i class="fa fa-copyright" aria-hidden="true"></i> 2020 Tajyire Store Market
-                        </p>
-                    </div>
-                </div>
-                <div class="col-xl-6 col-md-6 col-sm-12">
-                    <div class="payment-card-bottom">
-                        <ul>
-                            <li>
-                                <a href="#"><img src="/commerce/assets/images/icon/visa.png" alt=""></a>
-                            </li>
-                            <li>
-                                <a href="#"><img src="/commerce/assets/images/icon/mastercard.png" alt=""></a>
-                            </li>
-                            <li>
-                                <a href="#"><img src="/commerce/assets/images/icon/paypal.png" alt=""></a>
-                            </li>
-                            <li>
-                                <a href="#"><img src="/commerce/assets/images/icon/american-express.png" alt=""></a>
-                            </li>
-                            <li>
-                                <a href="#"><img src="/commerce/assets/images/icon/discover.png" alt=""></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
-
+</div>
 
 <div id="myAccount" class="add_to_cart right">
     <a href="javascript:void(0)" class="overlay" onclick="closeAccount()"></a>
@@ -346,6 +192,8 @@
 <!-- menu js-->
 <script src="/commerce/assets/js/menu.js"></script>
 
+<script src="assets/js/vendor/vendor.min.js"></script>
+<script src="assets/js/plugins/plugins.min.js"></script>
 <!-- popper js-->
 <script src="/commerce/assets/js/popper.min.js"></script>
 
@@ -357,6 +205,8 @@
 <script src="/commerce/assets/js/bootstrap-notify.min.js"></script>
 @stack("scripts")
 <!-- Theme js-->
+<script src="assets/js/main.js"></script>
+<script src="{{ asset('js/app.js') }}"></script>
 <script src="/commerce/assets/js/script.js"></script>
 @if(strtolower(Route::currentRouteName())=='welcome')
 <script type="text/javascript" src="/js/new_app.js"></script>

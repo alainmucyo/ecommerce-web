@@ -16,7 +16,7 @@
                                 <th>Order ID</th>
                                 <th>Price</th>
                                 <th>Items</th>
-                                <th>Customer</th>
+                                <th>Customer_Name</th>
                                 <th>Address</th>
                                 <th>Created</th>
                                 <th>Status</th>
@@ -28,9 +28,9 @@
                                 <tr>
                                     <td>{{$loop->iteration}}</td>
                                     <td>
-                                        <div
-                                            style="display: none"> {{ $order->customer }}{{ $order->paymentMode }}{{ $order->deliveryFee }}{{ $order->province }}
-                                            {{ $order->district }}{{ $order->sector }}{{ $order->cell }}{{ $order->village }}</div>
+{{--                                        <div--}}
+{{--                                            style="display: none"> {{ $order->customer }}{{ $order->paymentMode }}{{ $order->deliveryFee }}{{ $order->province }}--}}
+{{--                                            {{ $order->district }}{{ $order->sector }}{{ $order->cell }}{{ $order->village }}</div>--}}
                                         <a @click.prevent="showOrderProducts({{ $order }})" href="#"
                                            class="text-primary"
                                            data-toggle="tooltip" data-placement="top"
@@ -40,10 +40,16 @@
                                         Rwf
                                     </td>
                                     <td> {{ $order_products->count() }}</td>
-                                    <td><a href="/chatbox/seller?customer={{ $order->customer->id }}"
-                                           class="text-primary">
-                                            {{ $order->customer->name }} </a></td>
-                                    <td>{{ $order->province->name }}, {{ $order->district->name }}</td>
+                                    <td>
+                                        @if($order->customer && $order->customer->id)
+                                            <a href="/chatbox/seller?customer={{ $order->customer->id }}"
+                                               class="text-primary">
+                                                {{ $order->information->name }} </a>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        {{ $order->information->address }}
+                                    </td>
                                     <td>{{$order->created_at->toDateString()}}</td>
                                     <td>
                                         @if($order_products->where("delivered",1)->count()!=$order_products->count())
@@ -93,7 +99,6 @@
                         </center>
                         <div v-else class="row">
                             <div class="col-md-6">
-                                <p><strong>Customer Name:</strong> @{{ order.customer.name }}</p>
                                 <p><strong>Customer Email:</strong> @{{ order.customer.email }}</p>
                                 <p><strong>Customer Phone:</strong> @{{ order.customer.phone }}</p>
                                 <p><strong>Payment Mode:</strong> @{{ order.payment_mode.name }}</p>
@@ -102,15 +107,12 @@
                                 <p><strong>Done At:</strong> @{{ order.created_at }}</p>
                             </div>
                             <div class="col-md-6">
-                                <p><strong>Shipping:</strong><span class="badge badge-primary">@{{ order.delivery_fee.title }}</span>
-                                </p>
-                                <p><strong>Province:</strong> @{{ order.province.name }}</p>
-                                <p><strong>District:</strong> @{{ order.district.name }}</p>
-                                <p><strong>Sector:</strong> @{{ order.sector.name }}</p>
-                                <p><strong>Cell:</strong> @{{ order.cell.name }}</p>
-                                <p><strong>Village:</strong> @{{ order.village.name }}</p>
+{{--                                <p><strong>Shipping:</strong><span class="badge badge-primary">@{{ order.delivery_fee.title }}</span>--}}
+{{--                                </p>--}}
+{{--                                <p><strong>Address:</strong> @{{ order.information }}</p>--}}
                                 <p>
-                                    <a :href="'/chatbox/seller?customer='+order.customer.id"> <span class="fa fa-comment"></span> Chat with customer</a>
+                                    <a :href="'/chatbox/seller?customer='+order.customer.id"> <span
+                                            class="fa fa-comment"></span> Chat with customer</a>
                                 </p>
                             </div>
                             <hr>
@@ -120,7 +122,7 @@
                                     <tr class="table-head">
                                         <th scope="col">product</th>
                                         <th scope="col">price</th>
-                                        <th scope="col">Insurance</th>
+{{--                                        <th scope="col">Insurance</th>--}}
                                         <th scope="col">description</th>
                                         <th scope="col">Action</th>
                                     </tr>
@@ -128,17 +130,18 @@
                                     <tbody v-for="product in order_products">
                                     <tr>
                                         <td>
-                                            <a class="image_link" :href="product.product_image">
-                                                <img :src="product.product_image" class="product_image" alt="Image">
+                                            <a class="image_link" href="#">
+                                                {{--                                                <img :src="product.product_image" class="product_image" alt="Image">--}}
+                                                <img src="/img/no-image.jpg" class="product_image" alt="Image">
                                             </a>
                                             <a :href="'/item/'+product.slug">@{{ product.product }}</a>
                                         </td>
                                         <td>
                                             <h5>@{{ product.price | currency("Rwf") }}</h5>
                                         </td>
-                                        <td>
-                                            @{{ product.insurance | currency("Rwf") }} / each
-                                        </td>
+{{--                                        <td>--}}
+{{--                                            @{{ product.insurance | currency("Rwf") }} / each--}}
+{{--                                        </td>--}}
                                         <td>
                                             <span v-if="product.size">Size: @{{product.size}}</span>
                                             <br>
@@ -177,5 +180,6 @@
     </div>
 @endsection
 @push("scripts")
-    <script src="/js/new_app.js" type="text/javascript"></script>
+    <script src="/js/app.js?update_new_order=true" type="text/javascript"></script>
+    @include("includes.datatable");
 @endpush

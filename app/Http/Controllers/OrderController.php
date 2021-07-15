@@ -31,14 +31,12 @@ class OrderController extends Controller
     public function adminOrders()
     {
         $orders = Order::latest()->orderBy("delivered")->get();
+//        return $orders;
         return view("admin.orders.index", compact('orders'));
     }
 
     public function show($order)
     {
-
-        if (auth()->user()->hasRole("seller"))
-            return OrderProductsResource::collection(OrderProduct::where("order_id", $order)->where("seller_id", auth()->user()->id)->get());
         return OrderProductsResource::collection(OrderProduct::where("order_id", $order)->get());
     }
 
@@ -62,7 +60,6 @@ class OrderController extends Controller
 
     public function customerShow($order)
     {
-
         $order = Order::where("order_id", $order)->first();
         if (!$order)
             abort(404);
@@ -81,7 +78,7 @@ class OrderController extends Controller
 
     public function orderDeliver($order)
     {
-        OrderProduct::where("order_id", $order)->where("seller_id", auth()->user()->id)->update(["delivered" => true, "delivered_at" => now()]);
+        OrderProduct::where("order_id", $order)->update(["delivered" => true, "delivered_at" => now()]);
         $allDelivered = OrderProduct::where("order_id", $order)->where("delivered", 0)->exists();
 
         if (!$allDelivered)

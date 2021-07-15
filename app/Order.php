@@ -71,6 +71,16 @@ class Order extends Model
         return Carbon::parse($this->received_at);
     }
 
+    public function information()
+    {
+        return $this->belongsTo(UserInformation::class, "user_information_id");
+    }
+
+    public function user_address()
+    {
+        return $this->belongsTo(UserInformation::class);
+    }
+
     public function getPayedDateAttribute()
     {
         return Carbon::parse($this->payed_at);

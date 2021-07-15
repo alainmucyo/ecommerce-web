@@ -39,7 +39,7 @@
                                 <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Customer</th>
+                                    <th>Customer_Email</th>
                                     <th>Orders</th>
                                     <th>Delivered</th>
                                     <th>Received</th>
@@ -53,8 +53,13 @@
                                     <tr>
                                         <td>{{$loop->iteration}}</td>
                                         <td>
-                                            <a href="/chatbox/seller?customer_id={{ $customer_id }}"
-                                               class="text-primary">{{ $customer->name }}</a>
+                                            @if($customer && $customer->email)
+                                                <a href="/chatbox/seller?customer_id={{ $customer_id }}"
+                                                   class="text-primary">{{ $customer->email }}</a>
+                                            @else
+                                                <a href="#"
+                                                   class="text-danger">Unknown</a>
+                                            @endif
                                         </td>
                                         <td>
                                         <span

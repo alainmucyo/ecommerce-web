@@ -1,130 +1,137 @@
 @extends("layouts.master")
+@section("title","Cart-List")
 @section("content")
     <section class="breadcrumb-section section-b-space">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="page-title">
-                        <h2>cart</h2>
+        <div class="breadcrumb-area">
+            <div class="mx-5">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="breadcrumb-content">
+                            <ul class="nav">
+                                <li><a href="/">Home</a></li>
+                                <li>Cart</li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                <div class="col-12">
-                    <nav aria-label="breadcrumb" class="theme-breadcrumb">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Cart</li>
-                        </ol>
-                    </nav>
                 </div>
             </div>
         </div>
-    </section>
-    <!-- breadcrumb End -->
-    <!--section start-->
-    <section class="cart-section section-b-space">
-        <div class="container">
-            <form method="post" action="/cart/update">
-                {{ method_field("PUT") }}
-                @csrf
+        @if (\Session::has('success'))
+            <div class="alert alert-success ml-auto mt-2" style="width: fit-content">
+                <ul class="list-unstyled" style="width: fit-content">
+                    <li>{!! \Session::get('success') !!}</li>
+                </ul>
+            </div>
+        @endif
+        @if (\Session::has('danger'))
+            <div class="alert alert-danger ml-auto" style="width: fit-content">
+                <ul class="list-unstyled" style="width: fit-content">
+                    <li>{!! \Session::get('danger') !!}</li>
+                </ul>
+            </div>
+        @endif
+        <div class="cart-main-area mb-5">
+            <div class="mx-5">
+                <h3 class="cart-page-title my-3">Your cart items</h3>
                 <div class="row">
-                    <div class="col-sm-12">
-                        <table class="table cart-table table-responsive-xs striped-table">
-                            <thead>
-                            <tr class="table-head">
-                                <th scope="col">image</th>
-                                <th scope="col">product name</th>
-                                <th scope="col">price</th>
-                                <th scope="col">quantity</th>
-                                <th scope="col">action</th>
-                                <th scope="col">total</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($cart_products as $cart_product)
-                                <tr>
-                                    <td>
-                                        <a href="/item/{{ $cart_product->product->slug }}">
-                                            <img
-                                                src="{{ $cart_product->product->product_image }}"
-                                                alt="">
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <a href="/item/{{ $cart_product->product->slug }}">{{ $cart_product->product->title }}</a>
-                                        <div class="mobile-cart-content row">
-                                            <div class="col-xs-3">
-                                                <div class="qty-box">
-                                                    <div class="input-group">
-                                                        <input type="number"
-                                                               max="{{ $cart_product->product->client_max }}"
-                                                               min="1" name="quantity_mob[]"
-                                                               class="form-control input-number"
-                                                               value="{{ $cart_product->quantity }}">
-                                                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <form method="post" action="/cart/update">
+                            {{ method_field("PUT") }}
+                            @csrf
+                            <div class="table-content table-responsive cart-table-content">
+                                <table>
+                                    <thead>
+                                    <tr>
+                                        <th>Image</th>
+                                        <th>Product Name</th>
+                                        <th>Price</th>
+                                        <th>Qty</th>
+                                        <th>Action</th>
+                                        <th>Total</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @forelse($cart_products as $cart_product)
+                                        <tr>
+                                            <td class="product-thumbnail">
+                                                <a href="/item/{{ $cart_product->product->slug }}">
+                                                    <img class="img-responsive"
+                                                         {{--                                                     src="{{ $cart_product->product->product_image }}"--}}
+                                                         src="assets/images/product-image/2-1.jpg" alt=""/></a>
+                                            </td>
+                                            <td class="product-name"><a
+                                                    href="/item/{{ $cart_product->product->slug }}">{{ $cart_product->product->title }}</a>
+                                            </td>
+                                            <td class="product-price-cart"><span class="amount">{{ number_format($cart_product->price) }} Rwf</span>
+                                            </td>
+                                            <td class="product-quantity">
+                                                <div class="cart-plus-minus">
+                                                    <input class="cart-plus-minus-box" type="text"
+                                                           max="{{ $cart_product->product->client_max }}"
+                                                           min="1" name="quantity_mob[]"
+                                                           value="{{ $cart_product->quantity }}">
                                                 </div>
-                                            </div>
-                                            <div class="col-xs-3">
-                                                <h2 class="td-color">{{ number_format($cart_product->price) }} Rwf</h2>
-                                            </div>
-                                            <div class="col-xs-3">
-                                                <h2 class="td-color"><a href="#" class="icon"
-                                                                        onclick="if(!confirm('Remove This Product From Cart?'))return;event.preventDefault();
-                                                                            document.getElementById('cart{{ $cart_product->id }}').submit();"><i
-                                                            class="ti-close"></i></a>
-                                                </h2></div>
+                                            </td>
+                                            <td class="product-remove">
+                                                <a href="#"><i class="icon-close"
+                                                               onclick="if(!confirm('Remove This Product From Cart?'))return;event.preventDefault();
+                                                                   document.getElementById('cart{{ $cart_product->id }}').submit();"></i></a>
+                                            </td>
+                                            <td class="product-price-cart">
+                                                {{ number_format($cart_product->price*$cart_product->quantity) }}RFW
+                                            </td>
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="6">
+                                                <div class="col-md-8">
+                                                    <div class="alert alert-info">No Cart For You available.</div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforelse
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="cart-shiping-update-wrapper">
+                                        <div class="cart-shiping-update">
+                                            <a href="/shop">Continue Shopping</a>
                                         </div>
-                                    </td>
-                                    <td>
-                                        <h2>{{ number_format($cart_product->price) }} Rwf</h2></td>
-                                    <td>
-                                        <div class="qty-box">
-                                            <div class="input-group">
-                                                <input type="number" max="{{ $cart_product->product->client_max }}"
-                                                       min="1"
-                                                       name="quantity[]" class="form-control input-number"
-                                                       value="{{ $cart_product->quantity }}">
+                                        @if(count($cart_products)>0)
+                                            <div class="cart-clear">
+                                                <button type="submit">Update Shopping Cart</button>
+                                                <a href="/remove-all/cart">Clear Shopping Cart</a>
                                             </div>
-                                        </div>
-                                    </td>
-                                    <td><a href="#" class="icon"
-                                           onclick="if(!confirm('Remove This Product From Cart?'))return;event.preventDefault();
-                                               document.getElementById('cart{{ $cart_product->id }}').submit();"><i
-                                                class="ti-close"></i></a></td>
-
-                                    <td>
-                                        <h2 class="td-color">{{ number_format($cart_product->price*$cart_product->quantity) }}
-                                            Rwf</h2></td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                        <table class="table cart-table table-responsive-md">
-                            <tfoot>
-                            <tr>
-                                <td style="text-align: start;width: 50%">total price :</td>
-                                <td>
-                                    <h2>{{ $sum }}</h2>
-                                </td>
-                            </tr>
-                            </tfoot>
-                        </table>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 mt-md-30px">
+                                <div class="grand-totall w-25 ml-auto">
+                                    <div class="title-wrap">
+                                        <h4 class="cart-bottom-title section-bg-gary-cart">Cart Total</h4>
+                                    </div>
+                                    <h5>Total Product <span>{{count($cart_products)}}</span></h5>
+                                    <h4 class="grand-totall-title">Grand Total <span>{{$sum}}</span></h4>
+                                    <a href="/checkout">Proceed to Checkout</a>
+                                </div>
+                            </div>
+                        </div>
+                        @foreach($cart_products as $cart_product)
+                            <form id="cart{{ $cart_product->id }}"
+                                  action="{{ route('cart.destroy',$cart_product->id) }}" method="POST"
+                                  style="display: none;">
+                                {{ method_field("DELETE") }}
+                                @csrf
+                            </form>
+                        @endforeach
                     </div>
                 </div>
-                <div class="row cart-buttons">
-                    <div class="col-6"><a href="/checkout" class="btn btn-solid">check out</a></div>
-                    <div class="col-6">
-                        <button type="submit" class="btn btn-solid">update cart</button>
-                    </div>
-                </div>
-            </form>
-            @foreach($cart_products as $cart_product)
-                <form id="cart{{ $cart_product->id }}"
-                      action="{{ route('cart.destroy',$cart_product->id) }}" method="POST"
-                      style="display: none;">
-                    {{ method_field("DELETE") }}
-                    @csrf
-                </form>
-            @endforeach
+            </div>
         </div>
     </section>
 @endsection

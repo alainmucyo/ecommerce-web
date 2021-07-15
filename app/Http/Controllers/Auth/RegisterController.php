@@ -36,32 +36,32 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'phone' => ['required','regex:/^(07)[0-9]{8}$/'],
+            'address' => ['required'],
             'password' => ['required', 'string', 'confirmed',"min:6"],
-            'village_id' => ["required"],
-            "cell_id" => ["required"],
-            "sector_id" => ["required"],
-            "district_id" => ["required"],
-            "province_id" => ["required"]
+//            'village_id' => ["required"],
+//            "cell_id" => ["required"],
+//            "sector_id" => ["required"],
+//            "district_id" => ["required"],
+//            "province_id" => ["required"]
         ]);
     }
 
     protected function create(array $data)
     {
         $user = User::create([
-            'name' => $data['name'],
             'email' => $data['email'],
             'phone' => $data['phone'],
+            'address' => $data['address'],
             'password' => Hash::make($data['password']),
             'status' => $data['type'] == "customer" ? 1 : 0,
             'confirmed' => $data['type'] == "customer" ? 1 : 0,
-            'village_id' =>$data['village_id'],
-            "cell_id" => $data['cell_id'],
-            "sector_id" =>$data['sector_id'],
-            "district_id" =>$data['district_id'],
-            "province_id" => $data['province_id'],
+//            'village_id' =>$data['village_id'],
+//            "cell_id" => $data['cell_id'],
+//            "sector_id" =>$data['sector_id'],
+//            "district_id" =>$data['district_id'],
+//            "province_id" => $data['province_id'],
             "shop_name"=>isset($data['shop_name'])?$data['shop_name']:null
         ]);
         if ($data['type'] == "customer") {

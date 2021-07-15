@@ -4,7 +4,6 @@
 <!--<![endif]-->
 <link rel="icon" href="/img/logo-gorilla.png" type="image/x-icon"/>
 <link rel="shortcut icon" href="/img/logo-gorilla.png" type="image/x-icon"/>
-<title>TAJYIRE Marketplace</title>
 
 <!--Google font-->
 <link href="https://fonts.googleapis.com/css4673.css?family=Lato:300,400,700,900" rel="stylesheet">

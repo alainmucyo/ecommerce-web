@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Cart;
 use App\Http\Resources\CheckoutResource;
 use App\Product;
+use App\UserInformation;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
@@ -12,7 +13,6 @@ class CartController extends Controller
 
     public function index()
     {
-//        $cart_products = auth()->user()->cartProducts;
         return view("home.cart");
     }
 
@@ -47,7 +47,6 @@ class CartController extends Controller
 
         if ($request['buy'] && $request['buy'] == 'buy') {
             unset($request['buy']);
-
             Cart::create($request->all());
             return redirect("/checkout");
         }
@@ -71,23 +70,14 @@ class CartController extends Controller
     public function update(Request $request)
     {
         $cart_products = auth()->user()->cartProducts;
-        $cart_products_ids = $cart_products->pluck("quantity");
-        $quantities = [];
-
-        for ($i = 0; $i < count($cart_products_ids); $i++) {
-            $quantity_mob = (int)$request->quantity_mob[$i];
-            $quantity = (int)$request->quantity[$i];
-
-            if ($quantity == $quantity_mob[$i]) {
-                $quantities[] = $quantity;
-            } elseif ($quantity != $cart_products_ids[$i]) {
-                $quantities[] = $quantity;
-            } else {
-                $quantities[] = $quantity_mob;
+        $quantity_mob = $request->quantity_mob;
+        foreach ($cart_products as $key => $product) {
+            $new_quantity = $quantity_mob[$key];
+            if ($product->quantity != $new_quantity) {
+                $product->update([
+                    "quantity" => $new_quantity
+                ]);
             }
-        }
-        for ($t = 0; $t < count($cart_products_ids); $t++) {
-            $cart_products[$t]->update(["quantity" => $quantities[$t]]);
         }
         return redirect()->back()->with("success", "Cart Updated Successfully!");
     }
@@ -99,14 +89,32 @@ class CartController extends Controller
 
     public function apiCheckout()
     {
-        $cart_products = Cart::with("product")->where("user_id",auth()->user()->id)->get();
-        return response(CheckoutResource::collection($cart_products));
+        $information = new UserInformation();
+
+        if (auth()->user()->information && auth()->user()->information->where("reuse")->count() > 0)
+            $information = auth()->user()->information[0];
+        else {
+            $information->name = "";
+            $information->email = auth()->user()->email;
+            $information->phone = auth()->user()->phone;
+            $information->address = auth()->user()->address;
+        }
+        $cart_products = Cart::with("product")->where("user_id", auth()->user()->id)->get();
+        return response(["products" => CheckoutResource::collection($cart_products), "information" => $information]);
     }
 
     public function destroy(Cart $cart)
     {
-//        return $cart;
         $cart->delete();
         return redirect()->back()->with("success", "Product Deleted Successfully from cart");
+    }
+
+    public function removeAllCart()
+    {
+        $cart_products = auth()->user()->cartProducts;
+        foreach ($cart_products as $cart) {
+            $cart->delete();
+        }
+        return redirect()->back()->with("success", "Products Deleted Successfully from cart");
     }
 }

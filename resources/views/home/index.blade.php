@@ -1,815 +1,664 @@
-    <!DOCTYPE HTML>
-<html lang="en">
+<!doctype html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="pragma" content="no-cache"/>
-    <meta http-equiv="cache-control" content="max-age=604800"/>
-    <meta name="description" content="Tajyire store market is an online modern, secure shop where you make orders and buy your needs online, easily and in a flash.">
-    <meta name="keywords" content="Tajyire, store market , market , africa ,   e commerce, rwanda, online, modern, shop, secure, clothes, accessories, watches, women, jewels, kigali">
-    <meta name="author" content="Tajyire store market">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+    <meta name="robots" content="noindex, follow"/>
+    <meta name="description" content="david's high deals for shopping different styles you need"/>
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon/favicon.png"/>
 
-    <title>TAJYIRE Marketplace</title>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-175795975-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        gtag('config', 'UA-175795975-1');
-    </script>
+    <title>David's-High-Deals | Home</title>
 
-    <link href="/img/logo-gorilla.png" rel="shortcut icon" type="image/x-icon">
 
-    <link href="/alistyle/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
-    <!-- Font awesome 5 -->
-    <link rel="stylesheet" type="text/css"
-          href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <!-- custom style -->
-    <link href="/alistyle/css/ui.css" rel="stylesheet" type="text/css"/>
-    <link href="/alistyle/css/responsive.css" rel="stylesheet" type="text/css"/>
-    <link rel="stylesheet" href="/css/home_style.css" type="text/css">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-    <style type="text/css">
-        .last-color {
-            color: #fa3434 !important;
+    <!-- Styles -->
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            margin: 0;
+            background-color: #fff !important;
+        }
+
+        [hidden] {
+            display: none
+        }
+
+        .dropdown-toggle::after {
+            display: none !important;
+        }
+
+        .header-tools .dropdown ul.dropdown-menu {
+            margin: 0;
+            top: 15px !important;
+            right: 0;
+            left: auto !important;
+            min-width: 130px;
+            overflow: hidden;
+            border-radius: 0;
+            border: 1px solid #ebebeb;
+            background: #fff none repeat scroll 0 0;
+            box-shadow: 0 1px 7px -2px rgb(0, 0, 0.3);
+            transform: rotateX(
+                90deg
+            );
+            transform-origin: center top 0;
+        }
+
+        .label {
+            border-radius: 4px;
+            font-size: 75%;
+            padding: 4px 7px;
+            margin-right: 5px;
+            font-weight: 400;
+            color: #fff;
+        }
+
+        .label-danger {
+            background: #ff5370;
+        }
+
+        .media {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .media-body {
+            flex: 1;
         }
     </style>
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/vendor/vendor.min.css"/>
+    <link rel="stylesheet" href="assets/css/plugins/plugins.min.css"/>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style.min.css">
+
+    <link href="/assets/files/assets/icon/feather/css/feather.css" rel="stylesheet" type="text/css">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @stack("style")
 </head>
-<body>
-
-<header class="section-header">
-    <section class="header-main border-bottom">
-        <div class="container">
-            <div class="row align-items-center logo-container">
-                <div class="col-xl-2 col-lg-3 col-md-12">
-                    <a href="/" class="brand-wrap">
-                        <img class="logo" src="/img/logo-new.png" style="max-height: 57px;">
-                    </a> <!-- brand-wrap.// -->
+<body id="top">
+<div id="app">
+    {{-- @include('sweet::alert') --}}
+    <header class="header-wrapper">
+        <!-- Header Nav Start -->
+        <div class="header-nav">
+            <div class="mx-5">
+                <div class="header-nav-wrapper d-md-flex d-sm-flex d-xl-flex d-lg-flex justify-content-between">
+                    <div class="header-static-nav">
+                        <p class="mb-0">Welcome you to High Deals!</p>
+                    </div>
+                    <div class="header-menu-nav">
+                        <ul class="menu-nav mb-0">
+                            <li>
+                                <div class="dropdown">
+                                    <button type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="false">Setting <i
+                                            class="ion-ios-arrow-down"></i></button>
+                                    <ul class="dropdown-menu animation slideDownI" aria-labelledby="dropdownMenuButton">
+                                        <li><a href="/checkout">Checkout</a></li>
+                                        @guest
+                                            <li><a href="/login">Sign in</a></li>
+                                            <li><a href="/register">Register</a></li>
+                                        @else
+                                            <li><a href="/chatbox/customer">Message</a></li>
+                                            <li><a href="/orders">Orders</a></li>
+                                            <li><a href="/customer/profile">My account</a></li>
+                                            <li><a href="/logout">Logout</a></li>
+                                        @endguest
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="pr-0">
+                                <div class="dropdown">
+                                    <button type="button" id="dropdownMenuButton-2" data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="false">FRW F<i
+                                            class="ion-ios-arrow-down ml-1"></i></button>
+                                    <ul class="dropdown-menu animation slideDownIn"
+                                        aria-labelledby="dropdownMenuButton-2">
+                                        <li><a href="#">FRW F</a></li>
+                                        <li><a href="#">USD $</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="col-xl-6 col-lg-5 col-md-6">
-                    <form action="/shop" class="search-header">
-                        <div class="input-group w-100">
-                            <select class="custom-select border-right" name="category">
-                                <option value="all">All Categories</option>
-                                @foreach($categories as $category)
-                                    <option value="{{ $category->slug }}">{{ $category->name }}</option>
-                                @endforeach
-                            </select>
-                            <input type="search" class="form-control" name="query" value="{{ request("query") }}"
-                                   placeholder="Search">
-
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="submit">
-                                    <i class="fa fa-search"></i> Search
-                                </button>
-                            </div>
+            </div>
+        </div>
+        <!-- Header Nav End -->
+        <div class="header-top bg-white ptb-30px d-xl-block d-none sticky-nav">
+            <div class="mx-5">
+                <div class="row">
+                    <div class="col-md-3 d-flex">
+                        <div class="mobile-menu-toggle home-2 my-auto">
+                            <a href="#offcanvas-mobile-menu" class="offcanvas-toggle text-decoration-none">
+                                <svg viewBox="0 0 800 600">
+                                    <path
+                                        d="M300,220 C300,220 520,220 540,220 C740,220 640,540 520,420 C440,340 300,200 300,200"
+                                        id="top"></path>
+                                    <path d="M300,320 L540,320" id="middle"></path>
+                                    <path
+                                        d="M300,210 C300,210 520,210 540,210 C740,210 640,530 520,410 C440,330 300,190 300,190"
+                                        id="bottom"
+                                        transform="translate(480, 320) scale(1, -1) translate(-480, -318) "></path>
+                                </svg>
+                            </a>
                         </div>
-                    </form> <!-- search-wrap .end// -->
-                </div> <!-- col.// -->
+                        <div class="logo">
+                            <a href="/"><img class="img-responsive h-100" src="/img/dhd_logo.png"
+                                             style="width: 85%"
+                                             alt="logo.png"/></a>
+                        </div>
+                    </div>
+                    <div class="col-md-9 align-self-center">
+                        <div class="header-right-element d-flex">
+                            <div class="search-element media-body mr-120px">
+                                <form class="d-flex" action="/shop">
+                                    <div class="search-category">
+                                        <select name="category">
+                                            <option value="all">All categories</option>
+                                            @if($categories->count() >0)
+                                                @foreach($categories as $category)
+                                                    <option value="{{ $category->slug }}"
+                                                            id="{{ $category->name }}">{{ $category->name }}</option>
+                                                @endforeach
+                                            @else
+                                                <option value="null" disabled class="text-danger">No Categories Found
+                                                </option>
+                                            @endif
+                                        </select>
+                                    </div>
+                                    <input type="text" name="query" value="{{ request("query") }}"
+                                           placeholder="Enter your search key ... "/>
+                                    <button type="submit"><i class="icon-magnifier"></i></button>
+                                </form>
+                            </div>
+                            <!--Cart info Start -->
 
-                <div class="col-xl-4 col-lg-4 col-md-6">
-                    <div class="widgets-wrap float-md-right">
-                        @auth
-                            <div class="widget-header">
-                                <a href="/customer/profile" class="widget-view">
-                                    <div class="icon-area" style="width: 36px;height: auto">
-                                        {{--                                        <i class="fa fa-user"></i>--}}
-                                        <img src="{{ auth()->user()->image }}"
-                                             style="border-radius: 50%;margin-top: -15px;width: 100%" alt="">
-                                    </div>
-                                    <small class="text"> My profile </small>
-                                </a>
-                            </div>
-                            <div class="widget-header">
-                                <a href="/chatbox/customer" class="widget-view">
-                                    <div class="icon-area">
-                                        <i class="fa fa-comment"></i>
-
-                                    </div>
-                                    <small class="text"> Message </small>
-                                </a>
-                            </div>
-                            <div class="widget-header">
-                                <a href="/orders" class="widget-view">
-                                    <div class="icon-area">
-                                        <i class="fa fa-database"></i>
-                                    </div>
-                                    <small class="text"> Orders </small>
-                                </a>
-                            </div>
-                            <div class="widget-header">
-                                <a href="/cart" class="widget-view">
-                                    <div class="icon-area">
-                                        <i class="fa fa-shopping-cart"></i>
-                                        @if($cart_products->count()>0)
-                                            <span class="notify">{{$cart_products->count()}}</span>
+                            <div class="header-tools d-flex">
+                               @role("customer")
+                                    <div class="dropdown-primary dropdown">
+                                        <div class="cart-info d-flex align-self-center mr-3 dropdown-toggle"
+                                             data-toggle="dropdown">
+                                            @if($undelivered>0 || $unread_messages>0)
+                                                <a href="javascript:void(0)" class="bag text-decoration-none"
+                                                   data-number="{{ $undelivered + $unread_messages}}"><i
+                                                        class="feather icon-bell"></i></a>
+                                            @else
+                                                <a href="javascript:void(0)" class="text-decoration-none"
+                                                   data-number="0"><i class="feather icon-bell"></i></a>
+                                            @endif
+                                        </div>
+                                        @if($undelivered>0 || $unread_messages>0)
+                                            <ul class="show-notification notification-view dropdown-menu"
+                                                data-dropdown-in="fadeIn"
+                                                data-dropdown-out="fadeOut"
+                                                style="min-width: 225px;right: -25% !important;top: 15px !important;">
+                                                <li class="d-flex">
+                                                    <h6>Notifications</h6>
+                                                    @if( $undelivered>0 || $unread_messages>0)
+                                                        <label class="label label-danger ml-auto h-100">New</label>
+                                                    @endif
+                                                </li>
+                                                <li>
+                                                    <div class="media">
+                                                        <div class="media-body">
+                                                            @if($undelivered>0)
+                                                                <h5 class="notification-user"><b>Undelivered
+                                                                        orders</b></h5>
+                                                                <p class="notification-msg mb-0">You
+                                                                    have {{ $undelivered }}
+                                                                    undelivered
+                                                                    product(s)
+                                                                    orders.</p>
+                                                            @endif
+                                                            @if($unread_messages>0)
+                                                                <h5 class="notification-user"><b>Unread messages</b>
+                                                                </h5>
+                                                                <p class="notification-msg">You
+                                                                    have {{ $unread_messages }}
+                                                                    unread
+                                                                    messages from seller(s).</p>
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
                                         @endif
                                     </div>
-                                    <small class="text"> Cart </small>
-                                </a>
-                            </div>
-                        @else
-                            <div class="widget-header mr-3">
-                                <a href="/login" class="widget-view">
-                                    <div class="icon-area">
-                                        <i class="fa fa-user"></i>
-                                    </div>
-                                    <small class="text"> Login </small>
-                                </a>
-                            </div>
-                            <div class="widget-header mr-3">
-                                <a href="/register" class="widget-view">
-                                    <div class="icon-area">
-                                        <i class="fa fa-user-plus"></i>
-                                    </div>
-                                    <small class="text"> Register </small>
-                                </a>
-                            </div>
-                        @endif
-                        <div class="widget-header">
-                            <a href="/shop" class="widget-view">
-                                <div class="icon-area">
-                                    <i class="fa fa-list"></i>
+                                @endrole
+                                <div class="cart-info d-flex align-self-center">
+                                    @if(count($cart_products)>0)
+                                        <a href="#offcanvas-cart" class="bag offcanvas-toggle text-decoration-none"
+                                           data-number="{{$cart_products->count()}}"><i
+                                                class="icon-bag"></i><span>{{$sum}}</span></a>
+                                    @else
+                                        <a href="#offcanvas-cart" class="bag offcanvas-toggle text-decoration-none"
+                                           data-number="0"><i class="icon-bag"></i><span>0.00 RFW</span></a>
+                                    @endif
                                 </div>
-                                <small class="text">Products </small>
+                            </div>
+                        </div>
+                        <!--Cart info End -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Header Section End Here -->
+
+    <!-- Mobile Header Section Start -->
+    <div class="mobile-header d-xl-none sticky-nav bg-white ptb-10px">
+        <div class="container">
+            <div class="row align-items-center">
+
+                <!-- Header Logo Start -->
+                <div class="col">
+                    <div class="header-logo">
+                        <a href="#"><img class="img-responsive" src="/img/dhd_logo.png" alt="logo.png"/></a>
+                    </div>
+                </div>
+                <!-- Header Logo End -->
+
+                <!-- Header Tools Start -->
+                <div class="col-auto">
+                    <div class="header-tools justify-content-end">
+                        <div class="cart-info d-flex align-self-center">
+                            @if(count($cart_products)>0)
+                                <a href="#offcanvas-cart" class="bag offcanvas-toggle text-decoration-none"
+                                   data-number="{{$cart_products->count()}}"><i
+                                        class="icon-bag"></i><span>{{$sum}}</span></a>
+                            @else
+                                <a href="#offcanvas-cart" class="bag offcanvas-toggle text-decoration-none"
+                                   data-number="0"><i class="icon-bag"></i><span>0.00 RFW</span></a>
+                            @endif
+                        </div>
+                        <div class="mobile-menu-toggle">
+                            <a href="#offcanvas-mobile-menu" class="offcanvas-toggle text-decoration-none">
+                                <svg viewBox="0 0 800 600">
+                                    <path
+                                        d="M300,220 C300,220 520,220 540,220 C740,220 640,540 520,420 C440,340 300,200 300,200"
+                                        id="top"></path>
+                                    <path d="M300,320 L540,320" id="middle"></path>
+                                    <path
+                                        d="M300,210 C300,210 520,210 540,210 C740,210 640,530 520,410 C440,330 300,190 300,190"
+                                        id="bottom"
+                                        transform="translate(480, 320) scale(1, -1) translate(-480, -318) "></path>
+                                </svg>
                             </a>
                         </div>
-                    </div> <!-- widgets-wrap.// -->
-                </div> <!-- col.// -->
-            </div> <!-- row.// -->
-        </div> <!-- container.// -->
-    </section> <!-- header-main .// -->
+                    </div>
+                </div>
+                <!-- Header Tools End -->
 
+            </div>
+        </div>
+    </div>
 
-    <nav class="navbar navbar-main navbar-expand-lg border-bottom">
+    <!-- Search Category Start -->
+    <div class="mobile-search-area d-xl-none mb-15px">
         <div class="container">
-
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav"
-                    aria-controls="main_nav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="main_nav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/">Home</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"> Shop </a>
-                        <div class="dropdown-menu dropdown-large">
-                            <nav class="row">
-                                <div class="col-6">
-                                    <a
-                                        href="/shop">All</a>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="search-element media-body">
+                        <form class="d-flex" action="/shop">
+                            <div class="search-category">
+                                <select name="category">
+                                    <option value="all">All categories</option>
+                                    @if($categories->count())>0)
                                     @foreach($categories as $category)
-                                        @if($loop->iteration==$categories_count_half)
-                                </div>
-                                <div class="col-6">
-                                    @endif
-                                    <a href="/shop?category={{ $category->slug }}">{{ $category->name }}</a>
+                                        <option value="{{ $category->slug }}"
+                                                id="{{ $category->name }}">{{ $category->name }}</option>
                                     @endforeach
-                                </div>
-                                {{--<div class="col-6">
-                                    <a href="page-profile-main.html">Profile main</a>
-                                </div>--}}
-                            </nav> <!--  row end .// -->
-                        </div> <!--  dropdown-menu dropdown-large end.// -->
-                    </li>
-                </ul>
-                <ul class="navbar-nav ml-md-auto">
+                                    @else
+                                        <option value="all" disabled class="text-danger">No Categories Found
+                                        </option>
+                                    @endif
+                                </select>
+                            </div>
+                            <input type="text" name="query" value="{{ request("query") }}"
+                                   placeholder="Enter your search key ... "/>
+                            <button type="submit"><i class="icon-magnifier"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Search Category End -->
+    <div class="mobile-category-nav d-xl-none mb-15px">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <!--=======  category menu  =======-->
+                    <div class="hero-side-category">
+                        <!-- Category Toggle Wrap -->
+                        <div class="category-toggle-wrap">
+                            <!-- Category Toggle -->
+                            <button class="category-toggle"><i class="fa fa-bars"></i> All Categories</button>
+                        </div>
+
+                        <!-- Category Menu -->
+                        <nav class="category-menu">
+                            <ul>
+                                @if($categories->count()>0)
+                                    @foreach($categories as $category)
+                                        <li><a href="#">{{ $category->name }}</a></li>
+                                    @endforeach
+                                @else
+                                    <li class="text-danger"><a href="#">No Categories Found</a></li>
+                                @endif
+                                {{--                                <li class="hidden"><a href="#">Projectors</a></li>--}}
+                                {{--                                <li>--}}
+                                {{--                                    <a href="#" id="more-btn"><i class="ion-ios-plus-empty" aria-hidden="true"></i> More--}}
+                                {{--                                        Categories</a>--}}
+                                {{--                                </li>--}}
+                            </ul>
+                        </nav>
+                    </div>
+
+                    <!--=======  End of category menu =======-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Mobile Header Section End -->
+    <!-- OffCanvas Cart Start -->
+    <div id="offcanvas-cart" class="offcanvas offcanvas-cart">
+        <div class="inner">
+            <div class="head">
+                <span class="title">Cart</span>
+                <button class="offcanvas-close">×</button>
+            </div>
+            <div class="body customScroll">
+                <ul class="minicart-product-list">
                     @guest
-                        <li class="nav-item">
-                            <a class="nav-link" href="/login">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/register">Register</a>
-                        </li>
+                        <div class="col-md-12">
+                            <div class="alert alert-info text-center">No Cart Available For You Please Login.</div>
+                        </div>
                     @else
-                        @role(['admin','seller'])
-                        <li class="nav-item">
-                            <a class="nav-link" href="/home">Dashboard</a>
-                        </li>
-                        @endrole
-                        <li class="nav-item">
-                            <a class="nav-link" href="/logout">Logout</a>
-                        </li>
+                        @forelse($cart_products as $cart_product)
+                            <li>
+                                {{--                                                                                 src="{{ $cart_product->product->product_image }}"--}}
+                                <a href="/item/{{$cart_product->product->slug}}" class="image"><img
+                                        src="assets/images/product-image/3.jpg"
+                                        alt="Cart product Image"></a>
+                                <div class="content">
+                                    <a href="/item/{{$cart_product->product->slug}}"
+                                       class="title">{{$cart_product->product->title}}</a>
+                                    <span class="quantity-price">{{ $cart_product->quantity }} x <span class="amount">{{ number_format($cart_product->price) }}RWF</span></span>
+                                    <a href="#" class="remove"
+                                       onclick="if(!confirm('Remove {{$cart_product->product->title}} From Cart?' ))return;event.preventDefault();
+                                           document.getElementById('cart{{ $cart_product->id }}').submit();">×</a>
+                                </div>
+                            </li>
+                        @empty
+                            <div class="col-md-12">
+                                <div class="alert alert-info text-center">No Cart Available For You.</div>
+                            </div>
+                        @endforelse
                     @endguest
                 </ul>
-            </div> <!-- collapse .// -->
-        </div> <!-- container .// -->
-    </nav>
-</header> <!-- section-header.// -->
-
-
-<div class="container">
-    <!-- ========================= SECTION MAIN  ========================= -->
-    <section class="section-main padding-y">
-        <main class="card">
-            <div class="card-body">
-
-                <div class="row">
-                    <aside class="col-lg col-md-3 flex-lg-grow-0 small-hide ">
-                        <h6>CATEGORIES</h6>
-                        <nav class="nav-home-aside">
-                            <ul class="menu-category">
-                                @foreach($paginated_cats as $category)
-                                    <li><a href="/shop?category={{ $category->slug }}">{{ $category->name }}</a></li>
-                                @endforeach
-                            </ul>
-                            {!! $paginated_cats->links() !!}
-                        </nav>
-                    </aside> <!-- col.// -->
-                    <div class="col-md-9 col-xl-7 col-lg-7">
-
-                        <!-- ================== COMPONENT SLIDER  BOOTSTRAP  ==================  -->
-                        <div id="carousel1_indicator" class="slider-home-banner carousel slide" data-ride="carousel">
-                            <ol class="carousel-indicators">
-                                <li data-target="#carousel1_indicator" data-slide-to="0" class="active"></li>
-                                <li data-target="#carousel1_indicator" data-slide-to="1"></li>
-                                <li data-target="#carousel1_indicator" data-slide-to="2"></li>
-                            </ol>
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <img src="/alistyle/images/banners/slide1.jpeg" alt="First slide">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="/alistyle/images/banners/slide2.jpeg" alt="Second slide">
-                                </div>
-                                <div class="carousel-item ">
-                                    <img src="/alistyle/images/banners/slide3.jpeg" alt="First slide">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="/alistyle/images/banners/slide4.jpeg" alt="Second slide">
-                                </div>
-                            </div>
-                            <a class="carousel-control-prev" href="#carousel1_indicator" role="button"
-                               data-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                            <a class="carousel-control-next" href="#carousel1_indicator" role="button"
-                               data-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Next</span>
-                            </a>
-                        </div>
-                        <!-- ==================  COMPONENT SLIDER BOOTSTRAP end.// ==================  .// -->
-
-                    </div> <!-- col.// -->
-                    <div class="col-md d-none d-lg-block flex-grow-1">
-                        <aside class="special-home-right">
-                            <h6 class="bg-blue text-center text-white mb-0 p-2">Most popular products</h6>
-                            @foreach($popularProducts as $popProduct)
-                                <div class="card-banner border-bottom">
-                                    <div class="py-3" style="width:80%">
-                                        <h6 class="card-title">{{ $popProduct->title }}</h6>
-                                        <a href="/item/{{ $popProduct->slug }}" class="btn btn-secondary btn-sm"> Buy
-                                            now </a>
-                                    </div>
-                                    <img src="{{$popProduct->product_image }}"
-                                         style="max-width: 30%"
-                                         height="80" class="img-bg"/>
-                                </div>
-                            @endforeach
-                        </aside>
-                    </div> <!-- col.// -->
-                </div> <!-- row.// -->
-
-            </div> <!-- card-body.// -->
-        </main> <!-- card.// -->
-    </section>
-    <!-- ========================= SECTION MAIN END// ========================= -->
-  {{--  <div class="icons">
-        <div class="icons-list">
-            <div class="icons__detail">
-                <a href="#" class="icons__link icon__link--1">
-                    <span class="fa fa-database"></span>
---}}{{--                    <img src="/stores/icyangwe.png" class="icon__img" alt="">--}}{{--
-                </a>
-                <p class="icons__name">Official Store</p>
             </div>
-
-            <div class="icons__detail">
-                <a href="#" class="icons__link icon__link--2">
-                    <span class="fa fa-gamepad"></span>
-                </a>
-                <p class="icons__name">Official Store</p>
-            </div>
-            <div class="icons__detail">
-                <a href="#" class="icons__link icon__link--3">
-                    <span class="fa fa-plane"></span>
-                </a>
-                <p class="icons__name">Official Store</p>
-            </div>
-            <div class="icons__detail">
-                <a href="#" class="icons__link icon__link--4">
-                    <span class="fa fa-phone"></span>
-                </a>
-                <p class="icons__name">Official Store</p>
-            </div>
-        </div>
-        <div class="icons-list">
-            <div class="icons__detail">
-                <a href="#" class="icons__link icon__link--5">
-                    <span class="fa fa-database"></span>
-                </a>
-                <p class="icons__name">Official Store</p>
-            </div>
-            <div class="icons__detail">
-                <a href="#" class="icons__link icon__link--6">
-                    <span class="fa fa-gamepad"></span>
-                </a>
-                <p class="icons__name">Official Store</p>
-            </div>
-            <div class="icons__detail">
-                <a href="#" class="icons__link icon__link--7">
-                    <span class="fa fa-calendar"></span>
-                </a>
-                <p class="icons__name">Official Store</p>
-            </div>
-            <div class="icons__detail">
-                <a href="#" class="icons__link icon__link--8">
-                    <span class="fa fa-phone"></span>
-                </a>
-                <p class="icons__name">Official Store</p>
-            </div>
-        </div>
-    </div>--}}
-    <div id="app">
-        <section class="padding-bottom">
-            <header class="section-heading heading-line">
-                <h4 class="title-section text-uppercase">Apparel</h4>
-            </header>
-
-            <div class="card card-home-category">
-                <div class="row no-gutters">
-                    <div class="col-md-3">
-
-                        <div class="home-category-banner bg-light-orange">
-                            <h5 class="title">Best trending clothes only for summer</h5>
-                            <p>"When you don’t dress like everyone else, you don’t have to think like everyone else." </p>
-                            <a href="/shop" class="btn btn-outline-primary rounded-pill">Source now</a>
-                            <img src="alistyle/images/items/summer.webp" class="img-bg">
-                        </div>
-
-                    </div> <!-- col.// -->
-                    <div class="col-md-9">
-                        <ul class="row no-gutters bordered-cols">
-                            @foreach($ad_products as $ad_product)
-                                <li class="col-6 col-lg-3 col-md-4">
-                                    <a href="#" class="item">
-                                        <div class="card-body">
-                                            <h6 class="title">{{ $ad_product->title }} </h6>
-                                            <img class="img-sm float-right" src="{{$ad_product->product_image}}">
-                                            <p class="text-muted"><i
-                                                    class="fa fa-map-marker"></i> {{ $ad_product->details }}
-                                            </p>
-                                        </div>
-                                    </a>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div> <!-- col.// -->
-                </div> <!-- row.// -->
-            </div> <!-- card.// -->
-        </section>
-        <vue-progress-bar></vue-progress-bar>
-
-        @foreach($homeSections as $homeSection)
-            @if($homeSection->discount && \Carbon\Carbon::parse($homeSection->discount_time)->greaterThan(now()) && $homeSection->products->where("status",1)->count()>0 )
-                <section class="padding-bottom">
-                    <div class="card card-deal">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <div class="col-heading content-body">
-                                    <header class="section-heading">
-                                        <h3 class="section-title">Deals and offers</h3>
-                                        <p>Be sure to pick yours!</p>
-                                    </header><!-- sect-heading -->
-                                    <div class="timer">
-                                        <div><span class="num" id="countdown{{ $homeSection->id }}days">00</span>
-                                            <small>Days</small></div>
-                                        <div><span class="num" id="countdown{{ $homeSection->id }}hrs">00</span> <small>Hours</small>
-                                        </div>
-                                        <div><span class="num" id="countdown{{ $homeSection->id }}min">00</span> <small>Min</small>
-                                        </div>
-                                        <div><span class="num" id="countdown{{ $homeSection->id }}sec">00</span> <small>Sec</small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            @foreach($homeSection->products->where("status",1) as $product)
-                                @if($product->has_discount)
-                                    <div class="col-xl-2 col-lg-3 col-md-4 col-6">
-                                        <figure class="card-product-grid card-sm">
-                                            <a href="/item/{{ $product->slug }}" class="img-wrap">
-                                                <img
-                                                    src="{{$product->product_image }}"/>
-                                            </a>
-                                            <div class="text-wrap p-3">
-                                                <a href="/item/{{ $product->slug }}"
-                                                   class="title">{{ $product->title }}</a>
-                                                <span
-                                                    class="badge badge-danger"> -{{ $product->discount_percent }}% </span>
-                                            </div>
-                                        </figure>
-                                    </div>
-                                @endif
-                            @endforeach
-                        </div><!-- col.// -->
-                        {{-- <div class="row no-gutters items-wrap">
-
-                         </div>--}}
-                    </div>
-
-                </section>
-            @endif
-        @endforeach
-        @foreach($homeSections as $homeSection)
-            @if(!$homeSection->discount)
-                <section class="padding-bottom-sm {{ $homeSections->last()->id==$homeSection->id?'redish_bg':'' }}">
-                    <header class="section-heading heading-line heading-line-{{ $loop->iteration }}">
-                        <h4 class="title-section text-uppercase {{ $homeSections->last()->id==$homeSection->id?'redish_bg p-2':'' }} title-header-{{ $loop->iteration }}">{{ $homeSection->name }}</h4>
-
-                    </header>
-                    @if($homeSection->discount)
-                        <label class="badge badge-primary">
-                            <h4 id="countdown{{ $homeSection->id }}">{{ $homeSection->discount_time }}</h4>
-                        </label>
-                        <br/>
-                        <br/>
-                    @endif
-                    <div class="row row-sm">
-                        @foreach($homeSection->products->where("status",1) as $product)
-                            <div class="col-xl-2 col-lg-3 col-md-4 col-6">
-                                <div href="/item/{{ $product->slug }}" class="card card-sm card-product-grid">
-                                    <a href="/item/{{ $product->slug }}" class="img-wrap" style="height: 12rem"> <img
-                                            src="{{$product->product_image }}"
-                                            style="height: 100%"> </a>
-                                    <figcaption class="info-wrap">
-
-                                        <a href="/item/{{ $product->slug }}" class="title ">{{ str_limit($product->title, 20)}}</a>
-                                        <div
-                                            class="price mt-1 {{ $homeSections->last()->id==$homeSection->id?'last-color':'' }}">
-                                            @if($product->discount)
-                                                <del class="text-danger">{{ number_format($product->price) }} Rwf</del>
-                                                &nbsp;
-                                                <span
-                                                    class="float-right">{{ number_format($product->discount->price) }} Rwf</span>
-                                            @else
-                                                @if($product->min_price)
-                                                    <div class="d-flex justify-content-between flex-wrap"
-                                                         style="font-size: .85rem;">
-                                        <span>
-                                             {{ number_format($product->min_price) }} Rwf
-                                        </span>
-                                                        <span>-</span>
-                                                        <span>
-                                             {{ number_format($product->max_price) }} Rwf
-                                        </span>
-                                                    </div>
-
-                                                @else
-                                                    {{ number_format($product->price) }} Rwf
-                                                @endif
-                                            @endif
-                                        </div> <!-- price-wrap.// -->
-                                        <div class="mt-2">
-                                            @if($homeSections->last()->id!=$homeSection->id)
-                                                <span class="badge badge-primary  mr-1"
-                                                      data-toggle="tooltip" data-placement="top"
-                                                      title="{{ $product->likes->count() }} likes"> {{ $product->likes->count() }} </span>
-                                            @endif
-                                            <a href="#"
-                                               class="mr-2 {{ $homeSections->last()->id==$homeSection->id?'last-color':'text-primary' }} "
-                                               data-toggle="tooltip"
-                                               data-placement="top" title="Like the product"
-                                               onclick="event.preventDefault();
-                                                   document.getElementById('like-form-{{ $product->id }}').submit();">
-                                                <span class="fa fa-thumbs-o-up fa-lg"></span>
-                                            </a>
-                                            <form id="like-form-{{ $product->id }}" action="/like/{{ $product->id }}"
-                                                  method="POST"
-                                                  style="display: none;">
-                                                {{ method_field("PUT") }}
-                                                @csrf
-                                            </form>
-                                            <a href="#"
-                                               class=" {{ $homeSections->last()->id==$homeSection->id?'last-color':'text-primary' }} float-right"
-                                               data-toggle="tooltip"
-                                               @click.prevent="quickView({{$product}})"
-                                               data-placement="top" title="Quick view on product"
-                                            >
-                                                <span class="fa fa-eye fa-lg"></span>
-                                            </a>
-
-                                        </div>
-                                    </figcaption>
-
-                                </div>
-                            </div> <!-- col.// -->
-                        @endforeach
-                    </div> <!-- row.// -->
-                    @include("includes.quick_view_modal")
-                </section>
-            @endif
-        @endforeach
-        <section class="padding-bottom-sm greyish-bg mb-4">
-            <header class="section-heading heading-line heading-line-5">
-                <h4 class="title-section text-uppercase title-header-5 greyish-bg">Our Top Sellers</h4>
-
-            </header>
-            <div class="row row-sm">
-                @foreach($sellers as $seller)
-                    {{-- <div class="col-xl-2 col-lg-2 col-md-3 col-4">
-                         <figure class="card-product-grid card-sm">
-                             <a href="/item/{{ $seller->slug }}" class="img-wrap">
-                                 <img style="border-radius: 50%"
-                                     src="{{$seller->image }}"/>
-                             </a>
-                             <div class="text-wrap p-3">
-                                 <a href="/item/{{ $seller->slug }}" class="title">{{ $seller->name }}</a>
-                                 <span class="badge badge-danger"> {{ $seller->phone }}</span>
-                             </div>
-                         </figure>
-                     </div>--}}
-                    <div class="col-xl-2 seller col-lg-3 col-6 col-sm-4">
-                        <div href="/shop?seller={{ $seller->slug }}" class="card card-seller card-sm card-product-grid" data-toggle="tooltip" data-placement="bottom"
-                             title="Seller email: {{ $seller->email }}">
-                            <a href="/shop?seller={{ $seller->slug }}" class="img-wrap"> <img
-                                    src="{{$seller->image }}"
-                                    style="height: 100%;border-radius: 50%;object-fit: cover"> </a>
-                            <figcaption class="info-wrap text-center">
-                                <a href="/shop?seller={{ $seller->slug }}" class="title ">{{ $seller->shop_name }}</a>
-                                <div
-                                    class="price mt-1">
-                                    <span class="fa fa-phone"></span>
-                                    <span
-                                        class="">{{ ($seller->phone) }}</span>
-                                </div>
-                            </figcaption>
-
-                        </div>
-                    </div>
+            @guest
+            @else
+                @foreach($cart_products as $cart_product)
+                    <form id="cart{{ $cart_product->id }}"
+                          action="{{ route('cart.destroy',$cart_product->id) }}" method="POST"
+                          style="display: none;">
+                        {{ method_field("DELETE") }}
+                        @csrf
+                    </form>
                 @endforeach
-            </div> <!-- row.// -->
-            @include("includes.quick_view_modal")
-        </section>
+            @endguest
+            <div class="foot">
+                @guest
+                    <div class="buttons mt-5">
+                        <a href="/login" class="btn btn-dark btn-hover-primary mb-30px">Login</a>
+                    </div>
+                @else
+                    <div class="sub-total">
+                        <strong>Total :</strong>
+                        <span class="amount text-black-50">{{$sum}}</span>
+                    </div>
+                    <div class="buttons">
+                        <a href="/cart" class="btn btn-dark btn-hover-primary mb-30px">view cart</a>
+                        <a href="/checkout" class="btn btn-outline-dark current-btn">checkout</a>
+                    </div>
+                @endguest
+                <p class="minicart-message">Free Shipping on All Orders Over 30,000 RFW !</p>
+            </div>
+        </div>
     </div>
-    <!-- =============== SECTION ITEMS .//END =============== -->
+    <!-- OffCanvas Cart End -->
 
-
-    <!-- =============== SECTION SERVICES =============== -->
-    {{-- <section class="padding-bottom">
-
-         <header class="section-heading heading-line">
-             <h4 class="title-section text-uppercase">Trade services</h4>
-         </header>
-
-         <div class="row">
-             <div class="col-md-3 col-sm-6">
-                 <article class="card card-post">
-                     <img src="/alistyle/images/posts/1.jpg" class="card-img-top">
-                     <div class="card-body">
-                         <h6 class="title">Trade Assurance</h6>
-                         <p class="small text-uppercase text-muted">Order protection</p>
-                     </div>
-                 </article> <!-- card.// -->
-             </div> <!-- col.// -->
-             <div class="col-md-3 col-sm-6">
-                 <article class="card card-post">
-                     <img src="/alistyle/images/posts/2.jpg" class="card-img-top">
-                     <div class="card-body">
-                         <h6 class="title">Pay anytime</h6>
-                         <p class="small text-uppercase text-muted">Finance solution</p>
-                     </div>
-                 </article> <!-- card.// -->
-             </div> <!-- col.// -->
-             <div class="col-md-3 col-sm-6">
-                 <article class="card card-post">
-                     <img src="/alistyle/images/posts/3.jpg" class="card-img-top">
-                     <div class="card-body">
-                         <h6 class="title">Inspection solution</h6>
-                         <p class="small text-uppercase text-muted">Easy Inspection</p>
-                     </div>
-                 </article> <!-- card.// -->
-             </div> <!-- col.// -->
-             <div class="col-md-3 col-sm-6">
-                 <article class="card card-post">
-                     <img src="/alistyle/images/posts/4.jpg" class="card-img-top">
-                     <div class="card-body">
-                         <h6 class="title">Ocean and Air Shipping</h6>
-                         <p class="small text-uppercase text-muted">Logistic services</p>
-                     </div>
-                 </article> <!-- card.// -->
-             </div> <!-- col.// -->
-         </div> <!-- row.// -->
-
-     </section>--}}
-
-</div>
-<!-- container end.// -->
-<!-- ========================= FOOTER ========================= -->
-<footer class="section-footer bg-secondary">
-    <div class="container">
-      {{--  <section class="footer-top padding-y-lg text-white">
-            <div class="row">
-                <aside class="col-md col-6">
-                    <h6 class="title">Brands</h6>
-                    <ul class="list-unstyled">
-                        <li><a href="#">Adidas</a></li>
-                        <li><a href="#">Puma</a></li>
-                        <li><a href="#">Reebok</a></li>
-                        <li><a href="#">Nike</a></li>
-                    </ul>
-                </aside>
-                <aside class="col-md col-6">
-                    <h6 class="title">Company</h6>
-                    <ul class="list-unstyled">
-                        <li><a href="#">About us</a></li>
-                        <li><a href="#">Career</a></li>
-                        <li><a href="#">Find a store</a></li>
-                        <li><a href="#">Rules and terms</a></li>
-                        <li><a href="#">Sitemap</a></li>
-                    </ul>
-                </aside>
-                <aside class="col-md col-6">
-                    <h6 class="title">Help</h6>
-                    <ul class="list-unstyled">
-                        <li><a href="#">Contact us</a></li>
-                        <li><a href="#">Money refund</a></li>
-                        <li><a href="#">Order status</a></li>
-                        <li><a href="#">Shipping info</a></li>
-                        <li><a href="#">Open dispute</a></li>
-                    </ul>
-                </aside>
-                <aside class="col-md col-6">
-                    <h6 class="title">Account</h6>
-                    <ul class="list-unstyled">
-                        <li><a href="/login"> User Login </a></li>
-                        <li><a href="/register"> User register </a></li>
-                        <li><a href="#"> Account Setting </a></li>
-                        <li><a href="#"> My Orders </a></li>
-                    </ul>
-                </aside>
-                <aside class="col-md">
-                    <h6 class="title">Social</h6>
-                    <ul class="list-unstyled">
-                        <li><a href="#"> <i class="fa fa-facebook"></i> Facebook </a></li>
-                        <li><a href="#"> <i class="fa fa-twitter"></i> Twitter </a></li>
-                        <li><a href="#"> <i class="fa fa-instagram"></i> Instagram </a></li>
-                        <li><a href="#"> <i class="fa fa-youtube"></i> Youtube </a></li>
-                    </ul>
-                </aside>
-            </div> <!-- row.// -->
-        </section> --}}
-        <section class="footer-bottom text-center">
-
-            <p class="text-white">Privacy Policy - Terms of Use - User Information Legal Enquiry Guide</p>
-            <p class="text-muted"> &copy {{now()->year}} TAJYIRE Marketplace, All rights reserved </p>
-            <br>
-        </section>
-    </div><!-- //container -->
-    <div class="fixed-footer @auth justify-content-between @endauth">
-        @auth
-            <div class="widget-header mr-3">
-                <a href="/customer/profile" class="widget-view">
-                    <div class="icon-area">
-                        {{--                        <i class="fa fa-user"></i>--}}
-                        <img src="{{ auth()->user()->image }}"
-                             style="border-radius: 50%;margin-top: -15px;width: 100%" alt="">
-                    </div>
-                    <small class="text"> My profile </small>
-                </a>
+    <!-- OffCanvas Search Start -->
+    <div id="offcanvas-mobile-menu" class="offcanvas offcanvas-mobile-menu">
+        <div class="inner customScroll">
+            <div class="head">
+                <span class="title">&nbsp;</span>
+                <button class="offcanvas-close">×</button>
             </div>
-            <div class="widget-header mr-3">
-                <a href="/chatbox/customer" class="widget-view">
-                    <div class="icon-area">
-                        <i class="fa fa-comment"></i>
-
-                    </div>
-                    <small class="text"> Message </small>
-                </a>
+            <div class="offcanvas-menu-search-form">
+                <form action="#">
+                    <input type="text" placeholder="Search...">
+                    <button><i class="icon-magnifier"></i></button>
+                </form>
             </div>
-            <div class="widget-header mr-3">
-                <a href="/orders" class="widget-view">
-                    <div class="icon-area">
-                        <i class="fa fa-database"></i>
-                    </div>
-                    <small class="text"> Orders </small>
-                </a>
+            <div class="offcanvas-menu">
+                <ul>
+                    <li><a href="/" class="text-decoration-none"><span class="menu-text">Home</span></a></li>
+                    <li><a href="/shop" class="text-decoration-none"><span class="menu-text">Products</span></a>
+                    </li>
+                    <li><a href="/contact-us" class="text-decoration-none">Contact Us</a></li>
+                    <li><a href="#" class="text-decoration-none"><span class="menu-text">About-Us</span></a></li>
+                    <li><a href="/cart" class="text-decoration-none"><span class="menu-text">Cart</span></a></li>
+                    <li><a href="/checkout" class="text-decoration-none"><span class="menu-text">Checkout</span></a>
+                    </li>
+                    @guest
+                        <li><a href="/login" class="text-decoration-none"><span
+                                    class="menu-text">Login & Register</span></a>
+                        </li>
+                    @else
+                        <li><a href="/customer/profile" class="text-decoration-none"><span
+                                    class="menu-text">My Account</span></a></li>
+                    @endguest
+                </ul>
             </div>
-            <div class="widget-header">
-                <a href="/cart" class="widget-view">
-                    <div class="icon-area">
-                        <i class="fa fa-shopping-cart"></i>
-                        @if($cart_products->count()>0)
-                            <span class="notify">{{$cart_products->count()}}</span>
+            <div class="offcanvas-buttons mt-30px">
+                <div class="header-tools d-flex">
+                    <div class="cart-info d-flex align-self-center">
+                        <a href="/customer/profile" class="user"><i class="icon-user"></i></a>
+                        @if(count($cart_products)>0)
+                            <a href="#offcanvas-cart" class="bag offcanvas-toggle text-decoration-none"
+                               data-number="{{$cart_products->count()}}"><i
+                                    class="icon-bag"></i><span>{{$sum}}</span></a>
+                        @else
+                            <a href="#offcanvas-cart" class="bag offcanvas-toggle text-decoration-none"
+                               data-number="0"><i class="icon-bag"></i><span>0.00 RFW</span></a>
                         @endif
                     </div>
-                    <small class="text"> Cart </small>
-                </a>
-            </div>
-        @else
-            <div class="widget-header">
-                <a href="/login" class="widget-view mr-3">
-                    <div class="icon-area">
-                        <i class="fa fa-user"></i>
-                    </div>
-                    <small class="text"> Login </small>
-                </a>
-            </div>
-            <div class="widget-header">
-                <a href="/register" class="widget-view mr-3">
-                    <div class="icon-area">
-                        <i class="fa fa-user-plus"></i>
-                    </div>
-                    <small class="text"> Register </small>
-                </a>
-            </div>
-        @endif
-        <div class="widget-header">
-            <a href="/shop" class="widget-view mr-3">
-                <div class="icon-area">
-                    <i class="fa fa-list"></i>
                 </div>
-                <small class="text">Our Products </small>
-            </a>
+            </div>
+            <div class="offcanvas-social mt-30px">
+                <ul>
+                    <li>
+                        <a href="#" class="text-decoration-none"><i class="icon-social-facebook"></i></a>
+                    </li>
+                    <li>
+                        <a href="#" class="text-decoration-none"><i class="icon-social-twitter"></i></a>
+                    </li>
+                    <li>
+                        <a href="#" class="text-decoration-none"><i class="icon-social-instagram"></i></a>
+                    </li>
+                    <li>
+                        <a href="#" class="text-decoration-none"><i class="icon-social-google"></i></a>
+                    </li>
+                    <li>
+                        <a href="#" class="text-decoration-none"><i class="icon-social-instagram"></i></a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
-</footer>
-<!-- custom javascript -->
+    <!-- OffCanvas Search End -->
 
-<!-- jQuery -->
-<script src="/alistyle/js/jquery-2.0.0.min.js" type="text/javascript"></script>
+    <div class="offcanvas-overlay"></div>
+    <!-- Brand area end -->
 
-<!-- Bootstrap4 files-->
-<script src="/alistyle/js/bootstrap.bundle.min.js" type="text/javascript"></script>
-<script src="/alistyle/js/script.js" type="text/javascript"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-<script type="text/javascript" src="/js/toastr.min.js"></script>
-@if(session("success"))
-    <script type="application/javascript">
-        $(function () {
-            toastr.options.timeOut = '10000';
-            toastr.success('{{ session("success") }}')
-        })
-    </script>
-@endif
-@if(session("info"))
-    <script type="application/javascript">
-        $(function () {
-            toastr.options.timeOut = '10000';
-            toastr.info('{{ session("info") }}')
-        })
-    </script>
-@endif
-@if(count($errors))
-    <script type="application/javascript">
-        $(function () {
-            toastr.options.timeOut = '10000';
-            toastr.error('Please, make sure all fields are filled correctly!')
-        })
-    </script>
-@endif
-@foreach($homeSections as $homeSection)
-    @if($homeSection->discount)
-        <script type="text/javascript">
-            var end = new Date('{{ $homeSection->discount_time }}');
-            var _second = 1000;
-            var _minute = _second * 60;
-            var _hour = _minute * 60;
-            var _day = _hour * 24;
-            var timer;
+    <main class="py-4">
+        @include("home.welcome")
+    </main>
+    <!-- Footer Area Start -->
+    <div class="footer-area">
+        <div class="footer-container">
+            <div class="footer-top">
+                <div class="mx-5">
+                    <div class="row">
+                        <div class="col-md-6 col-lg-4 mb-md-30px mb-lm-30px">
+                            <div class="single-wedge">
+                                <h4 class="footer-herading">ABOUT US</h4>
+                                <p class="text-infor">We are a team of fashion and design that create high quality
+                                    style</p>
+                                <div class="need-help">
+                                    <p class="phone-info">
+                                        NEED HELP?
+                                        <span>
+                                        078888888888 <br/>
+                                        078888888888
+                                    </span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-2 mb-md-30px mb-lm-30px">
+                            <div class="single-wedge">
+                                <h4 class="footer-herading">Information</h4>
+                                <div class="footer-links">
+                                    <ul>
+                                        <li><a href="#">Delivery</a></li>
+                                        <li><a href="#">About Us</a></li>
+                                        <li><a href="#">Secure Payment</a></li>
+                                        <li><a href="/contact-us">Contact Us</a></li>
+                                        <li><a href="/contact-us#viewMap">Sitemap</a></li>
+                                        <li><a href="/shop">Stores</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-2 mb-sm-30px mb-lm-30px">
+                            <div class="single-wedge">
+                                <h4 class="footer-herading">CUSTOM LINKS</h4>
+                                <div class="footer-links">
+                                    <ul>
+                                        <li><a href="#">Legal Notice</a></li>
+                                        <li><a href="#">Prices Drop</a></li>
+                                        <li><a href="/shop">Products</a></li>
+                                        @guest
+                                            <li><a href="/login" class="text-decoration-none"><span
+                                                        class="menu-text">Login & Register</span></a>
+                                            </li>
+                                        @else
+                                            <li><a href="/customer/profile" class="text-decoration-none"><span
+                                                        class="menu-text">My Account</span></a></li>
+                                        @endguest
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4 ">
+                            <div class="single-wedge">
+                                <h4 class="footer-herading">NEWSLETTER</h4>
+                                <div class="subscrib-text">
+                                    <p>You may unsubscribe at any moment. For that purpose, please find our contact info
+                                        in the legal notice.</p>
+                                </div>
+                                <div id="mc_embed_signup" class="subscribe-form">
+                                    <form
+                                        id="mc-embedded-subscribe-form"
+                                        class="validate"
+                                        novalidate=""
+                                        target="_blank"
+                                        name="mc-embedded-subscribe-form"
+                                        method="post"
+                                        action="http://devitems.us11.list-manage.com/subscribe/post?u=6bbb9b6f5827bd842d9640c82&amp;id=05d85f18ef"
+                                    >
+                                        <div id="mc_embed_signup_scroll" class="mc-form">
+                                            <input class="email" type="email" required=""
+                                                   placeholder="Enter your email here.." name="EMAIL" value=""/>
+                                            <div class="mc-news" aria-hidden="true"
+                                                 style="position: absolute; left: -5000px;">
+                                                <input type="text" value="" tabindex="-1"
+                                                       name="b_6bbb9b6f5827bd842d9640c82_05d85f18ef"/>
+                                            </div>
+                                            <div class="clear">
+                                                <input id="mc-embedded-subscribe" class="button" type="submit"
+                                                       name="subscribe" value="Sign Up"/>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="social-info">
+                                    <ul>
+                                        <li>
+                                            <a href="#"><i class="icon-social-facebook"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="icon-social-twitter"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="icon-social-instagram"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="icon-social-google"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="icon-social-instagram"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
 
-            function showRemaining() {
-                var now = new Date();
-                var distance = end - now;
-                if (distance < 0) {
-                    clearInterval(timer);
-                    // document.getElementById('countdown').innerHTML = 'EXPIRED!';
-                    return;
-                }
-                var days = Math.floor(distance / _day);
-                var hours = Math.floor((distance % _day) / _hour);
-                var minutes = Math.floor((distance % _hour) / _minute);
-                var seconds = Math.floor((distance % _minute) / _second);
+                            <p class="copy-text"> © 2021 <strong>David's High Deals</strong></p>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <img class="payment-img" src="assets/images/icons/payment.png" alt=""/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{--<a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647;"><i class="ion-android-arrow-up"></i></a>--}}
+<!--<script src="assets/js/vendor/vendor.min.js"></script>
+<script src="assets/js/plugins/plugins.min.js"></script>
+<script src="assets/js/jquery-v3.4.1.js"></script>
+<script src="assets/js/main.js"></script>-->
+<script src="assets/js/vendor/vendor.min.js"></script>
+<script src="assets/js/plugins/plugins.min.js"></script>
 
-                document.getElementById('countdown{{ $homeSection->id }}days').innerHTML = days;
-                document.getElementById('countdown{{ $homeSection->id }}hrs').innerHTML = hours;
-                document.getElementById('countdown{{ $homeSection->id }}min').innerHTML = minutes;
-                document.getElementById('countdown{{ $homeSection->id }}sec').innerHTML = seconds;
-            }
-
-            timer = setInterval(showRemaining, 1000);
-        </script>
-    @endif
-@endforeach
-
-<script type="text/javascript" src="/js/new_app.js"></script>
+<!-- Main Activation JS -->
+<script src="assets/js/main.js"></script>
+<script src="{{ asset('js/app.js') }}"></script>
+@stack("script")
 </body>
 </html>

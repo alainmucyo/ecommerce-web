@@ -77,9 +77,9 @@
             <ul class="pcoded-item pcoded-left-item">
                 <li class=" ">
                     <a class="waves-effect waves-dark" href="/chatbox/seller">
-<span class="pcoded-micon">
-<i class="feather icon-message-square"></i>
-</span>
+                        <span class="pcoded-micon">
+                        <i class="feather icon-message-square"></i>
+                        </span>
                         <span class="pcoded-mtext">Chat box</span>
                     </a>
                 </li>
@@ -87,9 +87,9 @@
             <ul class="pcoded-item pcoded-left-item">
                 <li class=" ">
                     <a class="waves-effect waves-dark" href="/profile">
-<span class="pcoded-micon">
-<i class="feather icon-user"></i>
-</span>
+                        <span class="pcoded-micon">
+                        <i class="feather icon-user"></i>
+                        </span>
                         <span class="pcoded-mtext">Profile</span>
                     </a>
                 </li>

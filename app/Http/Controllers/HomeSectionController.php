@@ -48,7 +48,6 @@ class HomeSectionController extends Controller
 
     public function destroy(HomeSection $homeSection)
     {
-
         $homeSection->update(["status" => 0]);
     }
 

@@ -14,7 +14,7 @@ class SellerMessagesResource extends JsonResource
         return [
             "id" => $this->id,
             "message" => $this->message,
-            "sender_avatar" => $this->customer->avatar ?Storage::url($this->customer->avatar): "/img/user.png",
+            "sender_avatar" =>  "/img/user.png",
             "sent_at" => Carbon::parse($this->created_at)->diffForHumans(),
             "incoming" => $this->sender != auth()->user()->id,
             "outgoing" => $this->sender == auth()->user()->id

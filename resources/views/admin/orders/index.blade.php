@@ -13,13 +13,13 @@
                             <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Order ID</th>
+                                <th>Order_ID</th>
                                 <th>Price</th>
                                 <th>Items</th>
                                 <th>Customer</th>
-                                <th>Sellers</th>
+{{--                                <th>Sellers</th>--}}
                                 <th>Address</th>
-                                <th>Done At</th>
+                                <th>Done_At</th>
                                 <th>Status</th>
                             </tr>
                             </thead>
@@ -29,33 +29,54 @@
                                     <td>{{$loop->iteration}}</td>
 
                                     <td>
-                                        <div
-                                            style="display: none"> {{ $order->customer }}{{ $order->paymentMode }}{{ $order->deliveryFee }}{{ $order->province }}
-                                            {{ $order->district }}{{ $order->sector }}{{ $order->cell }}{{ $order->village }}</div>
+{{--                                        <div--}}
+{{--                                            style="display: none"> {{ $order->customer }}{{ $order->paymentMode }}{{ $order->deliveryFee }}{{ $order->province }}--}}
+{{--                                            {{ $order->district }}{{ $order->sector }}{{ $order->cell }}{{ $order->village }}</div>--}}
                                         <a @click.prevent="showOrderProducts({{ $order }})" href="#"
                                            class="text-primary"
                                            data-toggle="tooltip" data-placement="top"
                                            title="Click To View Products">#{{ $order->order_id }}</a>
                                     </td>
-                                    <td>{{ number_format($order->price) }}
-                                        Rwf
-                                    </td>
+                                    <td>{{ number_format($order->price) }}Rwf</td>
                                     <td> {{ $order->products->count() }}</td>
-                                    <td><a href="/chatbox/seller?customer={{ $order->customer->id }}"
-                                           class="text-primary">
-                                            {{ $order->customer->name }}, <br>{{ $order->customer->email }},
-                                            <br> {{ $order->customer->phone }} </a></td>
                                     <td>
-                                        @foreach($order->sellers as $seller)
-                                            {{ $seller->name }},
-                                        @endforeach
+                                        @if($order->customer)
+                                            <a href="/chatbox/seller?customer={{ $order->customer->id }}" class="text-primary">
+                                                @if($order->information)
+                                                    {{ $order->information->name }}
+                                                    <br> {{ $order->information->phone }}
+                                                @else
+                                                    {{ $order->customer->email }}
+                                                    <br> {{ $order->customer->phone }}
+                                                @endif
+                                            </a>
+                                        @endif
                                     </td>
-                                    <td>{{ $order->province->name }}, {{ $order->district->name }}</td>
+{{--                                    <td>--}}
+{{--                                        @foreach($order->sellers as $seller)--}}
+{{--                                            {{ $seller->name }},--}}
+{{--                                        @endforeach--}}
+{{--                                    </td>--}}
+                                    <td>
+                                        @if($order->information)
+                                            {{ $order->information->address }}
+                                        @else
+                                            <span class="text-danger">No address found</span>
+                                        @endif
+                                    </td>
                                     <td>{{$order->created_at->toDateString()}}</td>
                                     <td>
                                         @if(!$order->delivered)
-                                            <span
-                                                class="badge badge-warning">Not yet delivered</span>
+                                            <form method="post" onsubmit="return confirm('Deliver the order?')"
+                                                  action="/order/delivered/{{$order->id}}">
+                                                {{ method_field("PUT") }}
+                                                @csrf
+                                                <button type="submit" data-toggle="tooltip" data-placement="top"
+                                                        title="Deliver The Order" href="#"
+                                                        class="btn-icon btn-icon-only btn-pill btn btn-outline-success"
+                                                ><i
+                                                        class="feather icon-check btn-icon-wrapper"> </i></button>
+                                            </form>
                                         @else
                                             @if($order->delivered)
                                                 <span
@@ -92,7 +113,6 @@
                         </center>
                         <div v-else class="row">
                             <div class="col-md-6">
-                                <p><strong>Customer Name:</strong> @{{ order.customer.name }}</p>
                                 <p><strong>Customer Email:</strong> @{{ order.customer.email }}</p>
                                 <p><strong>Customer Phone:</strong> @{{ order.customer.phone }}</p>
                                 <p><strong>Payment Mode:</strong> @{{ order.payment_mode.name }}</p>
@@ -101,13 +121,14 @@
                                 <p><strong>Done At:</strong> @{{ order.created_at }}</p>
                             </div>
                             <div class="col-md-6">
-                                <p><strong>Shipping:</strong><span class="badge badge-primary">@{{ order.delivery_fee.title }}</span>
+{{--                                <p><strong>Shipping:</strong><span class="badge badge-primary">@{{ order.delivery_fee.title }}</span>--}}
+{{--                                </p>--}}
+{{--                                <p><strong>Address:</strong>@{{order.user_address ? order.user_address.address : "No--}}
+{{--                                    address found!"}}</p>--}}
+                                <p>
+                                    <a :href="'/chatbox/seller?customer='+order.customer.id"> <span
+                                            class="fa fa-comment"></span> Chat with customer</a>
                                 </p>
-                                <p><strong>Province:</strong> @{{ order.province.name }}</p>
-                                <p><strong>District:</strong> @{{ order.district.name }}</p>
-                                <p><strong>Sector:</strong> @{{ order.sector.name }}</p>
-                                <p><strong>Cell:</strong> @{{ order.cell.name }}</p>
-                                <p><strong>Village:</strong> @{{ order.village.name }}</p>
                             </div>
                             <hr>
                             <div class="col-sm-12 table-responsive">
@@ -117,7 +138,6 @@
                                         <th scope="col">product</th>
                                         <th scope="col">price</th>
                                         <th scope="col">Seller</th>
-                                        <th scope="col">Insurance</th>
                                         <th scope="col">description</th>
                                         <th scope="col">Action</th>
                                     </tr>
@@ -126,7 +146,8 @@
                                     <tr>
                                         <td>
                                             <a class="image_link" :href="product.product_image">
-                                                <img :src="product.product_image" class="product_image" alt="Image">
+{{--                                                <img :src="product.product_image" class="product_image" alt="Image">--}}
+                                                <img src="/img/no-image.jpg" class="product_image" alt="Image">
                                             </a>
                                             <a :href="'/item/'+product.slug">@{{ product.product }}</a>
                                         </td>
@@ -137,16 +158,22 @@
                                             @{{ product.seller.name }}
                                         </td>
                                         <td>
-                                            @{{ product.insurance | currency("Rwf") }} / each
-                                        </td>
-                                        <td>
                                             <span v-if="product.size">Size: @{{product.size}}</span>
                                             <br>
                                             <span>Qty: @{{ product.quantity }}</span>
                                         </td>
                                         <td>
-                                            <span v-if="!product.delivered"
-                                                  class="badge badge-warning">Not yet delivered</span>
+                                            <form v-if="!product.delivered" method="post"
+                                                  onsubmit="return confirm('Product Delivered?')"
+                                                  :action="'/order/product/delivered/'+product.id">
+                                                {{ method_field("PUT") }}
+                                                @csrf
+                                                <button type="submit" data-toggle="tooltip" data-placement="top"
+                                                        title="Deliver A single product" href="#"
+                                                        class="btn-icon btn-icon-only btn-pill btn btn-outline-success"
+                                                ><i
+                                                        class="feather icon-check btn-icon-wrapper"> </i></button>
+                                            </form>
                                             <div v-else>
                                                 <span v-if="product.delivered" class="badge badge-primary">Delivered At @{{ product.delivered_at }}</span>
                                                 <br>

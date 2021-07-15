@@ -43,7 +43,6 @@ class ReportsController extends Controller
             })->sortByDesc(function ($object) {
                 return $object->count();
             });
-
         return view("reports.customers", compact('customers'));
     }
 

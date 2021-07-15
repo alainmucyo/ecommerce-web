@@ -25,7 +25,7 @@
                                             <img :src="chat.avatar" alt="User" class="chat-image">
                                             <div class="person-details">
                                                 <div class="chat-name">{{ chat.name}}</div>
-                                                <div class="chat-type">{{chat.type}}</div>
+                                                <div class="chat-type">{{ chat.type}}</div>
                                             </div>
                                         </div>
                                     </a>
@@ -61,7 +61,7 @@
                                     <form action="#" @submit.prevent="sendMessage">
                                         <input type="text" v-model="form.message" class="write_msg"
                                                placeholder="Type a message"/>
-                                        <button class="msg_send_btn" type="submit"><i class="fa fa-paper-plane-o"
+                                        <button class="msg_send_btn" type="submit"><i class="fa fa-paper-plane"
                                                                                       aria-hidden="true"></i></button>
                                     </form>
                                 </div>

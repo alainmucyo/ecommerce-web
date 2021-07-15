@@ -5,7 +5,7 @@
         <vue-progress-bar></vue-progress-bar>
         <div class="row justify-content-center">
             <div class="col-md-10">
-                <app-user></app-user>
+                <app-user :auth="{{$auth}}"></app-user>
             </div>
         </div>
     </div>

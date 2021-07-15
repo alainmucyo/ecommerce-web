@@ -29,10 +29,10 @@ class User extends Authenticatable
     {
         parent::boot();
         static::creating(function ($user) {
-            if ($user->shop_name && trim($user->shop_name) !="")
-                $slug=Str::slug($user->shop_name);
+            if ($user->shop_name && trim($user->shop_name) != "")
+                $slug = Str::slug($user->shop_name);
             else
-            $slug = Str::slug($user->name);
+                $slug = Str::slug($user->name);
 
             $count = static::whereRaw("slug RLIKE '^{$slug}(-[0-9]+)?$'")->count();
             $user->slug = $count ? "{$slug}-{$count}" : $slug;
@@ -44,33 +44,42 @@ class User extends Authenticatable
         return $this->hasMany(Cart::class);
     }
 
-    public function province()
-    {
-        return $this->belongsTo(Province::class, "province_id");
-    }
-
-    public function district()
-    {
-        return $this->belongsTo(District::class);
-    }
-
-    public function sector()
-    {
-        return $this->belongsTo(Sector::class);
-    }
-
-    public function cell()
-    {
-        return $this->belongsTo(Cell::class);
-    }
-
+//    public function province()
+//    {
+//        return $this->belongsTo(Province::class, "province_id");
+//    }
+//
+//    public function district()
+//    {
+//        return $this->belongsTo(District::class);
+//    }
+//
+//    public function sector()
+//    {
+//        return $this->belongsTo(Sector::class);
+//    }
+//
+//    public function cell()
+//    {
+//        return $this->belongsTo(Cell::class);
+//    }
+//
+//    public function village()
+//    {
+//        return $this->belongsTo(Village::class);
+//    }
     public function village()
     {
         return $this->belongsTo(Village::class);
     }
 
+    public function information()
+    {
+        return $this->hasMany(UserInformation::class);
+    }
+
     public function getImageAttribute()
     {
-        return $this->avatar ? Storage::url($this->avatar): "/img/user.png";
+        return $this->avatar ? Storage::url($this->avatar) : "/img/user.png";
     }
 }

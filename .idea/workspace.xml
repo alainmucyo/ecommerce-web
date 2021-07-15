@@ -1,7 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dace895f-1de4-4d09-8a04-b3a0612a637f" name="Default Changelist" comment="Many changes" />
+    <list default="true" id="dace895f-1de4-4d09-8a04-b3a0612a637f" name="Default Changelist" comment="Many changes">
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/UserInformationController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/UserInformation.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2021_07_17_212027_add_currency_usa_and_dubai_currency_on_product_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2021_07_19_092902_add_address_users_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2021_07_20_173749_add_user_information_id_on_orders_tables.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2021_07_20_203708_create_user_information_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/DHD2_logo.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/dhd_logo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BuyController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BuyController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CartController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CartController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OrderController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OrderController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProductController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ReportsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ReportsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UsersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UsersController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/CustomerChatList.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/CustomerChatList.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/CustomerMessagesResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/CustomerMessagesResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/SellerChatList.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/SellerChatList.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/SellerMessagesResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/SellerMessagesResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/UsersResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/UsersResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Order.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Order.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Checkout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Checkout.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/CreateProduct.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/CreateProduct.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Profile.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Profile.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/TestChat.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/TestChat.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/User.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/User.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/orders/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/orders/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/products.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/products.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/users/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/users/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/register.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/register.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/home/cart.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home/cart.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/home/checkout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home/checkout.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/home/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/home/item.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home/item.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/home/orders/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home/orders/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/includes/admin.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/includes/admin.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/reports/customers.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/reports/customers.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/orders/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/orders/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/product/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/product/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -26,6 +75,72 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/app/Http/Controllers/ChatboxController.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/app/Http/Controllers/UsersController.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../home-gas/routes/web.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/app/Http/Controllers/OrderController.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/app/Http/Controllers/ProductHomeController.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/app/Http/Controllers/Controller.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/resources/views/seller/profile.blade.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/app/Http/Controllers/BuyController.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/app/Http/Controllers/HomeSectionController.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../high-deals/resources/views/welcome.blade.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/app/Http/Controllers/HomeController.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/resources/views/seller/orders/index.blade.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/app/Http/Controllers/ItemController.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/resources/views/seller/chatbox/index.blade.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/app/Http/Controllers/CartController.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/resources/views/layouts/master.blade.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/app/Http/Controllers/SellerOrdersController.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../high-deals/resources/views/layouts/app.blade.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/resources/views/layouts/app.blade.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/resources/views/reports/customers.blade.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/resources/views/includes/header.blade.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/resources/views/includes/seller.blade.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/resources/views/includes/footer.blade.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/resources/views/includes/styles.blade.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/resources/views/includes/admin.blade.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/resources/views/home/contact-us.blade.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/app/Providers/AppServiceProvider.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/resources/views/password_reset/mail.blade.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/resources/views/home/welcome.blade.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/routes/web.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../csheicon-web/app/UserInformation.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/resources/js/app.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Routing/Controller.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../csheicon-web/resources/views/house-plan/checkout.blade.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/resources/js/components/Profile.vue" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/resources/js/components/Checkout.vue" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/resources/js/components/TestChat.vue" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/package.json" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/resources/js/components/FillAddress.vue" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/app/Http/Middleware/CheckRole.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../high-deals/resources/views/client-views/product-detail.blade.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/resources/views/welcome.blade.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/app/Order.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/resources/views/auth/register.blade.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/resources/views/home/item.blade.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/resources/views/home/shop.blade.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/resources/views/home/orders.blade.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/app/Http/Kernel.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/app/Http/Traits/IncomeTrait.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/resources/views/home/profile.blade.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/resources/views/home/checkout.blade.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/resources/views/home/index.blade.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../csheicon-web/app/Http/Controllers/CheckoutController.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/resources/views/admin/products.blade.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/resources/views/admin/orders/index.blade.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -127,6 +242,13 @@
       <path value="$PROJECT_DIR$/vendor/guzzlehttp/promises" />
       <path value="$PROJECT_DIR$/vendor/balping/json-raw-encoder" />
       <path value="$PROJECT_DIR$/vendor/consoletvs/charts" />
+      <path value="$PROJECT_DIR$/vendor/league/mime-type-detection" />
+      <path value="$PROJECT_DIR$/vendor/symfony/deprecation-contracts" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php80" />
+      <path value="$PROJECT_DIR$/vendor/symfony/http-client-contracts" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-normalizer" />
+      <path value="$PROJECT_DIR$/vendor/php-parallel-lint/php-console-highlighter" />
+      <path value="$PROJECT_DIR$/vendor/php-parallel-lint/php-console-color" />
     </include_path>
   </component>
   <component name="ProjectId" id="1Z7JwRXnYKeZsRJQmjkeVZC14sz" />
@@ -135,18 +257,20 @@
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../hmis3" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -179,6 +303,7 @@
     </option>
     <option name="showServicesTree" value="false" />
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -404,6 +529,19 @@
       <workItem from="1599506376489" duration="402000" />
       <workItem from="1599928472020" duration="300000" />
       <workItem from="1599929350505" duration="769000" />
+      <workItem from="1625758609765" duration="24273000" />
+      <workItem from="1625836402853" duration="37849000" />
+      <workItem from="1626020170948" duration="2587000" />
+      <workItem from="1626083060003" duration="26323000" />
+      <workItem from="1626193259698" duration="1208000" />
+      <workItem from="1626295054324" duration="18614000" />
+      <workItem from="1626428552474" duration="685000" />
+      <workItem from="1626468412570" duration="27251000" />
+      <workItem from="1626674579366" duration="13201000" />
+      <workItem from="1626707091746" duration="63414000" />
+      <workItem from="1626942672102" duration="4588000" />
+      <workItem from="1626947675466" duration="15106000" />
+      <workItem from="1627019038314" duration="2248000" />
     </task>
     <task id="LOCAL-00001" summary="Many changes">
       <created>1585379426485</created>
@@ -528,81 +666,23 @@
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Many changes" />
     <option name="LAST_COMMIT_MESSAGE" value="Many changes" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="416" y="124" width="524" height="490" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1595776041837">
-      <screen x="0" y="0" width="1366" height="744" />
-    </state>
-    <state x="416" y="121" width="524" height="490" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.727@0.0.1366.727" timestamp="1592561901203" />
-    <state x="416" y="124" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.744@0.0.1366.744" timestamp="1595776041837" />
-    <state x="278" y="0" width="799" height="727" key="CommitChangelistDialog2" timestamp="1592163220372">
-      <screen x="0" y="0" width="1366" height="727" />
-    </state>
-    <state x="278" y="0" width="799" height="727" key="CommitChangelistDialog2/0.0.1366.727@0.0.1366.727" timestamp="1592163220372" />
-    <state x="127" y="58" width="1092" height="617" key="DiffContextDialog" timestamp="1592163211566">
-      <screen x="0" y="0" width="1366" height="727" />
-    </state>
-    <state x="127" y="58" width="1092" height="617" key="DiffContextDialog/0.0.1366.727@0.0.1366.727" timestamp="1592163211566" />
-    <state x="460" y="112" width="428" height="481" key="FileChooserDialogImpl" timestamp="1597842243422">
-      <screen x="0" y="0" width="1366" height="737" />
-    </state>
-    <state x="460" y="110" width="424" height="519" key="FileChooserDialogImpl/0.0.1366.727@0.0.1366.727" timestamp="1592740043039" />
-    <state x="460" y="112" width="428" height="481" key="FileChooserDialogImpl/0.0.1366.737@0.0.1366.737" timestamp="1597842243422" />
-    <state x="460" y="113" width="426" height="483" key="FileChooserDialogImpl/0.0.1366.744@0.0.1366.744" timestamp="1596109594437" />
-    <state width="1320" height="145" key="GridCell.Tab.0.bottom" timestamp="1592124141700">
-      <screen x="0" y="0" width="1366" height="727" />
-    </state>
-    <state width="1320" height="145" key="GridCell.Tab.0.bottom/0.0.1366.727@0.0.1366.727" timestamp="1592124141700" />
-    <state width="1320" height="145" key="GridCell.Tab.0.center" timestamp="1592124141697">
-      <screen x="0" y="0" width="1366" height="727" />
-    </state>
-    <state width="1320" height="145" key="GridCell.Tab.0.center/0.0.1366.727@0.0.1366.727" timestamp="1592124141697" />
-    <state width="1320" height="145" key="GridCell.Tab.0.left" timestamp="1592124141694">
-      <screen x="0" y="0" width="1366" height="727" />
-    </state>
-    <state width="1320" height="145" key="GridCell.Tab.0.left/0.0.1366.727@0.0.1366.727" timestamp="1592124141694" />
-    <state width="1320" height="145" key="GridCell.Tab.0.right" timestamp="1592124141699">
-      <screen x="0" y="0" width="1366" height="727" />
-    </state>
-    <state width="1320" height="145" key="GridCell.Tab.0.right/0.0.1366.727@0.0.1366.727" timestamp="1592124141699" />
-    <state x="164" y="3" key="SettingsEditor" timestamp="1598248791403">
-      <screen x="0" y="0" width="1366" height="737" />
-    </state>
-    <state x="164" y="3" key="SettingsEditor/0.0.1366.737@0.0.1366.737" timestamp="1598248791403" />
-    <state x="479" y="290" width="406" height="166" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1595946017283">
-      <screen x="0" y="0" width="1366" height="744" />
-    </state>
-    <state x="479" y="283" width="406" height="166" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.727@0.0.1366.727" timestamp="1591523739605" />
-    <state x="479" y="290" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.744@0.0.1366.744" timestamp="1595946017283" />
-    <state x="363" y="0" width="822" height="744" key="find.popup" timestamp="1596108039853">
-      <screen x="0" y="0" width="1366" height="744" />
-    </state>
-    <state x="363" y="0" width="789" height="727" key="find.popup/0.0.1366.727@0.0.1366.727" timestamp="1592033979282" />
-    <state x="363" y="0" width="822" height="744" key="find.popup/0.0.1366.744@0.0.1366.744" timestamp="1596108039853" />
-    <state width="600" height="424" key="javadoc.popup" timestamp="1592129023998">
-      <screen x="0" y="0" width="1366" height="727" />
-    </state>
-    <state width="600" height="424" key="javadoc.popup/0.0.1366.727@0.0.1366.727" timestamp="1592129023998" />
-    <state x="347" y="159" key="run.anything.popup" timestamp="1597954082912">
-      <screen x="0" y="0" width="1366" height="737" />
-    </state>
-    <state x="347" y="157" key="run.anything.popup/0.0.1366.727@0.0.1366.727" timestamp="1592152771853" />
-    <state x="347" y="159" key="run.anything.popup/0.0.1366.737@0.0.1366.737" timestamp="1597954082912" />
-    <state x="346" y="49" width="672" height="163" key="search.everywhere.popup" timestamp="1599929841598">
-      <screen x="0" y="0" width="1366" height="737" />
-    </state>
-    <state x="346" y="48" width="672" height="160" key="search.everywhere.popup/0.0.1366.727@0.0.1366.727" timestamp="1592977146787" />
-    <state x="346" y="49" width="672" height="163" key="search.everywhere.popup/0.0.1366.737@0.0.1366.737" timestamp="1599929841598" />
-    <state x="346" y="49" width="672" height="164" key="search.everywhere.popup/0.0.1366.744@0.0.1366.744" timestamp="1596979765920" />
-    <state x="408" y="283" width="540" height="178" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1593756943968">
-      <screen x="0" y="0" width="1366" height="744" />
-    </state>
-    <state x="408" y="283" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/0.0.1366.744@0.0.1366.744" timestamp="1593756943968" />
   </component>
 </project>

@@ -1,4 +1,5 @@
 @extends("layouts.master")
+@section("title","Order-Details")
 @section("content")
     <style>
         .card {
@@ -19,7 +20,7 @@
                 <div class="col-12">
                     <nav aria-label="breadcrumb" class="theme-breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item"><a href="/">Home</a></li>
                             <li class="breadcrumb-item active" aria-current="page">order #{{ $order->order_id }}</li>
                         </ol>
                     </nav>
@@ -63,22 +64,24 @@
 
                                 </div>
                                 <div class="col-md-6">
-
-                                    <p><strong>Province:</strong> {{ $order->province->name }}</p>
-                                    <p><strong>District:</strong> {{ $order->district->name }}</p>
-                                    <p><strong>Sector:</strong> {{ $order->sector->name }}</p>
-                                    <p><strong>Cell:</strong> {{ $order->cell->name }}</p>
-                                    <p><strong>Village:</strong> {{ $order->village->name }}</p>
+                                    @if($order->information)
+                                        <p><strong>Name:</strong> {{ $order->information->name }}</p>
+                                        <p><strong>Email:</strong> {{ $order->information->email }}</p>
+                                        <p><strong>Phone Number:</strong> {{ $order->information->phone }}</p>
+                                        <p><strong>Address:</strong> {{ $order->information->address }}</p>
+                                        @else
+                                        <p><strong>Email:</strong> {{ auth()->user()->email }}</p>
+                                        <p><strong>Phone Number:</strong> {{ auth()->user()->phone }}</p>
+                                        <p><strong>Address:</strong> {{ auth()->user()->address }}</p>
+                                    @endif
                                 </div>
-
                                 <div class="col-md-12">
                                     <hr>
-                                    <table class="table cart-table table-responsive">
-                                        <thead>
+                                    <table class="table cart-table table-responsive-xl">
+                                        <thead class="thead-light">
                                         <tr>
                                             <th scope="col">Product</th>
                                             <th scope="col">Price</th>
-
                                             <th scope="col">Total Price</th>
                                             <th scope="col">Seller</th>
                                             <th scope="col">Status</th>
@@ -89,36 +92,23 @@
                                             <tbody>
                                             <tr>
                                                 <td>
-                                                    <a href="{{ $product->product->product_image }}" class="image_link" target="_blank">
-                                                        <img src="{{ $product->product->product_image }}" alt="" class="product_image">
+                                                    <a href="{{ $product->product->product_image }}" class="image_link"
+                                                       target="_blank">
+                                                        <img src="{{ $product->product->product_image }}" alt=""
+                                                             class="product_image" style="height: 4em">
                                                     </a>
-                                                    <a href="/item/{{ $product->product->slug }}" class="text-primary"
-                                                       target="_blank">{{ $product->product->title }}</a>
-                                                    <div class="mobile-cart-content row">
-                                                        <div class="col-xs-12">
-                                                            @if(!$order->payed)
-                                                                <span class="dark-data">Unpaid</span>
-                                                                ({{ $order->created_at->toDateString() }})
-                                                            @elseif($order->payed && !$product->delivered)
-                                                                <span class="dark-data">Ordered</span>
-                                                                ({{ \Carbon\Carbon::parse($order->payed_at)->toDateString() }}
-                                                                )
-                                                            @else
-                                                                <span class="dark-data">Delivered</span>
-                                                                ({{  Carbon\Carbon::parse($product->delivered_at)->toDateString() }}
-                                                                )
-                                                            @endif
-                                                        </div>
-                                                    </div>
+                                                    <a href="/item/{{ $product->product->slug }}"
+                                                       class="text-truncate text-primary"
+                                                    >{{ $product->product->title }}</a>
                                                 </td>
                                                 <td><span data-toggle="tooltip" data-placement="top"
                                                           title="Quantity"> {{$product->quantity}} </span>
                                                     &times;
                                                     <span data-toggle="tooltip" data-placement="top"
-                                                        title="Product Price"> {{ number_format($product->price) }}</span>
+                                                          title="Product Price"> {{ number_format($product->price) }}</span>
                                                     @if($product->insurance>0)
-                                                    <span data-toggle="tooltip" data-placement="top"
-                                                          title="Insurance">  &plus; {{ number_format($product->insurance) }}</span>
+                                                        <span data-toggle="tooltip" data-placement="top"
+                                                              title="Insurance">  &plus; {{ number_format($product->insurance) }}</span>
                                                     @endif
                                                     Rwf
                                                     <div class="mobile-cart-content row">
@@ -128,15 +118,15 @@
                                                         </div>
                                                     </div>
                                                 </td>
-                                                <td>{{ number_format(($product->price*$product->quantity)+$product->insurance) }}
+                                                <td>
+                                                    {{ number_format(($product->price*$product->quantity)+$product->insurance) }}
                                                     Rwf
                                                 </td>
                                                 <td>
                                                     <a href="/chatbox/customer?seller={{ $product->seller->id }}"
                                                        data-toggle="tooltip" data-placement="top"
                                                        title="Chat With The Seller"
-                                                       class="text-primary"> {{ $product->seller->name }}
-                                                        , {{$product->seller->phone}}</a>
+                                                       class="text-primary">Chat With Seller</a>
                                                 </td>
                                                 <td>
                                                     @if(!$order->payed)
@@ -170,15 +160,6 @@
                                                     @else
                                                         <span class="badge badge-success">Received</span>
                                                     @endif
-                                                    <div class="mobile-cart-content row">
-                                                        <div class="col-xs-12">
-                                                            <a href="/chatbox/customer?seller={{ $product->seller->id }}"
-                                                               data-toggle="tooltip" data-placement="top"
-                                                               title="Chat With The Seller"
-                                                               class="text-primary"> {{ $product->seller->name }}
-                                                                , {{$product->seller->phone}}</a>
-                                                        </div>
-                                                    </div>
                                                 </td>
                                             </tr>
                                             </tbody>

@@ -4,23 +4,22 @@
              style="background-image: url(../../../../global_assets/images/backgrounds/panel_bg.png); background-size: contain;">
             <div class="card-img-actions d-inline-block mb-3">
                 <img class="img-fluid rounded-circle"
-                     :src='loadImage===null || loadImage=="" ?"/img/user.png":loadImage' width="170" height="170"
+                     src="/img/user.png" width="170" height="170"
                      alt="">
             </div>
 
-            <h6 class="font-weight-semibold mb-0 text-white">{{ form.name}}</h6>
-            <span class="d-block opacity-75">{{
-                                user.type}}</span>
+            <h6 class="font-weight-semibold mb-0 text-white">{{ form.email}}</h6>
+            <span class="d-block opacity-75">{{user.type}}</span>
         </div>
         <div class="card-body border-top-0">
             <div class="container mt-4">
                 <form @submit.prevent="submitForm" enctype="multipart/form-data">
-                    <div class="form-group">
-                        <label>Name</label>
-                        <input type="text" class="form-control" v-model="form.name" required
-                               :class="{ 'is-invalid': form.errors.has('name') }"/>
-                        <has-error :form="form" field="name"></has-error>
-                    </div>
+<!--                    <div class="form-group">-->
+<!--                        <label>Name</label>-->
+<!--                        <input type="text" class="form-control" v-model="form.name" required-->
+<!--                               :class="{ 'is-invalid': form.errors.has('name') }"/>-->
+<!--                        <has-error :form="form" field="name"></has-error>-->
+<!--                    </div>-->
                     <div class="form-group">
                         <label>Email</label>
                         <input type="email" class="form-control" required v-model="form.email"
@@ -33,20 +32,21 @@
                                :class="{ 'is-invalid': form.errors.has('phone') }"/>
                         <has-error :form="form" field="phone"></has-error>
                     </div>
-                    <div class="form-group" v-if="user.roles && user.roles[0].slug=='seller'">
-                        <label>Shop Name</label>
-                        <input type="text" class="form-control" required v-model="form.shop_name"
-                               :class="{ 'is-invalid': form.errors.has('shop_name') }"/>
-                        <has-error :form="form" field="shop_name"></has-error>
+                    <div class="form-group" >
+                        <label>Address</label>
+<!--                        v-if="user.roles && user.roles[0].slug=='customer'"-->
+                        <input type="text" class="form-control" required v-model="form.address"
+                               :class="{ 'is-invalid': form.errors.has('address') }"/>
+                        <has-error :form="form" field="address"></has-error>
                     </div>
-                    <div class="form-group">
-                        <label for="customFile">Avatar</label>
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" accept="image/*" @change="updateProfile"
-                                   id="customFile">
-                            <label class="custom-file-label" for="customFile">Choose file</label>
-                        </div>
-                    </div>
+<!--                    <div class="form-group">-->
+<!--                        <label for="customFile">Avatar</label>-->
+<!--                        <div class="custom-file">-->
+<!--                            <input type="file" class="custom-file-input" accept="image/*" @change="updateProfile"-->
+<!--                                   id="customFile">-->
+<!--                            <label class="custom-file-label" for="customFile">Choose file</label>-->
+<!--                        </div>-->
+<!--                    </div>-->
                     <div class="form-group">
                         <label>Old Password</label>
                         <input type="password" class="form-control" v-model="oldPassword"
@@ -90,11 +90,9 @@
                 oldPassword: "",
                 form: new Form({
                     id: '',
-                    name: '',
                     email: '',
                     phone: '',
-                    shop_name: null,
-                    avatar: '',
+                    address: '',
                     password: '',
                     password_confirmation: ''
                 })
@@ -104,22 +102,19 @@
             submitForm() {
                 this.$Progress.start();
                 this.form.busy = true;
-                let settings = {headers: {'Content-Type': 'multipart/form-data'}};
+                let config = {headers: {'Content-Type': 'multipart/form-data'}};
                 let data = new FormData();
-                data.append("name", this.form.name);
-                data.append("avatar", this.form.avatar);
                 data.append("email", this.form.email);
                 data.append("phone", this.form.phone);
-                data.append("shop_name", this.form.shop_name);
+                data.append("address", this.form.address);
                 if (this.oldPassword !== "")
                     data.append("old_password", this.oldPassword);
                 data.append("password", this.form.password);
                 data.append("password_confirmation", this.form.password_confirmation);
-                axios.post("/profile/" + this.form.id, data, settings)
+                axios.post("/profile/" + this.form.id, data, config)
                     .then(resp => {
                         window.location = ""
                     })
-
                     .catch(err => {
                         this.$Progress.fail();
                         this.form.busy = false;
@@ -154,7 +149,7 @@
                     this.user = resp.data.user;
                     this.form.fill(this.user)
                 })
-        }
+        },
     }
 </script>
 

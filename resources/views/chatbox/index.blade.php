@@ -1,4 +1,5 @@
 @extends("layouts.master")
+@section("title","Chat-Box")
 @section("content")
     <section class="breadcrumb-section section-b-space">
         <div class="container">

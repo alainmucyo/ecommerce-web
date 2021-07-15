@@ -82,7 +82,7 @@ class ItemController extends Controller
                 $product_id[] = $item;
             }
         }
-        $recommended_products = Product::latest()->whereIn("id", $product_id)->where("id", "!=", $product->id)->take(8)->get();
+        $recommended_products = Product::latest()->whereIn("id", $product_id)->where("id", "!=", $product->id)->take(12)->get();
         return view("home.item", compact('product', 'products', 'recommended_products', 'reviews'));
     }
 
