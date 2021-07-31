@@ -17,7 +17,7 @@
             </div>
         </div>
 
-        <div class="shop-category-area mt-30px">
+        <div class="shop-category-area mt-30px" id="app">
             <div class="mx-5">
                 <div class="row">
                     <div class="col-lg-12 col-md-12">
@@ -69,21 +69,28 @@
                                             @foreach($products as $product)
                                                 <div class="col-xl-3 col-md-4 col-sm-6 ">
                                                     <article class="list-product">
-                                                        <div class="img-block">
+                                                        <div class="img-block" style="height: 250px">
                                                             <a href="/item/{{ $product->slug }}" class="thumbnail">
-                                                                <img class="first-img"
-                                                                     src="assets/images/product-image/7.jpg"
-                                                                     {{--                                                                     src="{{ $product->product_image }}"--}}
-                                                                     alt=""/>
-                                                                <img class="second-img"
-                                                                     src="assets/images/product-image/8.jpg"
-                                                                     alt=""/>
+                                                                <img class="first-img h-100"
+                                                                     src="{{$product->product_image }}" alt=""/>
+                                                                @if($product->images && count(json_decode($product->images)) > 1)
+                                                                    <img class="second-img h-100"
+                                                                         src="{{json_decode($product->images)[1] }}"
+                                                                         alt=""/>
+                                                                @endif
+                                                                {{--                                                                <img class="first-img"--}}
+                                                                {{--                                                                     src="assets/images/product-image/7.jpg"--}}
+                                                                {{--                                                                     --}}{{--                                                                     src="{{ $product->product_image }}"--}}
+                                                                {{--                                                                     alt=""/>--}}
+                                                                {{--                                                                <img class="second-img"--}}
+                                                                {{--                                                                     src="assets/images/product-image/8.jpg"--}}
+                                                                {{--                                                                     alt=""/>--}}
                                                             </a>
                                                             <div class="quick-view">
                                                                 <a class="quick_view" href="#"
-                                                                   data-link-action="quickview"
-                                                                   title="Quick view" data-toggle="modal"
-                                                                   data-target="#exampleModal">
+                                                                   data-toggle="tooltip"
+                                                                   @click.prevent="quickView({{$product}})"
+                                                                   data-placement="top" title="Quick view on product">
                                                                     <i class="ion-ios-search-strong"></i>
                                                                 </a>
                                                             </div>
@@ -106,7 +113,7 @@
                                                             <div class="pricing-meta">
                                                                 <ul>
                                                                     @if($product->discount)
-                                                                        <li class="old-price">{{ number_format($product->price) }}
+                                                                        <li class="old-price not-cut">{{ number_format($product->price) }}
                                                                             Rwf
                                                                         </li>
                                                                         <li class="current-price">{{ number_format($product->discount->price) }}
@@ -178,23 +185,31 @@
                                                         <div class="row">
                                                             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3">
                                                                 <div class="left-img">
-                                                                    <div class="img-block">
+                                                                    <div class="img-block" style="height:280px">
                                                                         <a href="/item/{{ $product->slug }}"
                                                                            class="thumbnail">
-                                                                            <img class="first-img"
-                                                                                 src="assets/images/product-image/7.jpg"
+                                                                            <img class="first-img h-100"
+                                                                                 src="{{$product->product_image }}"
                                                                                  alt=""/>
-                                                                            {{--                                                                    src="{{ $product->product_image }}"}}--}}
-                                                                            <img class="second-img"
-                                                                                 src="assets/images/product-image/8.jpg"
-                                                                                 alt=""/>
+                                                                            @if($product->images && count(json_decode($product->images)) > 1)
+                                                                                <img class="second-img h-100"
+                                                                                     src="{{json_decode($product->images)[1] }}"
+                                                                                     alt=""/>
+                                                                            @endif
+                                                                            {{--                                                                            <img class="first-img"--}}
+                                                                            {{--                                                                                 src="assets/images/product-image/7.jpg"--}}
+                                                                            {{--                                                                                 alt=""/>--}}
+                                                                            {{--                                                                            --}}{{--                                                                    src="{{ $product->product_image }}"}}--}}
+                                                                            {{--                                                                            <img class="second-img"--}}
+                                                                            {{--                                                                                 src="assets/images/product-image/8.jpg"--}}
+                                                                            {{--                                                                                 alt=""/>--}}
                                                                         </a>
                                                                         <div class="quick-view">
                                                                             <a class="quick_view" href="#"
-                                                                               data-link-action="quickview"
-                                                                               title="Quick view"
-                                                                               data-toggle="modal"
-                                                                               data-target="#exampleModal">
+                                                                               data-toggle="tooltip"
+                                                                               @click.prevent="quickView({{$product}})"
+                                                                               data-placement="top"
+                                                                               title="Quick view on product">
                                                                                 <i class="ion-ios-search-strong"></i>
                                                                             </a>
                                                                         </div>
@@ -317,6 +332,7 @@
                 </div>
             </div>
         </div>
+        @include("includes.quick_view_modal")
     </section>
     <!-- section End -->
 @endsection
@@ -329,4 +345,5 @@
             })
         })
     </script>
+{{--    <script type="text/javascript" src="/js/app.js"></script>--}}
 @endpush

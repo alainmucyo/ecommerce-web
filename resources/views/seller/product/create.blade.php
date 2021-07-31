@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h5>Create Product</h5>
-                        <a href="/product" class="btn btn-primary float-right">List all</a>
+                        <a href="/admin/products" class="btn btn-primary float-right">List all</a>
                     </div>
                     <div class="card-body">
                         <app-create-product></app-create-product>

@@ -1,14 +1,6 @@
 @extends("layouts.master",['like_product'=>$product])
 @section("title","Product-Details")
 @section("content")
-    <style>
-        @media only screen and (max-width: 576px) {
-            .like-container {
-                display: none;
-            }
-        }
-    </style>
-
     @if (\Session::has('success'))
         <div class="alert alert-success ml-auto mt-2" style="width: fit-content">
             <ul class="list-unstyled" style="width: fit-content">
@@ -24,7 +16,7 @@
         </div>
     @endif
     <!-- section start -->
-    <section class="">
+    <section id="app">
         <div class="breadcrumb-area">
             <div class="mx-5">
                 <div class="row">
@@ -45,41 +37,40 @@
                     <div class="col-xl-6 col-lg-6 col-md-12">
                         <div class="product-details-img product-details-tab">
                             <div class="zoompro-wrap zoompro-2">
-                                <div class="zoompro-border zoompro-span">
-                                    <img class="zoompro" src="/assets/images/product-image/22.jpg"
-                                         data-zoom-image="/assets/images/product-image/zoom/1.jpg" alt=""/>
+                                <div class="zoompro-border zoompro-span mb-3">
+                                    @if(json_decode($product->images) > 0)
+                                        <img class="zoompro" src="{{$product->product_image}}"
+                                             data-zoom-image="{{$product->product_image}}" alt=""
+                                             style="object-position: center;object-fit: contain;"/>
+                                    @else
+                                        <img src="{{$product->product_image}}"
+                                             alt="" style="object-position: center;object-fit: contain;"/>
+                                    @endif
                                 </div>
                             </div>
                             <div id="gallery" class="product-dec-slider-2 swiper-container">
                                 <div class="swiper-wrapper">
-                                    <div class="swiper-slide">
-                                        <a class="active" data-image="/assets/images/product-image/22.jpg"
-                                           data-zoom-image="/assets/images/product-image/zoom/1.jpg">
-                                            <img class="img-responsive" src="/assets/images/product-image/22.jpg"
-                                                 alt=""/>
-                                        </a>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <a data-image="/assets/images/product-image/21.jpg"
-                                           data-zoom-image="/assets/images/product-image/zoom/2.jpg">
-                                            <img class="img-responsive" src="/assets/images/product-image/21.jpg"
-                                                 alt=""/>
-                                        </a>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <a data-image="/assets/images/product-image/23.jpg"
-                                           data-zoom-image="/assets/images/product-image/zoom/3.jpg">
-                                            <img class="img-responsive" src="/assets/images/product-image/23.jpg"
-                                                 alt=""/>
-                                        </a>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <a data-image="/assets/images/product-image/6.jpg"
-                                           data-zoom-image="/assets/images/product-image/zoom/4.jpg">
-                                            <img class="img-responsive" src="/assets/images/product-image/6.jpg"
-                                                 alt=""/>
-                                        </a>
-                                    </div>
+                                    @if($product->images && count(json_decode($product->images)) > 0)
+                                        <div class="swiper-slide cursor-pointer">
+                                            <a class="active" data-image="{{json_decode($product->images)[0]}}"
+                                               data-zoom-image="{{json_decode($product->images)[0]}}">
+                                                <img class="img-responsive" src="{{json_decode($product->images)[0]}}"
+                                                     alt="" style="object-position: center;object-fit: contain;"/>
+                                            </a>
+                                        </div>
+                                    @endif
+                                    @if($product->images && count(json_decode($product->images)) > 1)
+                                        @foreach(array_slice(json_decode($product->images),1, 100) as $image)
+                                            <div class="swiper-slide cursor-pointer">
+                                                <a data-image="{{$image}}"
+                                                   data-zoom-image="{{$image}}">
+                                                    <img class="img-responsive h-100 w-100"
+                                                         src="{{$image}}"
+                                                         alt="" style="object-position: center;object-fit: contain;"/>
+                                                </a>
+                                            </div>
+                                        @endforeach
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -332,16 +323,21 @@
                         @foreach($products as $new_product)
                             <div class="feature-slider-item swiper-slide mb-3">
                                 <article class="list-product">
-                                    <div class="img-block">
+                                    <div class="img-block" style="height: 235px;">
                                         <a href="/item/{{ $new_product->slug }}" class="thumbnail">
-                                            {{--                                        src="{{ $new_product->product_image }}"--}}
-                                            <img class="first-img" src="/assets/images/product-image/7.jpg" alt=""/>
-                                            <img class="second-img" src="/assets/images/product-image/8.jpg" alt=""/>
+                                            <img class="first-img h-100" src="{{ $new_product->product_image }}"
+                                                 alt=""/>
+                                            @if($new_product->images && count(json_decode($new_product->images)) > 1)
+                                                <img class="second-img h-100"
+                                                     src="{{json_decode($new_product->images)[1] }}"
+                                                     alt=""/>
+                                            @endif
                                         </a>
                                         <div class="quick-view">
-                                            <a class="quick_view" href="#" data-link-action="quickview"
-                                               title="Quick view"
-                                               data-toggle="modal" data-target="#exampleModal">
+                                            <a class="quick_view d-none" href="#"
+                                               data-toggle="tooltip"
+                                               @click.prevent="quickView({{$new_product}})"
+                                               data-placement="top" title="Quick view on product">
                                                 <i class="icon-magnifier icons"></i>
                                             </a>
                                         </div>
@@ -428,35 +424,41 @@
                             @foreach($recommended_products as $recommended_product)
                                 <div class="feature-slider-item swiper-slide mb-3">
                                     <article class="list-product">
-                                        <div class="img-block">
+                                        <div class="img-block" style="height: 235px;">
                                             <a href="/item/{{$recommended_product->slug}}" class="thumbnail">
-                                                {{--                                        src="{{ $recommended_product->product_image }}"--}}
-                                                <img class="first-img" src="/assets/images/product-image/6.jpg" alt=""/>
-                                                <img class="second-img" src="/assets/images/product-image/7.jpg"
+                                                {{--                                                src="/assets/images/product-image/6.jpg"--}}
+                                                <img class="first-img h-100"
+                                                     src="{{ $recommended_product->product_image }}"
                                                      alt=""/>
+                                                @if($recommended_product->images && count(json_decode($recommended_product->images)) > 1)
+                                                    <img class="second-img h-100"
+                                                         src="{{json_decode($recommended_product->images)[1] }}"
+                                                         alt=""/>
+                                                @endif
                                             </a>
                                             <div class="quick-view">
-                                                <a class="quick_view" href="#" data-link-action="quickview"
-                                                   title="Quick view"
-                                                   data-toggle="modal" data-target="#exampleModal">
+                                                <a class="quick_view d-none" href="#"
+                                                   data-toggle="tooltip"
+                                                   @click.prevent="quickView({{$recommended_product}})"
+                                                   data-placement="top" title="Quick view on product">
                                                     <i class="icon-magnifier icons"></i>
                                                 </a>
                                             </div>
                                         </div>
-                                        <ul class="product-flag">
-                                            <li class="new">New</li>
-                                        </ul>
+{{--                                        <ul class="product-flag">--}}
+{{--                                            <li class="new">New</li>--}}
+{{--                                        </ul>--}}
                                         <div class="product-decs">
                                             <a class="inner-link"
                                                href="shop-4-column.html"><span>{{ $recommended_product->title }}</span></a>
                                             <h2><a href="/item/{{$recommended_product->slug}}"
                                                    class="product-link">{{ $recommended_product->slug }}</a></h2>
                                             <div class="rating-product">
-                                                <i class="ion-android-star"></i>
-                                                <i class="ion-android-star"></i>
-                                                <i class="ion-android-star"></i>
-                                                <i class="ion-android-star"></i>
-                                                <i class="ion-android-star"></i>
+{{--                                                <i class="ion-android-star"></i>--}}
+{{--                                                <i class="ion-android-star"></i>--}}
+{{--                                                <i class="ion-android-star"></i>--}}
+{{--                                                <i class="ion-android-star"></i>--}}
+{{--                                                <i class="ion-android-star"></i>--}}
                                             </div>
                                             <div class="pricing-meta">
                                                 <ul>

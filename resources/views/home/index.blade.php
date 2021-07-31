@@ -109,9 +109,14 @@
                                             <li><a href="/login">Sign in</a></li>
                                             <li><a href="/register">Register</a></li>
                                         @else
-                                            <li><a href="/chatbox/customer">Message</a></li>
-                                            <li><a href="/orders">Orders</a></li>
-                                            <li><a href="/customer/profile">My account</a></li>
+                                            @role("customer")
+                                                <li><a href="/chatbox/customer">Message</a></li>
+                                                <li><a href="/orders">Orders</a></li>
+                                                <li><a href="/customer/profile">My account</a></li>
+                                            @endrole
+                                            @role("admin" || "seller")
+                                                <li><a href="/home">Dashboard</a></li>
+                                            @endrole
                                             <li><a href="/logout">Logout</a></li>
                                         @endguest
                                     </ul>
@@ -154,7 +159,7 @@
                             </a>
                         </div>
                         <div class="logo">
-                            <a href="/"><img class="img-responsive h-100" src="/img/dhd_logo.png"
+                            <a href="/"><img class="img-responsive h-100" src="/img/DHD2_logo.jpg"
                                              style="width: 85%"
                                              alt="logo.png"/></a>
                         </div>
@@ -185,56 +190,56 @@
                             <!--Cart info Start -->
 
                             <div class="header-tools d-flex">
-                               @role("customer")
-                                    <div class="dropdown-primary dropdown">
-                                        <div class="cart-info d-flex align-self-center mr-3 dropdown-toggle"
-                                             data-toggle="dropdown">
-                                            @if($undelivered>0 || $unread_messages>0)
-                                                <a href="javascript:void(0)" class="bag text-decoration-none"
-                                                   data-number="{{ $undelivered + $unread_messages}}"><i
-                                                        class="feather icon-bell"></i></a>
-                                            @else
-                                                <a href="javascript:void(0)" class="text-decoration-none"
-                                                   data-number="0"><i class="feather icon-bell"></i></a>
-                                            @endif
-                                        </div>
+                                @role("customer")
+                                <div class="dropdown-primary dropdown">
+                                    <div class="cart-info d-flex align-self-center mr-3 dropdown-toggle"
+                                         data-toggle="dropdown">
                                         @if($undelivered>0 || $unread_messages>0)
-                                            <ul class="show-notification notification-view dropdown-menu"
-                                                data-dropdown-in="fadeIn"
-                                                data-dropdown-out="fadeOut"
-                                                style="min-width: 225px;right: -25% !important;top: 15px !important;">
-                                                <li class="d-flex">
-                                                    <h6>Notifications</h6>
-                                                    @if( $undelivered>0 || $unread_messages>0)
-                                                        <label class="label label-danger ml-auto h-100">New</label>
-                                                    @endif
-                                                </li>
-                                                <li>
-                                                    <div class="media">
-                                                        <div class="media-body">
-                                                            @if($undelivered>0)
-                                                                <h5 class="notification-user"><b>Undelivered
-                                                                        orders</b></h5>
-                                                                <p class="notification-msg mb-0">You
-                                                                    have {{ $undelivered }}
-                                                                    undelivered
-                                                                    product(s)
-                                                                    orders.</p>
-                                                            @endif
-                                                            @if($unread_messages>0)
-                                                                <h5 class="notification-user"><b>Unread messages</b>
-                                                                </h5>
-                                                                <p class="notification-msg">You
-                                                                    have {{ $unread_messages }}
-                                                                    unread
-                                                                    messages from seller(s).</p>
-                                                            @endif
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            </ul>
+                                            <a href="javascript:void(0)" class="bag text-decoration-none"
+                                               data-number="{{ $undelivered + $unread_messages}}"><i
+                                                    class="feather icon-bell"></i></a>
+                                        @else
+                                            <a href="javascript:void(0)" class="text-decoration-none"
+                                               data-number="0"><i class="feather icon-bell"></i></a>
                                         @endif
                                     </div>
+                                    @if($undelivered>0 || $unread_messages>0)
+                                        <ul class="show-notification notification-view dropdown-menu"
+                                            data-dropdown-in="fadeIn"
+                                            data-dropdown-out="fadeOut"
+                                            style="min-width: 225px;right: -25% !important;top: 15px !important;">
+                                            <li class="d-flex">
+                                                <h6>Notifications</h6>
+                                                @if( $undelivered>0 || $unread_messages>0)
+                                                    <label class="label label-danger ml-auto h-100">New</label>
+                                                @endif
+                                            </li>
+                                            <li>
+                                                <div class="media">
+                                                    <div class="media-body">
+                                                        @if($undelivered>0)
+                                                            <h5 class="notification-user"><b>Undelivered
+                                                                    orders</b></h5>
+                                                            <p class="notification-msg mb-0">You
+                                                                have {{ $undelivered }}
+                                                                undelivered
+                                                                product(s)
+                                                                orders.</p>
+                                                        @endif
+                                                        @if($unread_messages>0)
+                                                            <h5 class="notification-user"><b>Unread messages</b>
+                                                            </h5>
+                                                            <p class="notification-msg">You
+                                                                have {{ $unread_messages }}
+                                                                unread
+                                                                messages from seller(s).</p>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    @endif
+                                </div>
                                 @endrole
                                 <div class="cart-info d-flex align-self-center">
                                     @if(count($cart_products)>0)
@@ -390,9 +395,9 @@
                         @forelse($cart_products as $cart_product)
                             <li>
                                 {{--                                                                                 src="{{ $cart_product->product->product_image }}"--}}
-                                <a href="/item/{{$cart_product->product->slug}}" class="image"><img
-                                        src="assets/images/product-image/3.jpg"
-                                        alt="Cart product Image"></a>
+                                <a href="/item/{{$cart_product->product->slug}}" class="image" style="height: 75px"><img
+                                        src="{{$cart_product->product->product_image}}"
+                                        alt="Cart product Image" class="w-100 h-100"></a>
                                 <div class="content">
                                     <a href="/item/{{$cart_product->product->slug}}"
                                        class="title">{{$cart_product->product->title}}</a>
@@ -578,7 +583,7 @@
                         </div>
                         <div class="col-md-6 col-lg-4 ">
                             <div class="single-wedge">
-                                <h4 class="footer-herading">NEWSLETTER</h4>
+                                <h4 class="footer-herading">NEWS LETTER</h4>
                                 <div class="subscrib-text">
                                     <p>You may unsubscribe at any moment. For that purpose, please find our contact info
                                         in the legal notice.</p>
@@ -637,7 +642,7 @@
                     <div class="row">
                         <div class="col-md-6">
 
-                            <p class="copy-text"> © 2021 <strong>David's High Deals</strong></p>
+                            <p class="copy-text"> © {{now()->year}} <strong>David's High Deals</strong></p>
                         </div>
                         <div class="col-md-6 text-right">
                             <img class="payment-img" src="assets/images/icons/payment.png" alt=""/>
@@ -659,6 +664,6 @@
 <!-- Main Activation JS -->
 <script src="assets/js/main.js"></script>
 <script src="{{ asset('js/app.js') }}"></script>
-@stack("script")
+@stack("scripts")
 </body>
 </html>

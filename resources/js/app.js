@@ -89,20 +89,18 @@ const app = new Vue({
             end_time: '',
             new_price: 0
         },
-        form_buy:{}
+        form_buy: {}
     },
     methods: {
         quickView(product) {
             $("#quick-view").modal("show");
             const sizes = JSON.parse(product.sizes);
-
             if (sizes.length > 0) {
                 this.add_to_cart_form.size = sizes[0]
             }
             this.modal_product = {
                 ...product,
-                sizes: JSON.parse(product.sizes),
-                image: product.images[0] ? product.images[0].image : ''
+                sizes: JSON.parse(product.sizes)
             }
         },
         changeQuantity(num) {
@@ -174,6 +172,43 @@ const app = new Vue({
                             )
                             window.location.reload(true);
                             return false
+                        })
+                }
+            })
+        },
+        changeHomeSlider(product) {
+            this.$swal({
+                title: 'Are you sure?',
+                text: `You want to ${product.home_slider ? "remove" : "add"} this product to home slider!`,
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: `Yes, ${product.home_slider ? "Remove" : "Add"} it!`
+            }).then((result) => {
+                if (result.value) {
+                    this.$Progress.start();
+                    axios.put("/change-slider/" + product.id, {'value': product.home_slider ? false : true})
+                        .then(resp => {
+                            this.$Progress.finish();
+                            this.$swal(
+                                'Update Slider!',
+                                'Product has been Updated Done.',
+                                'success'
+                            ).then((result) => {
+                                if (result.value) {
+                                    window.location.reload(true);
+                                    return false
+                                }
+                            })
+                        })
+                        .catch(err => {
+                            this.$Progress.fail();
+                            this.$swal(
+                                'Update Slider!',
+                                'Product has been failed.',
+                                'warning'
+                            )
                         })
                 }
             })

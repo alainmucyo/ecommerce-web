@@ -99,7 +99,3 @@
         </div>
     </section>
 @endsection
-
-@push("scripts")
-    <script src="/js/new_app.js" type="text/javascript"></script>
-@endpush

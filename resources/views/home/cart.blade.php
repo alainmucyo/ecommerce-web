@@ -57,7 +57,7 @@
                                                 <a href="/item/{{ $cart_product->product->slug }}">
                                                     <img class="img-responsive"
                                                          {{--                                                     src="{{ $cart_product->product->product_image }}"--}}
-                                                         src="assets/images/product-image/2-1.jpg" alt=""/></a>
+                                                         src="{{ $cart_product->product->product_image }}" alt="" style="width: 140px;height: 93px"/></a>
                                             </td>
                                             <td class="product-name"><a
                                                     href="/item/{{ $cart_product->product->slug }}">{{ $cart_product->product->title }}</a>
@@ -109,6 +109,7 @@
                                 </div>
                             </div>
                         </form>
+                        @if(count($cart_products) > 0)
                         <div class="row">
                             <div class="col-lg-12 col-md-12 mt-md-30px">
                                 <div class="grand-totall w-25 ml-auto">
@@ -121,6 +122,7 @@
                                 </div>
                             </div>
                         </div>
+                        @endif
                         @foreach($cart_products as $cart_product)
                             <form id="cart{{ $cart_product->id }}"
                                   action="{{ route('cart.destroy',$cart_product->id) }}" method="POST"

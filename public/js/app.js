@@ -2800,6 +2800,8 @@ __webpack_require__.r(__webpack_exports__);
         _this2.form.reset();
 
         _this2.toast("Congratulations", resp.data);
+
+        window.location.href = "/admin/products";
       })["catch"](function () {
         _this2.$Progress.fail();
 
@@ -3203,6 +3205,42 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3227,7 +3265,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         size: [],
         description: '',
         min_price: 0,
-        max_price: 0
+        max_price: 0,
+        price_usa: '',
+        min_price_usa: 0,
+        max_price_usa: 0,
+        price_dirham: '',
+        min_price_dirham: 0,
+        max_price_dirham: 0
       })
     };
   },
@@ -3270,6 +3314,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
         _this2.toast("Congratulations", resp.data);
+
+        window.location.href = "/admin/products";
       })["catch"](function () {
         _this2.$Progress.fail();
 
@@ -3283,7 +3329,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       category: this.category,
       size: JSON.parse(this.product.sizes)
     }));
-    console.log(JSON.parse(this.product.sizes));
   },
   computed: {
     editor: function editor() {
@@ -3653,7 +3698,10 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       images: [],
-      single_image: {},
+      single_image: {
+        image: "",
+        index: ''
+      },
       productImages: this.PropsProductImages,
       form: {
         images: []
@@ -3661,26 +3709,43 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    showImage: function showImage(image) {
-      this.single_image = image;
+    showImage: function showImage(image, index) {
+      this.single_image = {
+        image: image,
+        index: index
+      };
       this.$modal.show('dog-profile');
     },
     dataChange: function dataChange() {},
     submitImages: function submitImages() {
       var _this = this;
 
+      if (this.productImages && this.productImages.length > 0) {
+        this.productImages.map(function (i) {
+          _this.form.images.push({
+            "default": 1,
+            highlight: 1,
+            name: i,
+            path: i,
+            old: true
+          });
+        });
+      }
+
       this.$Progress.start();
       axios.post("/product/image/" + this.product.id, this.form.images).then(function (resp) {
         _this.$Progress.finish();
 
         _this.images = [];
+        _this.productImages = [];
         _this.form.images = [];
         var new_images = resp.data;
-        console.log("Images", new_images);
 
         for (var i = 0; i < new_images.length; i++) {
           _this.productImages.push(new_images[i]);
         }
+
+        window.location.href = "/product/image/".concat(_this.product.slug);
       })["catch"](function () {
         _this.$Progress.fail();
 
@@ -3688,7 +3753,6 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     uploadImageSuccess: function uploadImageSuccess(formData, index, fileList) {
-      console.log(this.images);
       this.form.images = fileList;
     },
     beforeRemove: function beforeRemove(index, done, fileList) {
@@ -3731,21 +3795,36 @@ __webpack_require__.r(__webpack_exports__);
         if (result.value) {
           _this3.$Progress.start();
 
-          axios["delete"]("/product/image/" + image.id).then(function (resp) {
+          var index = _this3.productImages.findIndex(function (s) {
+            return s === image.image;
+          });
+
+          _this3.productImages.splice(index, 1);
+
+          var images;
+
+          if (_this3.productImages && _this3.productImages.length > 0) {
+            images = _this3.productImages.map(function (i) {
+              return {
+                "default": 1,
+                highlight: 1,
+                name: i,
+                path: i,
+                old: true
+              };
+            });
+          }
+
+          axios.post("/product/image/" + _this3.product.id, images).then(function (resp) {
             _this3.$Progress.finish();
 
-            var index = _this3.productImages.findIndex(function (s) {
-              return s.id === image.id;
-            });
+            _this3.productImages = [];
+            _this3.images = [];
+            var new_images = resp.data;
 
-            console.log("Index: ", index);
-
-            _this3.productImages.splice(index, 1);
-            /*
-                                            this.single_image = this.productImages[0];
-                                            if (this.productImages.length === 0)
-                                                this.productImages = [];*/
-
+            for (var i = 0; i < new_images.length; i++) {
+              _this3.productImages.push(new_images[i]);
+            }
 
             _this3.$modal.hide('dog-profile');
 
@@ -3758,6 +3837,18 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     }
+  },
+  created: function created() {// if (this.productImages && this.productImages.length > 0) {
+    //     this.productImages.map(i => {
+    //         this.images.push({
+    //             default: 1,
+    //             highlight: 1,
+    //             name: i,
+    //             path: i,
+    //             old: true
+    //         })
+    //     })
+    // }
   }
 });
 
@@ -6963,7 +7054,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.product-image[data-v-c4020700]:hover{\n    opacity: 0.6;\n    cursor: pointer;\n}\n", ""]);
+exports.push([module.i, "\n.product-image[data-v-c4020700]:hover {\n    opacity: 0.6;\n    cursor: pointer;\n}\n", ""]);
 
 // exports
 
@@ -58066,6 +58157,256 @@ var render = function() {
           "div",
           { staticClass: "form-group col-md-6" },
           [
+            _c("label", [
+              _vm._v(
+                "Price USA (" +
+                  _vm._s(_vm._f("currency")(_vm.form.price_usa, "$")) +
+                  ")"
+              )
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.price_usa,
+                  expression: "form.price_usa"
+                }
+              ],
+              staticClass: "form-control",
+              class: { "is-invalid": _vm.form.errors.has("price_usa") },
+              attrs: { type: "number" },
+              domProps: { value: _vm.form.price_usa },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.form, "price_usa", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("has-error", { attrs: { form: _vm.form, field: "price_usa" } })
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "form-group col-md-6" },
+          [
+            _c("label", [
+              _vm._v(
+                "Min Display Price USA (" +
+                  _vm._s(_vm._f("currency")(_vm.form.min_price_usa, "$")) +
+                  ")"
+              )
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.min_price_usa,
+                  expression: "form.min_price_usa"
+                }
+              ],
+              staticClass: "form-control",
+              class: { "is-invalid": _vm.form.errors.has("min_price_usa") },
+              attrs: { type: "number" },
+              domProps: { value: _vm.form.min_price_usa },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.form, "min_price_usa", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("has-error", {
+              attrs: { form: _vm.form, field: "min_price_usa" }
+            })
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "form-group col-md-6" },
+          [
+            _c("label", [
+              _vm._v(
+                "Max Display Price USA (" +
+                  _vm._s(_vm._f("currency")(_vm.form.max_price_usa, "$")) +
+                  ")"
+              )
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.max_price_usa,
+                  expression: "form.max_price_usa"
+                }
+              ],
+              staticClass: "form-control",
+              class: { "is-invalid": _vm.form.errors.has("max_price_usa") },
+              attrs: { type: "number" },
+              domProps: { value: _vm.form.max_price_usa },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.form, "max_price_usa", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("has-error", {
+              attrs: { form: _vm.form, field: "max_price_usa" }
+            })
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "form-group col-md-6" },
+          [
+            _c("label", [
+              _vm._v(
+                "Price Dirham (" +
+                  _vm._s(_vm._f("currency")(_vm.form.price_dirham, "د.إ")) +
+                  ")"
+              )
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.price_dirham,
+                  expression: "form.price_dirham"
+                }
+              ],
+              staticClass: "form-control",
+              class: { "is-invalid": _vm.form.errors.has("price_dirham") },
+              attrs: { type: "number" },
+              domProps: { value: _vm.form.price_dirham },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.form, "price_dirham", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("has-error", {
+              attrs: { form: _vm.form, field: "price_dirham" }
+            })
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "form-group col-md-6" },
+          [
+            _c("label", [
+              _vm._v(
+                "Min Display Price Dirham (" +
+                  _vm._s(_vm._f("currency")(_vm.form.min_price_dirham, "د.إ")) +
+                  ")"
+              )
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.min_price_dirham,
+                  expression: "form.min_price_dirham"
+                }
+              ],
+              staticClass: "form-control",
+              class: { "is-invalid": _vm.form.errors.has("min_price_dirham") },
+              attrs: { type: "number" },
+              domProps: { value: _vm.form.min_price_dirham },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.form, "min_price_dirham", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("has-error", {
+              attrs: { form: _vm.form, field: "min_price_dirham" }
+            })
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "form-group col-md-6" },
+          [
+            _c("label", [
+              _vm._v(
+                "Max Display Price Dirham (" +
+                  _vm._s(_vm._f("currency")(_vm.form.max_price_dirham, "د.إ")) +
+                  ")"
+              )
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.max_price_dirham,
+                  expression: "form.max_price_dirham"
+                }
+              ],
+              staticClass: "form-control",
+              class: { "is-invalid": _vm.form.errors.has("max_price_dirham") },
+              attrs: { type: "number" },
+              domProps: { value: _vm.form.max_price_dirham },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.form, "max_price_dirham", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("has-error", {
+              attrs: { form: _vm.form, field: "max_price_dirham" }
+            })
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "form-group col-md-6" },
+          [
             _c("label", [_vm._v("Category")]),
             _vm._v(" "),
             _c("multiselect", {
@@ -58156,7 +58497,7 @@ var render = function() {
         _vm.form.description.trim() != ""
           ? _c("div", { staticClass: "form-group col-md-12" }, [
               _c("button", { staticClass: "btn btn-primary float-right" }, [
-                _vm._v("Submit\n            ")
+                _vm._v("Submit\n      ")
               ])
             ])
           : _vm._e()
@@ -58707,7 +59048,7 @@ var render = function() {
                   1
                 ),
                 _vm._v(" "),
-                _vm.form.images.length > 0
+                _vm.form.images.length > 0 || _vm.productImages.length > 0
                   ? _c(
                       "button",
                       {
@@ -58721,18 +59062,18 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _vm._l(_vm.productImages, function(image) {
-            return _c("div", { key: image.id, staticClass: "col-md-3" }, [
+          _vm._l(_vm.productImages, function(image, index) {
+            return _c("div", { key: index, staticClass: "col-md-3" }, [
               _c("div", { staticClass: "card" }, [
                 _c("div", { staticClass: "card-body" }, [
                   _c("div", { staticClass: "card-img" }, [
                     _c("img", {
                       staticClass: "product-image",
                       staticStyle: { width: "100%", height: "180px" },
-                      attrs: { src: image.image },
+                      attrs: { src: image },
                       on: {
                         click: function($event) {
-                          return _vm.showImage(image)
+                          return _vm.showImage(image, index)
                         }
                       }
                     })
@@ -59059,11 +59400,7 @@ var render = function() {
       "div",
       {
         staticClass: "card-body bg-primary text-center text-white card-img-top",
-        staticStyle: {
-          "background-image":
-            "url(../../../../global_assets/images/backgrounds/panel_bg.png)",
-          "background-size": "contain"
-        }
+        staticStyle: { "background-size": "contain" }
       },
       [
         _vm._m(0),
@@ -75775,8 +76112,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_7___default.a({
       }
 
       this.modal_product = _objectSpread(_objectSpread({}, product), {}, {
-        sizes: JSON.parse(product.sizes),
-        image: product.images[0] ? product.images[0].image : ''
+        sizes: JSON.parse(product.sizes)
       });
     },
     changeQuantity: function changeQuantity(num) {
@@ -75852,18 +76188,52 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_7___default.a({
         }
       });
     },
-    showModal: function showModal(product_id) {
+    changeHomeSlider: function changeHomeSlider(product) {
       var _this3 = this;
+
+      this.$swal({
+        title: 'Are you sure?',
+        text: "You want to ".concat(product.home_slider ? "remove" : "add", " this product to home slider!"),
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: "Yes, ".concat(product.home_slider ? "Remove" : "Add", " it!")
+      }).then(function (result) {
+        if (result.value) {
+          _this3.$Progress.start();
+
+          axios.put("/change-slider/" + product.id, {
+            'value': product.home_slider ? false : true
+          }).then(function (resp) {
+            _this3.$Progress.finish();
+
+            _this3.$swal('Update Slider!', 'Product has been Updated Done.', 'success').then(function (result) {
+              if (result.value) {
+                window.location.reload(true);
+                return false;
+              }
+            });
+          })["catch"](function (err) {
+            _this3.$Progress.fail();
+
+            _this3.$swal('Update Slider!', 'Product has been failed.', 'warning');
+          });
+        }
+      });
+    },
+    showModal: function showModal(product_id) {
+      var _this4 = this;
 
       this.clearDiscount();
       this.product = null;
       this.$Progress.start();
       axios.get("/product/" + product_id).then(function (resp) {
-        _this3.product = resp.data.data;
+        _this4.product = resp.data.data;
 
-        _this3.$Progress.finish();
+        _this4.$Progress.finish();
       })["catch"](function () {
-        _this3.$Progress.fail();
+        _this4.$Progress.fail();
       });
       $("#productModal").modal("show");
       console.log(product_id);
@@ -75875,7 +76245,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_7___default.a({
       this.showDiscount = false;
     },
     submitDiscount: function submitDiscount() {
-      var _this4 = this;
+      var _this5 = this;
 
       this.$Progress.start();
       axios.post("/discount", {
@@ -75883,30 +76253,30 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_7___default.a({
         price: this.discount.new_price,
         product_id: this.product.id
       }).then(function (resp) {
-        _this4.$Progress.finish();
+        _this5.$Progress.finish();
 
-        _this4.clearDiscount();
+        _this5.clearDiscount();
 
-        _this4.product.discount = resp.data;
+        _this5.product.discount = resp.data;
       })["catch"](function (err) {
-        _this4.$Progress.fail();
+        _this5.$Progress.fail();
 
         console.log("error");
       });
     }
   },
   created: function created() {
-    var _this5 = this;
+    var _this6 = this;
 
     this.$on("quick-view", function (product) {
       $("#quick-view").modal("show");
       var sizes = product.sizes;
 
       if (sizes.length > 0) {
-        _this5.add_to_cart_form.size = sizes[0];
+        _this6.add_to_cart_form.size = sizes[0];
       }
 
-      _this5.modal_product = _objectSpread({}, product);
+      _this6.modal_product = _objectSpread({}, product);
     }); // this.$on("fillAddress", address => {
     //     this.form_buy.address = address
     // })

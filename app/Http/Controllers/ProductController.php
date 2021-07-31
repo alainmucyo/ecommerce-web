@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\HomeSection;
+use App\Http\Resources\OrderProductsResource;
 use App\Http\Resources\ProductImageResource;
 use App\Http\Resources\ProductResource;
 use App\Product;
 use App\ProductImage;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Intervention\Image\Facades\Image;
@@ -15,6 +17,12 @@ use jeremykenedy\LaravelRoles\Models\Role;
 
 class ProductController extends Controller
 {
+
+    private function imagesUploader($image): string
+    {
+        $uploadedFileUrl = Cloudinary()->upload($image)->getSecurePath();
+        return $uploadedFileUrl;
+    }
 
     public function index()
     {
@@ -72,19 +80,26 @@ class ProductController extends Controller
     public function image($product)
     {
         $product = Product::where("slug", $product)->first();
-        $images = $product->images;
+        if ($product->images) {
+            $images = $product->images;
+        } else {
+            $images = "[]";
+        }
         return view("seller.product.image", compact('product', 'images'));
     }
 
     public function storeImages($product, Request $request)
     {
+        $product = Product::where("id", $product)->first();
         $images = [];
         foreach ($request->all() as $request) {
-            $png_url = "-" . str_random(15);
-            $path = storage_path() . '/app/public/img/item' . $png_url;
-            Image::make(file_get_contents($request['path']))->save($path);
-            $images[] = ProductImage::create(["image" => "/storage/img/item" . $png_url, "product_id" => $product]);
+            if (($request && $request['old'] = true) && ($request['path'] == $request['name'])) {
+                array_push($images, $request['path']);
+            } else {
+                array_push($images, $this->imagesUploader($request['path']));
+            }
         }
+        $product->update(["images" => $images]);
         return $images;
     }
 
@@ -127,7 +142,6 @@ class ProductController extends Controller
             "price" => $request['price'],
             "client_max" => $request['client_max'],
             "description" => $request['description'],
-            "seller_id" => auth()->user()->id,
             "sizes" => count($request['size']) == 0 ? null : json_encode($request['size']),
             "min_price" => $request['min_price'],
             "max_price" => $request['max_price'],
@@ -152,24 +166,20 @@ class ProductController extends Controller
         return "Ok";
     }
 
+    public function changeSlider(Request $request, $product)
+    {
+        $product = Product::where("id", $product)->first();
+        $product->update(["home_slider" => $request->value]);
+        return "Ok";
+    }
+
     public function adminList(Request $request)
     {
-        $sellers = Role::where("slug", "seller")->first()->users;
-        if ($seller_id = $request->seller_id) {
-            if ($seller_id == "all")
-                $products = Product::where("status", 1);
-            else
-                $products = Product::where("seller_id", $seller_id)->where("status", 1);;
-        } else {
-            $products = Product::where("status", 1)->where("status", 1);
-        }
+        $products = Product::where("status", 1)->where("status", 1);
         if ($sort = $request->sort) {
             switch ($sort) {
                 case "prod_id":
                     $products = $products->orderBy("id");
-                    break;
-                case "seller":
-                    $products = $products->orderBy("seller_id");
                     break;
                 case  "prod_name":
                     $products = $products->orderBy("title");
@@ -183,7 +193,7 @@ class ProductController extends Controller
         }
         $products = $products->paginate(100);
         $home_sections = HomeSection::where("status", 1)->get();
-        return view("admin.products", compact('products', 'sellers', 'home_sections'));
+        return view("admin.products", compact('products', 'home_sections'));
     }
 
     public function homepage(Product $product, Request $request)

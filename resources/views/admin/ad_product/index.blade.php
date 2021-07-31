@@ -17,26 +17,26 @@
                         <table class="table">
                             <thead>
                             <tr>
-                                <th>NO</th>
-                                <th>Title</th>
-                                <th>Location</th>
-                                <th>Modify</th>
+                                <th class="text-center">NO</th>
+                                <th class="text-center">Title</th>
+                                <th class="text-center">Location</th>
+                                <th class="text-center">Modify</th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($products as $product)
                                 <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>
+                                    <td class="text-center">{{ $loop->iteration }}</td>
+                                    <td class="text-center">
                                         <a href="{{ $product->product_image }}" target="_blank" class="image_link">
                                             <img src="{{ $product->product_image }}" class="product_image" alt="">
                                         </a>
                                         {{ str_limit($product->title,30) }}
                                     </td>
-                                    <td>
+                                    <td class="text-center">
                                         {{ str_limit($product->details,30) }}
                                     </td>
-                                    <td >
+                                    <td class="text-center">
                                         <form method="post" action="{{ route("ad-product.destroy",$product->id) }}" onsubmit="return comfirm('Delete the product?')">
                                             {{ method_field("DELETE") }}
                                             <a href="{{ route("ad-product.edit",$product->id) }}"

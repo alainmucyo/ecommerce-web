@@ -9,6 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.2",
+        "cloudinary-labs/cloudinary-laravel": "^1.0",
         "consoletvs/charts": "6.*",
         "fideloper/proxy": "^4.0",
         "guzzlehttp/guzzle": "^6.5",

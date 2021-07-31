@@ -25,13 +25,12 @@
             <vue-progress-bar></vue-progress-bar>
             <div class="row justify-content-center">
                 <div class="col-md-12">
-{{--                    <chat-box></chat-box>--}}
                     <test-chat :chatter_id="{{ request('seller_id')?:0 }}"></test-chat>
                 </div>
             </div>
         </div>
     </section>
 @endsection
-@push("scripts")
-    <script type="text/javascript" src="/js/new_app.js?new_one"></script>
-@endpush
+{{--@push("scripts")--}}
+{{--    <script type="text/javascript" src="/js/new_app.js?new_one"></script>--}}
+{{--@endpush--}}

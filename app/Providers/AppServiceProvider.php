@@ -2,9 +2,11 @@
 
 namespace App\Providers;
 
+use App\AdProduct;
 use App\Category;
 use App\Chatbox;
 use App\OrderProduct;
+use App\Product;
 use App\User;
 use Illuminate\Support\ServiceProvider;
 
@@ -33,9 +35,15 @@ class AppServiceProvider extends ServiceProvider
             $sum = number_format($sum) . " Rwf";
             $view->with(["cart_products" => $cart_products, "sum" => $sum]);
         });
+
         view()->composer(["includes.header", "home.shop"], function ($view) {
             $categories = Category::get();
             $view->with(["categories" => $categories]);
+        });
+        view()->composer(["home.welcome"], function ($view) {
+            $ad_products = AdProduct::latest()->take(2)->get();
+            $products_slider = Product::where("status", 1)->where("home_slider", 1)->get();
+            $view->with(["ad_products" => $ad_products, "products_slider" => $products_slider]);
         });
 
         view()->composer(["layouts.app"], function ($view) {
@@ -45,7 +53,7 @@ class AppServiceProvider extends ServiceProvider
                 $view->with(["undelivered" => $undelivered, "unread_messages" => $unread_messages]);
             }
         });
-        view()->composer(["home.index","layouts.master"], function ($view) {
+        view()->composer(["home.index", "layouts.master"], function ($view) {
             if (auth()->check() && auth()->user()->hasRole("customer")) {
                 $undelivered = OrderProduct::where("customer_id", auth()->user()->id)->where("paid", 1)->where("delivered", 0)->count();
                 $unread_messages = Chatbox::where("customer_id", auth()->user()->id)->where("status", 0)->where("sender", "!=", auth()->user()->id)->count();

@@ -25,16 +25,6 @@
                                     </select>
                                 </div>
                                 <div class="form-group col-md-3">
-                                    <label for="">Seller</label>
-                                    <select name="seller_id" id="sort" class="form-control">
-                                        <option value="all" {{ request("seller_id")=="all"?'selected':'' }}>All</option>
-                                        @foreach($sellers as $seller)
-                                            <option
-                                                value="{{$seller->id}}" {{ request("seller_id")==$seller->id?'selected':'' }}>{{ $seller->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="form-group col-md-3">
                                     <label>&nbsp;</label>
                                     <br>
                                     <div class="d-flex justify-content-around">
@@ -56,9 +46,10 @@
                                     <th>Price</th>
                                     <th>Seller_Email</th>
                                     <th>Times Sold</th>
-{{--                                    <th>Likes</th>--}}
+                                    {{--                                    <th>Likes</th>--}}
                                     <th>Discount</th>
                                     <th>Homepage</th>
+                                    <th>Slider</th>
                                     <th>Created At</th>
                                     <th>Modify</th>
                                 </tr>
@@ -79,7 +70,6 @@
                                         </td>
                                         <td> {{ $product->seller->email }}</td>
                                         <td>{{ $product->orderProducts->count() }}</td>
-{{--                                        <td>{{ $product->likes->count() }}</td>--}}
                                         <td>
                                             @if($product->hasDiscount)
                                                 <span class="badge badge-success">{{ number_format($product->discount->price)  }} Rwf</span>
@@ -96,6 +86,18 @@
                                                         class="badge badge-primary">{{ $product->homeSection->name }}</span>
                                                 @else
                                                     <span class="badge badge-warning">Not on home</span>
+                                                @endif
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="#" @click="changeHomeSlider({{ $product}})"
+                                               data-toggle="tooltip" data-placement="top"
+                                               title="Click To {{$product->home_slider?'Remove From':'Add To'}} Home Slider">
+                                                @if($product->home_slider)
+                                                    <span
+                                                        class="badge badge-primary"><i class="fa fa-times-circle"></i></span>
+                                                @else
+                                                    <span class="badge badge-warning text-white"><i class="fa fa-check-circle"></i></span>
                                                 @endif
                                             </a>
                                         </td>
@@ -191,7 +193,7 @@
                                     <p><b>American Price:</b> @{{ product.price_usa | )}} </p>
                                     <p><b>UAE Price:</b> @{{ product.price_dirham | currency("د.إ")}} </p>
                                     <p><b>Client Maximum Quantity:</b> @{{ product.client_max}} </p>
-{{--                                    <p><b>Likes:</b> @{{ product.likes}}</p>--}}
+                                    {{--                                    <p><b>Likes:</b> @{{ product.likes}}</p>--}}
                                 </div>
                                 <div class="col-md-6">
                                     <p><b>Category:</b> <span v-for="category in product.categories"

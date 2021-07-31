@@ -1,7 +1,7 @@
 <template>
     <div class="card">
         <div class="card-body bg-primary text-center text-white card-img-top"
-             style="background-image: url(../../../../global_assets/images/backgrounds/panel_bg.png); background-size: contain;">
+             style="background-size: contain;">
             <div class="card-img-actions d-inline-block mb-3">
                 <img class="img-fluid rounded-circle"
                      src="/img/user.png" width="170" height="170"
