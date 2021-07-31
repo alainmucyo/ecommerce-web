@@ -113,9 +113,14 @@ $categories = \App\Category::get();
                                             <li><a href="/login">Sign in</a></li>
                                             <li><a href="/register">Register</a></li>
                                         @else
-                                            <li><a href="/chatbox/customer">Message</a></li>
-                                            <li><a href="/orders">Orders</a></li>
-                                            <li><a href="/customer/profile">My account</a></li>
+                                            @role("customer")
+                                                <li><a href="/chatbox/customer">Message</a></li>
+                                                <li><a href="/orders">Orders</a></li>
+                                                <li><a href="/customer/profile">My account</a></li>
+                                            @endrole
+                                            @role("admin" || "seller")
+                                                <li><a href="/home">Dashboard</a></li>
+                                            @endrole
                                             <li><a href="/logout">Logout</a></li>
                                         @endguest
                                     </ul>
@@ -158,7 +163,7 @@ $categories = \App\Category::get();
                             </a>
                         </div>
                         <div class="logo">
-                            <a href="/"><img class="img-responsive h-100" src="/img/dhd_logo.png"
+                            <a href="/"><img class="img-responsive h-100" src="/img/DHD2_logo.jpg"
                                              style="width: 85%" alt="logo.png"/></a>
                         </div>
                     </div>
@@ -393,9 +398,9 @@ $categories = \App\Category::get();
                         @forelse($cart_products as $cart_product)
                             <li>
                                 {{--                                                                                 src="{{ $cart_product->product->product_image }}"--}}
-                                <a href="/item/{{$cart_product->product->slug}}" class="image"><img
-                                        src="assets/images/product-image/3.jpg"
-                                        alt="Cart product Image"></a>
+                                <a href="/item/{{$cart_product->product->slug}}" class="image" style="height: 75px"><img
+                                        src="{{$cart_product->product->product_image}}"
+                                        alt="Cart product Image" class="w-100 h-100"></a>
                                 <div class="content">
                                     <a href="/item/{{$cart_product->product->slug}}"
                                        class="title">{{$cart_product->product->title}}</a>
@@ -639,7 +644,7 @@ $categories = \App\Category::get();
                     <div class="row">
                         <div class="col-md-6">
 
-                            <p class="copy-text"> © 2021 <strong>David's High Deals</strong></p>
+                            <p class="copy-text"> © {{now()->year}} <strong>David's High Deals</strong></p>
                         </div>
                         <div class="col-md-6 text-right">
                             <img class="payment-img" src="/assets/images/icons/payment.png" alt=""/>
@@ -661,6 +666,6 @@ $categories = \App\Category::get();
 <!-- Main Activation JS -->
 <script src="/assets/js/main.js"></script>
 <script src="{{ asset('js/app.js') }}"></script>
-@stack("script")
+@stack("scripts")
 </body>
 </html>

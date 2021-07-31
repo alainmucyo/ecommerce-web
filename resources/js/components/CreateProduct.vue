@@ -166,6 +166,7 @@ export default {
                     this.form.clear();
                     this.form.reset();
                     this.toast("Congratulations", resp.data)
+                    window.location.href = "/admin/products"
                 })
                 .catch(() => {
                     this.$Progress.fail();

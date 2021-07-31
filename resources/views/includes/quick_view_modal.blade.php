@@ -1,73 +1,96 @@
 <!-- Quick-view modal popup start-->
-<div class="modal fade bd-example-modal-lg theme-modal" id="quick-view" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-        <div class="modal-content quick-view-modal">
+<div class="modal fade bd-example-modal-lg theme-modal" tabindex="-1" role="dialog" id="quick-view" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document"
+         style="margin: 0 auto;max-width: 960px;width: 960px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">x</span></button>
+            </div>
             <div class="modal-body">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
-                </button>
-                <div class="row" style="padding: 2rem 0" v-if="modal_product">
-                    <div class="col-lg-6 col-xs-12">
-                        <div class="quick-view-img"><img :src="modal_product.image" alt=""
-                                                         class="img-fluid "></div>
-                    </div>
-                    <div class="col-lg-6 rtl-text">
-                        <div class="product-right">
-                            <h2>@{{ modal_product.title }}</h2>
-                            <h4 style="display: inline" v-if="modal_product.discount">@{{ modal_product.discount.price |
-                                currency("Rwf") }}
-                            </h4> &nbsp;
-                            <del class="text-warning" v-if="modal_product.discount"
-                                 style="display: inline;">@{{ modal_product.price | currency("Rwf") }}
-                            </del>
-                            &nbsp;
-                            <app-countdown v-if="modal_product.discount"
-                                           :time="modal_product.discount.end_time"></app-countdown>
-                            <h3 v-if="!modal_product.discount">@{{ modal_product.price | currency("Rwf") }}</h3>
-                            {{--  <h3 style="display: inline">@{{ modal_product.price | currency("Rwf") }}</h3>
-                              <app-countdown></app-countdown>--}}
-                            <div class="border-product">
-                                <h6 class="product-title">product details:</h6>
-                                <p class="product-description" v-html="modal_product.description"></p>
+                <div class="row" v-if="modal_product">
+                    <div class="col-md-5 col-sm-12 col-xs-12 mb-lm-100px mb-sm-30px">
+                        <!-- Swiper -->
+                        <div class="swiper-container gallery-top">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <img  class="img-responsive m-auto" :src="modal_product.product_image"
+                                         alt="">
+                                </div>
                             </div>
-                                <form method="post" action="{{ route("cart.store") }}">
-                                    @csrf
-                                    <div class="product-description border-product">
-                                        <input :value="modal_product.id" name="product_id" type="hidden">
-                                        <div v-if="modal_product.sizes.length>0" class="form-group">
-                                            <label for="size">Size/Color:</label>
-                                            <select id="size" class="form-control" name="size"
-                                                    v-model="add_to_cart_form.size">
-                                                <option v-for="size of modal_product.sizes">@{{size}}</option>
-                                            </select>
-                                            <input v-model="add_to_cart_form.size" name="size" type="hidden"/>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="quantity">Quantity:</label>
-                                            <input type="number" id="quantity" :max="modal_product.client_max" min="1"
-                                                   name="quantity"
-                                                   v-model="add_to_cart_form.quantity"
-                                                   class="form-control "
-                                                   value="1">
-                                        </div>
+                        </div>
+                    </div>
+                    <div class="col-md-7 col-sm-12 col-xs-12">
+                        <div class="product-details-content quickview-content">
+                            <h2>@{{ modal_product.title }}</h2>
+                            <p class="reference">Reference:<span> @{{ modal_product.slug }}</span></p>
+                            {{--                            <div class="pro-details-rating-wrap">--}}
+                            {{--                                <span class="read-review"><a class="reviews"--}}
+                            {{--                                                             href="#">Read reviews (1)</a></span>--}}
+                            {{--                            </div>--}}
+                            <div class="pricing-meta">
+                                <ul>
+                                    <li v-if="modal_product.discount">
+                                        <span class="old-price text-danger">@{{ modal_product.discount.price | currency("Rwf")}}</span>
+                                        - <span>@{{ modal_product.price | currency("Rwf") }}</span>
+                                        &nbsp; <span class="badge badge-warning"
+                                                     id="countdown"></span>
+                                    </li>
+                                    <li class="old-price no-cut" v-else>@{{ modal_product.price | currency("Rwf") }}
+                                    </li>
 
-
+                                    {{--                                    <h4 style="display: inline" v-if="modal_product.discount">@{{ modal_product.discount.price |--}}
+                                    {{--                                        currency("Rwf") }}--}}
+                                    {{--                                    </h4> &nbsp;--}}
+                                    {{--                                    <del class="text-warning" v-if="modal_product.discount"--}}
+                                    {{--                                         style="display: inline;">@{{ modal_product.price | currency("Rwf") }}--}}
+                                    {{--                                    </del>--}}
+                                    {{--                                    &nbsp;--}}
+                                    {{--                                    <app-countdown v-if="modal_product.discount"--}}
+                                    {{--                                                   :time="modal_product.discount.end_time"></app-countdown>--}}
+                                    {{--                                    <h3 v-if="!modal_product.discount">@{{ modal_product.price | currency("Rwf") }}</h3>--}}
+                                    {{--                                    <h3 style="display: inline">@{{ modal_product.price | currency("Rwf") }}</h3>--}}
+                                    {{--                                    <app-countdown></app-countdown>--}}
+                                </ul>
+                            </div>
+                            <p class="quickview-para" v-html="modal_product.description"></p>
+                            <form method="post" action="{{ route("cart.store") }}">
+                                @csrf
+                                <div class="product-description border-product">
+                                    <input :value="modal_product.id" name="product_id" type="hidden">
+                                    <div v-if="modal_product.sizes.length>0" class="form-group">
+                                        <label for="size">Size/Color:</label>
+                                        <select id="size" class="form-control cursor-pointer" name="size"
+                                                v-model="add_to_cart_form.size">
+                                            <option v-for="size of modal_product.sizes" class="cursor-pointer">
+                                                @{{size}}
+                                            </option>
+                                        </select>
+                                        <input v-model="add_to_cart_form.size" name="size" type="hidden"/>
                                     </div>
-                                    <div class="product-buttons">
-                                        <button type="submit" name="buy" value="buy"
-                                                class="btn btn-primary">
-                                            Buy
-                                        </button>
-                                        @auth
-                                            <button type="submit" class="btn btn-primary">add to cart</button>
-                                        @else
-                                            <a href="/login" class="btn btn-primary">Login
-                                            </a>
-                                            {{--                                    <a href="#" class="btn btn-solid">view detail</a>--}}
-                                        @endif
+                                    <div class="form-group">
+                                        <label for="quantity">Quantity:</label>
+                                        <input type="number" id="quantity" :max="modal_product.client_max" min="1"
+                                               name="quantity"
+                                               v-model="add_to_cart_form.quantity"
+                                               class="form-control "
+                                               value="1">
                                     </div>
+                                </div>
+                                <div class="product-buttons">
+                                    <button type="submit" name="buy" value="buy"
+                                            class="btn btn-primary">
+                                        Buy
+                                    </button>
                                     @auth
-                                </form>
-                            @endauth
+                                        <button type="submit" class="btn btn-primary">add to cart</button>
+                                    @else
+                                        <a href="/login" class="btn btn-primary">Login
+                                        </a>
+                                    @endauth
+                                    <a :href="'/item/'+modal_product.slug" class="btn btn-primary">view detail</a>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>

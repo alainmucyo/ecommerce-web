@@ -12,5 +12,5 @@
     </section>
 @endsection
 @push("scripts")
-    <script src="/js/app.js" type="text/javascript"></script>
+{{--    <script src="/js/new_app.js" type="text/javascript"></script>--}}
 @endpush

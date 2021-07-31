@@ -83,8 +83,8 @@ class Product extends Model
 
     public function getProductImageAttribute()
     {
-        if ($this->images->count() > 0) {
-            return $this->images->first()->image;
+        if ($this->images) {
+            return json_decode($this->images)[0];
         }
         return "/img/no-image.jpg";
     }

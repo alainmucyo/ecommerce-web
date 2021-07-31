@@ -26,14 +26,13 @@ class ProductHomeController extends Controller
 
     public function newIndex()
     {
-        $sellers = Role::where("slug", "seller")->first()->users->where("status",1)->where("on_homepage",1);
+        $sellers = Role::where("slug", "seller")->first()->users->where("status", 1)->where("on_homepage", 1);
         $homeSections = HomeSection::withCount("products")->where("status", 1)->get()->where("products_count", ">", 0);
         $categories = Category::get();
         $categories_count_half = round($categories->count() / 2);
-        $popularProducts = Product::withCount("orderProducts")->where("status", 1)->orderByDesc("order_products_count")->limit(3)->get();
+        $popularProducts = Product::withCount("orderProducts")->where("status", 1)->where("home_slider", 0)->orderByDesc("order_products_count")->limit(3)->get();
         $paginated_cats = Category::simplePaginate(8);
-        $ad_products = AdProduct::latest()->get();
-        return view("home.index", compact('categories', 'popularProducts', 'homeSections', 'paginated_cats', 'categories_count_half', 'ad_products','sellers'));
+        return view("home.index", compact('categories', 'popularProducts', 'homeSections', 'paginated_cats', 'categories_count_half', 'sellers'));
     }
 
     public function create()

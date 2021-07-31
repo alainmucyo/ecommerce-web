@@ -69,7 +69,7 @@
                                         <p><strong>Email:</strong> {{ $order->information->email }}</p>
                                         <p><strong>Phone Number:</strong> {{ $order->information->phone }}</p>
                                         <p><strong>Address:</strong> {{ $order->information->address }}</p>
-                                        @else
+                                    @else
                                         <p><strong>Email:</strong> {{ auth()->user()->email }}</p>
                                         <p><strong>Phone Number:</strong> {{ auth()->user()->phone }}</p>
                                         <p><strong>Address:</strong> {{ auth()->user()->address }}</p>
@@ -95,7 +95,7 @@
                                                     <a href="{{ $product->product->product_image }}" class="image_link"
                                                        target="_blank">
                                                         <img src="{{ $product->product->product_image }}" alt=""
-                                                             class="product_image" style="height: 4em">
+                                                             class="product_image" style="width:4em; height: 3.5em">
                                                     </a>
                                                     <a href="/item/{{ $product->product->slug }}"
                                                        class="text-truncate text-primary"

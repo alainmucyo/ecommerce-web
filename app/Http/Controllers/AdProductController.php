@@ -10,6 +10,12 @@ use Intervention\Image\Facades\Image;
 
 class AdProductController extends Controller
 {
+    private function imageUploader($image): string
+    {
+        $uploadedFileUrl = Cloudinary()->upload($image)->getSecurePath();
+        return $uploadedFileUrl;
+    }
+
     public function index()
     {
         $products = AdProduct::get();
@@ -31,16 +37,13 @@ class AdProductController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            $png_url = "-" . str_random(5);
-            $directory = storage_path() . '/app/public/images/';
-            if (!file_exists($directory)) {
-                File::makeDirectory($directory, $mode = 0777, true, true);
-            }
-            $path = $directory . $png_url;
-            Image::make($request->file("image"))->save($path);
+            $path = $request->file('image');
+            $data = file_get_contents($path);
+            $base64 = 'data:image/' . $path->extension() . ';base64,' . base64_encode($data);
+            $image = $this->imageUploader($base64);
             AdProduct::create([
                 "title" => $request['title'],
-                "image" => "/storage/images/" . $png_url,
+                "image" => $image,
                 "details" => $request['details']
             ]);
             return redirect()->back()->with("success", "Ad product created successfully!");
@@ -58,26 +61,17 @@ class AdProductController extends Controller
     {
         $request->validate([
             "title" => "required",
-            "image" => "image|mimes:jpeg,png,jpg,gif,svg|max:2048",
             "details" => "required|max:120"
         ]);
 
         if ($request['image'] && $request->hasFile('image')) {
-            $png_url = "image-" . str_random(5);
-            $directory = storage_path() . '/app/public/images/';
-            if (!file_exists($directory)) {
-                File::makeDirectory($directory, $mode = 0777, true, true);
-            }
-            $image = $adProduct->image;
-            if ($image != null && file_exists(public_path($image))) {
-                unlink(public_path($image));
-            }
-
-            $path = $directory . $png_url;
-            Image::make($request->file("image"))->save($path);
+            $path = $request->file('image');
+            $data = file_get_contents($path);
+            $base64 = 'data:image/' . $path->extension() . ';base64,' . base64_encode($data);
+            $image = $this->imageUploader($base64);
             $adProduct->update([
                 "title" => $request['title'],
-                "image" => "/storage/images/" . $png_url,
+                "image" => $image,
                 "details" => $request['details']
             ]);
         } else
@@ -88,10 +82,6 @@ class AdProductController extends Controller
 
     public function destroy(AdProduct $adProduct)
     {
-        $image = $adProduct->image;
-        if ($image != null && file_exists(public_path($image))) {
-            unlink(public_path($image));
-        }
         $adProduct->delete();
         return redirect()->back()->with("success", "Product deleted successfully!");
     }

@@ -1,12 +1,12 @@
 @csrf
 @include("includes.error")
 <div class="form-group">
-    <label for="title">Product title</label>
+    <label for="title">Add title</label>
     <input type="text" name="title" id="title" value="{{ old("title",$product->title) }}" class="form-control"
            required/>
 </div>
 <div class="form-group">
-    <label for="details">Product location</label>
+    <label for="details">Add Details</label>
     <input type="text" name="details" id="details" value="{{ old("details",$product->details) }}" class="form-control"
            required/>
 </div>

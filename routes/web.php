@@ -24,6 +24,7 @@ Route::middleware('CheckRole')->group(function () {
 
 
     Route::resource("/product", "ProductController")->middleware('auth');
+    Route::put("/change-slider/{product}", "ProductController@changeSlider")->middleware('auth');
 
 
     Route::get("/seller/orders", "SellerOrdersController@index");
@@ -89,9 +90,9 @@ Route::middleware('auth')->group(function () {
     Route::get("/customer/profile", "UsersController@getCustomerProfile");
 });
 Route::get("/product/category/{category}", "ProductController@getByCategories");
-Route::get("/product/image/{product}", "ProductController@image");
-Route::post("/product/image/{product}", "ProductController@storeImages");
-Route::delete("/product/image/{image}", "ProductController@deleteImages");
+Route::get("/product/image/{product}", "ProductController@image")->middleware('auth');
+Route::post("/product/image/{product}", "ProductController@storeImages")->middleware('auth');
+Route::delete("/product/image/{image}", "ProductController@deleteImages")->middleware('auth');
 Route::get("/item/{slug}", "ItemController@show");
 
 Route::get("/shop", "ItemController@index");
