@@ -40,7 +40,6 @@ Vue.component("test-chat", TestChat);
 Vue.component("app-countdown", Countdown);
 Vue.component("app-profile", Profile);
 Vue.component("app-delivery-fee", DeliveryFee);
-Vue.component("app-user-address", UserAddress);
 Vue.component("app-checkout", Checkout);
 Vue.component("app-home-section", HomeSection);
 Vue.filter("currency", (value, arg) => {
@@ -59,7 +58,6 @@ import Countdown from "./components/Countdown";
 import Profile from "./components/Profile";
 import DeliveryFee from "./components/DeliveryFee";
 import EditProduct from "./components/EditProduct";
-import UserAddress from "./components/UserAddress";
 import Checkout from "./components/Checkout";
 import HomeSection from "./components/HomeSection";
 
@@ -159,19 +157,27 @@ const app = new Vue({
                             this.products.splice(index, 1);
                             this.$swal(
                                 'Deleted!',
-                                'Category has been deleted.',
+                                'Item has been deleted Successfully.',
                                 'success'
-                            )
+                            ).then((result) => {
+                                if (result.value) {
+                                    window.location.reload(true);
+                                    return false
+                                }
+                            })
                         })
                         .catch(err => {
                             this.$Progress.fail();
                             this.$swal(
                                 'Deleted!',
-                                'Category has been deleted.',
+                                'Item has been deleted!',
                                 'success'
-                            )
-                            window.location.reload(true);
-                            return false
+                            ).then((result) => {
+                                if (result.value) {
+                                    window.location.reload(true);
+                                    return false
+                                }
+                            })
                         })
                 }
             })
@@ -206,7 +212,7 @@ const app = new Vue({
                             this.$Progress.fail();
                             this.$swal(
                                 'Update Slider!',
-                                'Product has been failed.',
+                                'Slider Update has been failed.',
                                 'warning'
                             )
                         })
@@ -221,12 +227,12 @@ const app = new Vue({
                 .then(resp => {
                     this.product = resp.data.data;
                     this.$Progress.finish()
+                    console.log(resp.data.data)
                 })
                 .catch(() => {
                     this.$Progress.fail()
                 });
             $("#productModal").modal("show");
-            console.log(product_id)
         },
         clearDiscount() {
             this.discount.new_price = 0;

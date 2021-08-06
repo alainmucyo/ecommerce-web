@@ -282,66 +282,6 @@ export default {
                     this.$Progress.fail()
                 })
         },
-        loadProvinces() {
-            this.$Progress.start();
-            axios.get("/api/provinces")
-                .then(resp => {
-                    this.$Progress.finish();
-                    this.address.provinces = resp.data
-                })
-                .catch(() => {
-                    this.$Progress.fail();
-                    console.log("error")
-                })
-        },
-        loadDistricts(selected) {
-            this.$Progress.start();
-            axios.get(`/api/districts/${selected.id}`)
-                .then(resp => {
-                    this.$Progress.finish();
-                    this.address.districts = resp.data
-                })
-                .catch(() => {
-                    this.$Progress.fail();
-                    console.log("error")
-                })
-        },
-        loadSectors(selected) {
-            this.$Progress.start();
-            axios.get(`/api/sectors/${selected.id}`)
-                .then(resp => {
-                    this.$Progress.finish();
-                    this.address.sectors = resp.data
-                })
-                .catch(() => {
-                    this.$Progress.fail();
-                    console.log("error")
-                })
-        },
-        loadCells(selected) {
-            this.$Progress.start();
-            axios.get(`/api/cells/${selected.id}`)
-                .then(resp => {
-                    this.$Progress.finish();
-                    this.address.cells = resp.data
-                })
-                .catch(() => {
-                    this.$Progress.fail();
-                    console.log("error")
-                })
-        },
-        loadVillages(selected) {
-            this.$Progress.start();
-            axios.get(`/api/villages/${selected.id}`)
-                .then(resp => {
-                    this.$Progress.finish();
-                    this.address.villages = resp.data
-                })
-                .catch(() => {
-                    this.$Progress.fail();
-                    console.log("error")
-                })
-        },
         loadUserDetails() {
             this.$Progress.start();
             axios.get("/api/user-details")

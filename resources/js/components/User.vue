@@ -3,11 +3,6 @@
         <div class="card">
             <div class="card-header">
                 <h5>Users Management</h5>
-                <!--                <div class="float-right">-->
-                <!--                    <a href="#" class="btn-icon btn-icon-only btn-pill btn btn-outline-success"-->
-                <!--                       @click.prevent="showModal"><i-->
-                <!--                        class="feather icon-plus" style="font-size: medium"> </i></a>-->
-                <!--                </div>-->
             </div>
             <div class="card-body table-responsive">
                 <br>
@@ -42,7 +37,6 @@
                     </tr>
                     </tbody>
                 </table>
-
                 <div class="alert alert-info" v-else>
                     No Users List yet
                 </div>
@@ -87,16 +81,12 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" :disabled="form.busy" class="btn btn-primary btn-raised">{{
-                                    form.busy ? 'Submitting...' : 'Submit'
-                                }}
-                            </button>
+                            <button type="submit" :disabled="form.busy" class="btn btn-primary btn-raised">{{form.busy ? 'Submitting...' : 'Submit'}}</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-
     </div>
 </template>
 

@@ -12,10 +12,10 @@ class SellerOrdersController extends Controller
     {
         $this->middleware('auth');
     }
+
     public function index()
     {
-
-        $orders = OrderProduct::where("seller_id", auth()->user()->id)->where("paid",1)->where("delivered", 0)->where("status", 0)->where("received", 0)->where("delivered", 0)->orderByDesc("order_id")->get()
+        $orders = OrderProduct::where("seller_id", auth()->user()->id)->where("paid", 1)->where("delivered", 0)->where("status", 0)->where("received", 0)->where("delivered", 0)->orderByDesc("order_id")->get()
             ->groupBy(function ($val) {
                 return $val->order_id;
             });

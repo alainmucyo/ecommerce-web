@@ -24,13 +24,23 @@
                             </thead>
                             <tbody>
                             @foreach($orders as $order_id=>$order_products)
-                                @php($order=\App\Order::find($order_id))
+                                <?php $order = \App\Order::find($order_id);
+                                if (!$order->user_information_id) {
+                                    $customer = \App\User::where("id", $order->customer_id)->first();
+                                } else {
+                                    $customer = \App\UserInformation::where("id", $order->user_information_id)->first();
+                                }
+                                $order["customer"] = $customer;
+                                $order['payment_mode'] = \App\PaymentMode::where("id", $order->payment_mode)->first();
+                                $order['deliveryFee'] = \App\DeliveryFee::where("id", $order->delivery_fee_id)->first()
+                                ?>
+
                                 <tr>
                                     <td>{{$loop->iteration}}</td>
                                     <td>
-{{--                                        <div--}}
-{{--                                            style="display: none"> {{ $order->customer }}{{ $order->paymentMode }}{{ $order->deliveryFee }}{{ $order->province }}--}}
-{{--                                            {{ $order->district }}{{ $order->sector }}{{ $order->cell }}{{ $order->village }}</div>--}}
+                                        {{--                                        <div--}}
+                                        {{--                                            style="display: none"> {{ $order->customer }}{{ $order->paymentMode }}{{ $order->deliveryFee }}{{ $order->province }}--}}
+                                        {{--                                            {{ $order->district }}{{ $order->sector }}{{ $order->cell }}{{ $order->village }}</div>--}}
                                         <a @click.prevent="showOrderProducts({{ $order }})" href="#"
                                            class="text-primary"
                                            data-toggle="tooltip" data-placement="top"
@@ -99,6 +109,7 @@
                         </center>
                         <div v-else class="row">
                             <div class="col-md-6">
+                                <p><strong>Customer Name:</strong> @{{order.customer.name}}</p>
                                 <p><strong>Customer Email:</strong> @{{ order.customer.email }}</p>
                                 <p><strong>Customer Phone:</strong> @{{ order.customer.phone }}</p>
                                 <p><strong>Payment Mode:</strong> @{{ order.payment_mode.name }}</p>
@@ -107,11 +118,11 @@
                                 <p><strong>Done At:</strong> @{{ order.created_at }}</p>
                             </div>
                             <div class="col-md-6">
-{{--                                <p><strong>Shipping:</strong><span class="badge badge-primary">@{{ order.delivery_fee.title }}</span>--}}
-{{--                                </p>--}}
-{{--                                <p><strong>Address:</strong> @{{ order.information }}</p>--}}
+                                <p><strong>Shipping:</strong><span class="badge badge-primary">@{{ order.deliveryFee.title }}</span>
+                                </p>
+                                <p><strong>Address:</strong>@{{order.customer.address }}</p>
                                 <p>
-                                    <a :href="'/chatbox/seller?customer='+order.customer.id"> <span
+                                    <a :href="'/chatbox/seller?customer='+order.customer_id"> <span
                                             class="fa fa-comment"></span> Chat with customer</a>
                                 </p>
                             </div>
@@ -122,7 +133,7 @@
                                     <tr class="table-head">
                                         <th scope="col">product</th>
                                         <th scope="col">price</th>
-{{--                                        <th scope="col">Insurance</th>--}}
+                                        {{--                                        <th scope="col">Insurance</th>--}}
                                         <th scope="col">description</th>
                                         <th scope="col">Action</th>
                                     </tr>
@@ -139,9 +150,9 @@
                                         <td>
                                             <h5>@{{ product.price | currency("Rwf") }}</h5>
                                         </td>
-{{--                                        <td>--}}
-{{--                                            @{{ product.insurance | currency("Rwf") }} / each--}}
-{{--                                        </td>--}}
+                                        {{--                                        <td>--}}
+                                        {{--                                            @{{ product.insurance | currency("Rwf") }} / each--}}
+                                        {{--                                        </td>--}}
                                         <td>
                                             <span v-if="product.size">Size: @{{product.size}}</span>
                                             <br>
@@ -180,6 +191,6 @@
     </div>
 @endsection
 @push("scripts")
-    <script src="/js/app.js?update_new_order=true" type="text/javascript"></script>
+    <script src="/js/app.js" type="text/javascript"></script>
     @include("includes.datatable");
 @endpush

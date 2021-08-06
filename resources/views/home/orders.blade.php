@@ -1,4 +1,5 @@
 @extends("layouts.master")
+@section("title","Order-List")
 @section("content")
     <!-- breadcrumb start -->
     <section class="breadcrumb-section section-b-space">

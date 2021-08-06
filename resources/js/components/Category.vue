@@ -18,7 +18,6 @@
                         <th>No</th>
                         <th>Name</th>
                         <th>Products</th>
-                        <th>Insurance Fees</th>
                         <th>Created</th>
                         <th>Modify</th>
                     </tr>
@@ -28,7 +27,6 @@
                         <td>{{ index + 1 }}</td>
                         <td>{{ category.name}}</td>
                         <td>{{ category.products}}</td>
-                        <td>{{ category.insurance}}</td>
                         <td>{{ category.created_at }}</td>
                         <td>
                             <a href="#" class="btn-icon btn-icon-only btn-pill btn btn-outline-info"

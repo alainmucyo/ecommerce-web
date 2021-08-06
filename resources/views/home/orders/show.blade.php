@@ -40,8 +40,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <p><strong>Payment
-                                            Mode: </strong>{{ $order->paymentMode?$order->paymentMode->name:'None' }}
+                                    <p><strong>Payment Mode: </strong>{{ $order->paymentMode?$order->paymentMode->name:'None' }}
                                     </p>
                                     <p><strong>Shipping:</strong><span class="badge badge-primary">{{ $order->deliveryFee->title }} For {{ number_format($order->deliveryFee->amount) }} Rwf</span>
                                     </p>

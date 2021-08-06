@@ -68,7 +68,7 @@
                                         @if($products->count()>0)
                                             @foreach($products as $product)
                                                 <div class="col-xl-3 col-md-4 col-sm-6 ">
-                                                    <article class="list-product">
+                                                    <article class="list-product mb-4">
                                                         <div class="img-block" style="height: 250px">
                                                             <a href="/item/{{ $product->slug }}" class="thumbnail">
                                                                 <img class="first-img h-100"
@@ -103,13 +103,6 @@
                                                                href="/item/{{ $product->slug }}"><span>{{ $product->title }}</span></a>
                                                             <h2><a href="/item/{{ $product->slug }}"
                                                                    class="product-link">{{ $product->slug }}</a></h2>
-                                                            <div class="rating-product">
-                                                                <i class="ion-android-star"></i>
-                                                                <i class="ion-android-star"></i>
-                                                                <i class="ion-android-star"></i>
-                                                                <i class="ion-android-star"></i>
-                                                                <i class="ion-android-star"></i>
-                                                            </div>
                                                             <div class="pricing-meta">
                                                                 <ul>
                                                                     @if($product->discount)
@@ -120,17 +113,9 @@
                                                                             Rwf
                                                                         </li>
                                                                     @else
-                                                                        @if($product->min_price > 0 and $product->max_price > 0)
-                                                                            <li class="d-flex justify-content-between">
-                                                                                <span> {{ number_format($product->min_price) }} Rwf</span>
-                                                                                <span>-</span>
-                                                                                <span> {{ number_format($product->max_price) }} Rwf</span>
-                                                                            </li>
-                                                                        @else
-                                                                            <li class="old-price">{{ number_format($product->price) }}
+                                                                            <li class="old-price not-cut">{{ number_format($product->price) }}
                                                                                 Rwf
                                                                             </li>
-                                                                        @endif
                                                                     @endif
                                                                 </ul>
                                                             </div>
@@ -176,13 +161,12 @@
                                     </div>
                                 </div>
                                 <div id="shop-2" class="tab-pane active">
-
                                     @if($products->count()>0)
                                         @foreach($products as $product)
                                             <div class="shop-list-wrap mb-3 scroll-zoom">
                                                 <div class="row list-product m-0px">
                                                     <div class="col-md-12 padding-0px">
-                                                        <div class="row">
+                                                        <div class="row mb-3">
                                                             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3">
                                                                 <div class="left-img">
                                                                     <div class="img-block" style="height:280px">
@@ -227,13 +211,6 @@
                                                                         <h2><a href="/item/{{ $product->slug }}"
                                                                                class="product-link">{{ $product->slug }}</a>
                                                                         </h2>
-                                                                        <div class="rating-product">
-                                                                            <i class="ion-android-star"></i>
-                                                                            <i class="ion-android-star"></i>
-                                                                            <i class="ion-android-star"></i>
-                                                                            <i class="ion-android-star"></i>
-                                                                            <i class="ion-android-star"></i>
-                                                                        </div>
                                                                         <div class="product-intro-info">
                                                                             {!! $product->description !!}
                                                                         </div>
@@ -252,17 +229,9 @@
                                                                                         Rwf
                                                                                     </li>
                                                                                 @else
-                                                                                    @if($product->min_price > 0 and $product->max_price > 0)
-                                                                                        <li class="d-flex justify-content-between">
-                                                                                            <span> {{ number_format($product->min_price) }} Rwf</span>
-                                                                                            <span>-</span>
-                                                                                            <span> {{ number_format($product->max_price) }} Rwf</span>
-                                                                                        </li>
-                                                                                    @else
                                                                                         <li class="old-price not-cut">{{ number_format($product->price) }}
                                                                                             Rwf
                                                                                         </li>
-                                                                                    @endif
                                                                                 @endif
                                                                             </ul>
                                                                         </div>
@@ -345,5 +314,5 @@
             })
         })
     </script>
-{{--    <script type="text/javascript" src="/js/app.js"></script>--}}
+    <script type="text/javascript" src="/js/app.js"></script>
 @endpush

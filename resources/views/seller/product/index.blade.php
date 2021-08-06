@@ -99,11 +99,6 @@
                                                                 v-for="size in product.sizes"
                                                                 class="badge badge-success ml-2">{@{ size}}</span>
                                                         </p>
-                                                        <p><b>Display Price:</b> <span
-                                                                class="badge badge-info">@{{ product.min_price | currency("Rwf")}}</span>
-                                                            — <span
-                                                                class="badge badge-info">@{{ product.max_price | currency("Rwf")}}</span>
-                                                        </p>
                                                         <p><b>Created At:</b> @{{ product.created_at }} </p>
                                                     </div>
 

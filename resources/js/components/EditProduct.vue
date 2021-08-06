@@ -20,52 +20,16 @@
         <has-error :form="form" field="price"></has-error>
       </div>
       <div class="form-group col-md-6">
-        <label>Min Display Price ({{ form.min_price | currency("Rwf") }})</label>
-        <input type="number" class="form-control" v-model="form.min_price"
-               :class="{ 'is-invalid': form.errors.has('min_price') }"/>
-        <has-error :form="form" field="min_price"></has-error>
-      </div>
-      <div class="form-group col-md-6">
-        <label>Max Display Price ({{ form.max_price | currency("Rwf") }})</label>
-        <input type="number" class="form-control" v-model="form.max_price"
-               :class="{ 'is-invalid': form.errors.has('max_price') }"/>
-        <has-error :form="form" field="max_price"></has-error>
-      </div>
-      <div class="form-group col-md-6">
         <label>Price USA ({{ form.price_usa | currency('$') }})</label>
         <input type="number" class="form-control" v-model="form.price_usa"
                :class="{ 'is-invalid': form.errors.has('price_usa') }"/>
         <has-error :form="form" field="price_usa"></has-error>
       </div>
       <div class="form-group col-md-6">
-        <label>Min Display Price USA ({{ form.min_price_usa | currency("$") }})</label>
-        <input type="number" class="form-control" v-model="form.min_price_usa"
-               :class="{ 'is-invalid': form.errors.has('min_price_usa') }"/>
-        <has-error :form="form" field="min_price_usa"></has-error>
-      </div>
-      <div class="form-group col-md-6">
-        <label>Max Display Price USA ({{ form.max_price_usa | currency("$") }})</label>
-        <input type="number" class="form-control" v-model="form.max_price_usa"
-               :class="{ 'is-invalid': form.errors.has('max_price_usa') }"/>
-        <has-error :form="form" field="max_price_usa"></has-error>
-      </div>
-      <div class="form-group col-md-6">
         <label>Price Dirham ({{ form.price_dirham | currency('د.إ') }})</label>
         <input type="number" class="form-control" v-model="form.price_dirham"
                :class="{ 'is-invalid': form.errors.has('price_dirham') }"/>
         <has-error :form="form" field="price_dirham"></has-error>
-      </div>
-      <div class="form-group col-md-6">
-        <label>Min Display Price Dirham ({{ form.min_price_dirham | currency("د.إ") }})</label>
-        <input type="number" class="form-control" v-model="form.min_price_dirham"
-               :class="{ 'is-invalid': form.errors.has('min_price_dirham') }"/>
-        <has-error :form="form" field="min_price_dirham"></has-error>
-      </div>
-      <div class="form-group col-md-6">
-        <label>Max Display Price Dirham ({{ form.max_price_dirham | currency("د.إ") }})</label>
-        <input type="number" class="form-control" v-model="form.max_price_dirham"
-               :class="{ 'is-invalid': form.errors.has('max_price_dirham') }"/>
-        <has-error :form="form" field="max_price_dirham"></has-error>
       </div>
       <div class="form-group col-md-6">
         <label>Category</label>
@@ -123,14 +87,8 @@ export default {
         category: [],
         size: [],
         description: '',
-        min_price: 0,
-        max_price: 0,
         price_usa: '',
-        min_price_usa: 0,
-        max_price_usa: 0,
         price_dirham: '',
-        min_price_dirham: 0,
-        max_price_dirham: 0
       })
     }
   },

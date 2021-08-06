@@ -663,7 +663,6 @@
 
 <!-- Main Activation JS -->
 <script src="assets/js/main.js"></script>
-<script src="{{ asset('js/app.js') }}"></script>
 @stack("scripts")
 </body>
 </html>
