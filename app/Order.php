@@ -16,7 +16,7 @@ class Order extends Model
 
     public function customer()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class,"customer_id");
     }
 
     public function deliveryFee()
@@ -27,31 +27,6 @@ class Order extends Model
     public function paymentMode()
     {
         return $this->belongsTo(PaymentMode::class, "payment_mode");
-    }
-
-    public function province()
-    {
-        return $this->belongsTo(Province::class, "province_id");
-    }
-
-    public function district()
-    {
-        return $this->belongsTo(District::class);
-    }
-
-    public function sector()
-    {
-        return $this->belongsTo(Sector::class);
-    }
-
-    public function cell()
-    {
-        return $this->belongsTo(Cell::class);
-    }
-
-    public function village()
-    {
-        return $this->belongsTo(Village::class);
     }
 
     public function getSellersAttribute()
@@ -78,7 +53,7 @@ class Order extends Model
 
     public function user_address()
     {
-        return $this->belongsTo(UserInformation::class);
+        return $this->belongsTo(UserInformation::class,"user_information_id");
     }
 
     public function getPayedDateAttribute()

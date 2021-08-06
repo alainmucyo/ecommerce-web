@@ -98,7 +98,7 @@
                 <div class="navbar-logo">
                     <a href="/home">
                         <img alt="Logo" class="img-fluid" src="/img/dhd_logo.png"
-                             style="width: 90%;"/>
+                             style="width: 45%;"/>
                     </a>
                     <a class="mobile-menu" href="#!" id="mobile-collapse">
                         <i class="feather icon-menu icon-toggle-right"></i>

@@ -1999,8 +1999,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Category",
@@ -2445,86 +2443,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         _this3.$Progress.fail();
       });
     },
-    loadProvinces: function loadProvinces() {
+    loadUserDetails: function loadUserDetails() {
       var _this4 = this;
 
       this.$Progress.start();
-      axios.get("/api/provinces").then(function (resp) {
-        _this4.$Progress.finish();
+      axios.get("/api/user-details").then(function (resp) {
+        _this4.address.user_id = resp.data.id;
 
-        _this4.address.provinces = resp.data;
+        _this4.$Progress.finish();
       })["catch"](function () {
         _this4.$Progress.fail();
-
-        console.log("error");
-      });
-    },
-    loadDistricts: function loadDistricts(selected) {
-      var _this5 = this;
-
-      this.$Progress.start();
-      axios.get("/api/districts/".concat(selected.id)).then(function (resp) {
-        _this5.$Progress.finish();
-
-        _this5.address.districts = resp.data;
-      })["catch"](function () {
-        _this5.$Progress.fail();
-
-        console.log("error");
-      });
-    },
-    loadSectors: function loadSectors(selected) {
-      var _this6 = this;
-
-      this.$Progress.start();
-      axios.get("/api/sectors/".concat(selected.id)).then(function (resp) {
-        _this6.$Progress.finish();
-
-        _this6.address.sectors = resp.data;
-      })["catch"](function () {
-        _this6.$Progress.fail();
-
-        console.log("error");
-      });
-    },
-    loadCells: function loadCells(selected) {
-      var _this7 = this;
-
-      this.$Progress.start();
-      axios.get("/api/cells/".concat(selected.id)).then(function (resp) {
-        _this7.$Progress.finish();
-
-        _this7.address.cells = resp.data;
-      })["catch"](function () {
-        _this7.$Progress.fail();
-
-        console.log("error");
-      });
-    },
-    loadVillages: function loadVillages(selected) {
-      var _this8 = this;
-
-      this.$Progress.start();
-      axios.get("/api/villages/".concat(selected.id)).then(function (resp) {
-        _this8.$Progress.finish();
-
-        _this8.address.villages = resp.data;
-      })["catch"](function () {
-        _this8.$Progress.fail();
-
-        console.log("error");
-      });
-    },
-    loadUserDetails: function loadUserDetails() {
-      var _this9 = this;
-
-      this.$Progress.start();
-      axios.get("/api/user-details").then(function (resp) {
-        _this9.address.user_id = resp.data.id;
-
-        _this9.$Progress.finish();
-      })["catch"](function () {
-        _this9.$Progress.fail();
 
         console.log("error");
       });
@@ -2626,42 +2554,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue2_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue2-editor */ "./node_modules/vue2-editor/dist/vue2-editor.esm.js");
 /* harmony import */ var vue_quill_editor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-quill-editor */ "./node_modules/vue-quill-editor/dist/vue-quill-editor.js");
 /* harmony import */ var vue_quill_editor__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue_quill_editor__WEBPACK_IMPORTED_MODULE_3__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -3205,42 +3097,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -3264,14 +3120,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         category: [],
         size: [],
         description: '',
-        min_price: 0,
-        max_price: 0,
         price_usa: '',
-        min_price_usa: 0,
-        max_price_usa: 0,
-        price_dirham: '',
-        min_price_dirham: 0,
-        max_price_dirham: 0
+        price_dirham: ''
       })
     };
   },
@@ -4453,8 +4303,6 @@ __webpack_require__.r(__webpack_exports__);
           _this3.loadMessages(_this3.selected_chat);
         }
       })["catch"](function (err) {
-        console.log("error");
-
         _this3.$Progress.fail();
       });
     }
@@ -4464,7 +4312,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this4 = this;
 
       return this.chatList.filter(function (c) {
-        return c.name.toLowerCase().includes(_this4.search.toLowerCase()) || c.type.toLowerCase().includes(_this4.search.toLowerCase());
+        return c.type.toLowerCase().includes(_this4.search.toLowerCase());
       });
     }
   },
@@ -4481,6 +4329,7 @@ __webpack_require__.r(__webpack_exports__);
     setInterval(function () {
       _this5.loadMessages(_this5.selected_chat);
     }, 10000);
+    console.log(this.filteredChatList);
   }
 });
 
@@ -4497,16 +4346,6 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vform__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vform */ "./node_modules/vform/dist/vform.common.js");
 /* harmony import */ var vform__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vform__WEBPACK_IMPORTED_MODULE_0__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -4729,158 +4568,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {
     this.loadUsers();
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/UserAddress.vue?vue&type=script&lang=js&":
-/*!**********************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/UserAddress.vue?vue&type=script&lang=js& ***!
-  \**********************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue_multiselect__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-multiselect */ "./node_modules/vue-multiselect/dist/vue-multiselect.min.js");
-/* harmony import */ var vue_multiselect__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_multiselect__WEBPACK_IMPORTED_MODULE_0__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  name: "UserAddress",
-  components: {
-    Multiselect: vue_multiselect__WEBPACK_IMPORTED_MODULE_0___default.a
-  },
-  data: function data() {
-    return {
-      provinces: [],
-      districts: [],
-      sectors: [],
-      cells: [],
-      villages: [],
-      form: {
-        province_id: '',
-        district_id: '',
-        sector_id: '',
-        cell_id: '',
-        village_id: ''
-      }
-    };
-  },
-  methods: {
-    loadProvinces: function loadProvinces() {
-      var _this = this;
-
-      this.$Progress.start();
-      axios.get("/api/provinces").then(function (resp) {
-        _this.$Progress.finish();
-
-        _this.provinces = resp.data;
-      })["catch"](function () {
-        _this.$Progress.fail();
-
-        console.log("error");
-      });
-    },
-    loadDistricts: function loadDistricts(selected) {
-      var _this2 = this;
-
-      this.$Progress.start();
-      axios.get("/api/districts/".concat(selected.id)).then(function (resp) {
-        _this2.$Progress.finish();
-
-        _this2.districts = resp.data;
-      })["catch"](function () {
-        _this2.$Progress.fail();
-
-        console.log("error");
-      });
-    },
-    loadSectors: function loadSectors(selected) {
-      var _this3 = this;
-
-      this.$Progress.start();
-      axios.get("/api/sectors/".concat(selected.id)).then(function (resp) {
-        _this3.$Progress.finish();
-
-        _this3.sectors = resp.data;
-      })["catch"](function () {
-        _this3.$Progress.fail();
-
-        console.log("error");
-      });
-    },
-    loadCells: function loadCells(selected) {
-      var _this4 = this;
-
-      this.$Progress.start();
-      axios.get("/api/cells/".concat(selected.id)).then(function (resp) {
-        _this4.$Progress.finish();
-
-        _this4.cells = resp.data;
-      })["catch"](function () {
-        _this4.$Progress.fail();
-
-        console.log("error");
-      });
-    },
-    loadVillages: function loadVillages(selected) {
-      var _this5 = this;
-
-      this.$Progress.start();
-      axios.get("/api/villages/".concat(selected.id)).then(function (resp) {
-        _this5.$Progress.finish();
-
-        _this5.villages = resp.data;
-      })["catch"](function () {
-        _this5.$Progress.fail();
-
-        console.log("error");
-      });
-    }
-  },
-  created: function created() {
-    this.loadProvinces();
   }
 });
 
@@ -56148,8 +55835,6 @@ var render = function() {
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(category.products))]),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(category.insurance))]),
-                      _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(category.created_at))]),
                       _vm._v(" "),
                       _c("td", [
@@ -56381,8 +56066,6 @@ var staticRenderFns = [
         _c("th", [_vm._v("Name")]),
         _vm._v(" "),
         _c("th", [_vm._v("Products")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Insurance Fees")]),
         _vm._v(" "),
         _c("th", [_vm._v("Created")]),
         _vm._v(" "),
@@ -57220,86 +56903,6 @@ var render = function() {
           [
             _c("label", [
               _vm._v(
-                "Min Display Price (" +
-                  _vm._s(_vm._f("currency")(_vm.form.min_price, "Rwf")) +
-                  ")"
-              )
-            ]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.form.min_price,
-                  expression: "form.min_price"
-                }
-              ],
-              staticClass: "form-control",
-              class: { "is-invalid": _vm.form.errors.has("min_price") },
-              attrs: { type: "number" },
-              domProps: { value: _vm.form.min_price },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.form, "min_price", $event.target.value)
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c("has-error", { attrs: { form: _vm.form, field: "min_price" } })
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "form-group col-md-6" },
-          [
-            _c("label", [
-              _vm._v(
-                "Max Display Price (" +
-                  _vm._s(_vm._f("currency")(_vm.form.max_price, "Rwf")) +
-                  ")"
-              )
-            ]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.form.max_price,
-                  expression: "form.max_price"
-                }
-              ],
-              staticClass: "form-control",
-              class: { "is-invalid": _vm.form.errors.has("max_price") },
-              attrs: { type: "number" },
-              domProps: { value: _vm.form.max_price },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.form, "max_price", $event.target.value)
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c("has-error", { attrs: { form: _vm.form, field: "max_price" } })
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "form-group col-md-6" },
-          [
-            _c("label", [
-              _vm._v(
                 "Price USA (" +
                   _vm._s(_vm._f("currency")(_vm.form.price_usa, "$")) +
                   ")"
@@ -57330,90 +56933,6 @@ var render = function() {
             }),
             _vm._v(" "),
             _c("has-error", { attrs: { form: _vm.form, field: "price_usa" } })
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "form-group col-md-6" },
-          [
-            _c("label", [
-              _vm._v(
-                "Min Display Price USA (" +
-                  _vm._s(_vm._f("currency")(_vm.form.min_price_usa, "$")) +
-                  ")"
-              )
-            ]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.form.min_price_usa,
-                  expression: "form.min_price_usa"
-                }
-              ],
-              staticClass: "form-control",
-              class: { "is-invalid": _vm.form.errors.has("min_price_usa") },
-              attrs: { type: "number" },
-              domProps: { value: _vm.form.min_price_usa },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.form, "min_price_usa", $event.target.value)
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c("has-error", {
-              attrs: { form: _vm.form, field: "min_price_usa" }
-            })
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "form-group col-md-6" },
-          [
-            _c("label", [
-              _vm._v(
-                "Max Display Price USA (" +
-                  _vm._s(_vm._f("currency")(_vm.form.max_price_usa, "$")) +
-                  ")"
-              )
-            ]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.form.max_price_usa,
-                  expression: "form.max_price_usa"
-                }
-              ],
-              staticClass: "form-control",
-              class: { "is-invalid": _vm.form.errors.has("max_price_usa") },
-              attrs: { type: "number" },
-              domProps: { value: _vm.form.max_price_usa },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.form, "max_price_usa", $event.target.value)
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c("has-error", {
-              attrs: { form: _vm.form, field: "max_price_usa" }
-            })
           ],
           1
         ),
@@ -57455,90 +56974,6 @@ var render = function() {
             _vm._v(" "),
             _c("has-error", {
               attrs: { form: _vm.form, field: "price_dirham" }
-            })
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "form-group col-md-6" },
-          [
-            _c("label", [
-              _vm._v(
-                "Min Display Price Dirham (" +
-                  _vm._s(_vm._f("currency")(_vm.form.min_price_dirham, "د.إ")) +
-                  ")"
-              )
-            ]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.form.min_price_dirham,
-                  expression: "form.min_price_dirham"
-                }
-              ],
-              staticClass: "form-control",
-              class: { "is-invalid": _vm.form.errors.has("min_price_dirham") },
-              attrs: { type: "number" },
-              domProps: { value: _vm.form.min_price_dirham },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.form, "min_price_dirham", $event.target.value)
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c("has-error", {
-              attrs: { form: _vm.form, field: "min_price_dirham" }
-            })
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "form-group col-md-6" },
-          [
-            _c("label", [
-              _vm._v(
-                "Max Display Price Dirham (" +
-                  _vm._s(_vm._f("currency")(_vm.form.max_price_dirham, "د.إ")) +
-                  ")"
-              )
-            ]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.form.max_price_dirham,
-                  expression: "form.max_price_dirham"
-                }
-              ],
-              staticClass: "form-control",
-              class: { "is-invalid": _vm.form.errors.has("max_price_dirham") },
-              attrs: { type: "number" },
-              domProps: { value: _vm.form.max_price_dirham },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.form, "max_price_dirham", $event.target.value)
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c("has-error", {
-              attrs: { form: _vm.form, field: "max_price_dirham" }
             })
           ],
           1
@@ -58079,86 +57514,6 @@ var render = function() {
           [
             _c("label", [
               _vm._v(
-                "Min Display Price (" +
-                  _vm._s(_vm._f("currency")(_vm.form.min_price, "Rwf")) +
-                  ")"
-              )
-            ]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.form.min_price,
-                  expression: "form.min_price"
-                }
-              ],
-              staticClass: "form-control",
-              class: { "is-invalid": _vm.form.errors.has("min_price") },
-              attrs: { type: "number" },
-              domProps: { value: _vm.form.min_price },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.form, "min_price", $event.target.value)
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c("has-error", { attrs: { form: _vm.form, field: "min_price" } })
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "form-group col-md-6" },
-          [
-            _c("label", [
-              _vm._v(
-                "Max Display Price (" +
-                  _vm._s(_vm._f("currency")(_vm.form.max_price, "Rwf")) +
-                  ")"
-              )
-            ]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.form.max_price,
-                  expression: "form.max_price"
-                }
-              ],
-              staticClass: "form-control",
-              class: { "is-invalid": _vm.form.errors.has("max_price") },
-              attrs: { type: "number" },
-              domProps: { value: _vm.form.max_price },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.form, "max_price", $event.target.value)
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c("has-error", { attrs: { form: _vm.form, field: "max_price" } })
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "form-group col-md-6" },
-          [
-            _c("label", [
-              _vm._v(
                 "Price USA (" +
                   _vm._s(_vm._f("currency")(_vm.form.price_usa, "$")) +
                   ")"
@@ -58189,90 +57544,6 @@ var render = function() {
             }),
             _vm._v(" "),
             _c("has-error", { attrs: { form: _vm.form, field: "price_usa" } })
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "form-group col-md-6" },
-          [
-            _c("label", [
-              _vm._v(
-                "Min Display Price USA (" +
-                  _vm._s(_vm._f("currency")(_vm.form.min_price_usa, "$")) +
-                  ")"
-              )
-            ]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.form.min_price_usa,
-                  expression: "form.min_price_usa"
-                }
-              ],
-              staticClass: "form-control",
-              class: { "is-invalid": _vm.form.errors.has("min_price_usa") },
-              attrs: { type: "number" },
-              domProps: { value: _vm.form.min_price_usa },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.form, "min_price_usa", $event.target.value)
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c("has-error", {
-              attrs: { form: _vm.form, field: "min_price_usa" }
-            })
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "form-group col-md-6" },
-          [
-            _c("label", [
-              _vm._v(
-                "Max Display Price USA (" +
-                  _vm._s(_vm._f("currency")(_vm.form.max_price_usa, "$")) +
-                  ")"
-              )
-            ]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.form.max_price_usa,
-                  expression: "form.max_price_usa"
-                }
-              ],
-              staticClass: "form-control",
-              class: { "is-invalid": _vm.form.errors.has("max_price_usa") },
-              attrs: { type: "number" },
-              domProps: { value: _vm.form.max_price_usa },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.form, "max_price_usa", $event.target.value)
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c("has-error", {
-              attrs: { form: _vm.form, field: "max_price_usa" }
-            })
           ],
           1
         ),
@@ -58314,90 +57585,6 @@ var render = function() {
             _vm._v(" "),
             _c("has-error", {
               attrs: { form: _vm.form, field: "price_dirham" }
-            })
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "form-group col-md-6" },
-          [
-            _c("label", [
-              _vm._v(
-                "Min Display Price Dirham (" +
-                  _vm._s(_vm._f("currency")(_vm.form.min_price_dirham, "د.إ")) +
-                  ")"
-              )
-            ]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.form.min_price_dirham,
-                  expression: "form.min_price_dirham"
-                }
-              ],
-              staticClass: "form-control",
-              class: { "is-invalid": _vm.form.errors.has("min_price_dirham") },
-              attrs: { type: "number" },
-              domProps: { value: _vm.form.min_price_dirham },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.form, "min_price_dirham", $event.target.value)
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c("has-error", {
-              attrs: { form: _vm.form, field: "min_price_dirham" }
-            })
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "form-group col-md-6" },
-          [
-            _c("label", [
-              _vm._v(
-                "Max Display Price Dirham (" +
-                  _vm._s(_vm._f("currency")(_vm.form.max_price_dirham, "د.إ")) +
-                  ")"
-              )
-            ]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.form.max_price_dirham,
-                  expression: "form.max_price_dirham"
-                }
-              ],
-              staticClass: "form-control",
-              class: { "is-invalid": _vm.form.errors.has("max_price_dirham") },
-              attrs: { type: "number" },
-              domProps: { value: _vm.form.max_price_dirham },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.form, "max_price_dirham", $event.target.value)
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c("has-error", {
-              attrs: { form: _vm.form, field: "max_price_dirham" }
             })
           ],
           1
@@ -59754,10 +58941,6 @@ var render = function() {
                           }),
                           _vm._v(" "),
                           _c("div", { staticClass: "person-details" }, [
-                            _c("div", { staticClass: "chat-name" }, [
-                              _vm._v(_vm._s(chat.name))
-                            ]),
-                            _vm._v(" "),
                             _c("div", { staticClass: "chat-type" }, [
                               _vm._v(_vm._s(chat.type))
                             ])
@@ -59898,7 +59081,7 @@ var staticRenderFns = [
       [
         _c("i", {
           staticClass: "fa fa-paper-plane",
-          attrs: { "aria-hidden": "true" }
+          attrs: { title: "send", "aria-hidden": "true" }
         })
       ]
     )
@@ -60205,8 +59388,7 @@ var render = function() {
                       },
                       [
                         _vm._v(
-                          _vm._s(_vm.form.busy ? "Submitting..." : "Submit") +
-                            "\n                        "
+                          _vm._s(_vm.form.busy ? "Submitting..." : "Submit")
                         )
                       ]
                     )
@@ -60269,194 +59451,6 @@ var staticRenderFns = [
     )
   }
 ]
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/UserAddress.vue?vue&type=template&id=0aa37c0e&scoped=true&":
-/*!**************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/UserAddress.vue?vue&type=template&id=0aa37c0e&scoped=true& ***!
-  \**************************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "form-row" }, [
-    _c(
-      "div",
-      { staticClass: "form-group col-md-4" },
-      [
-        _c("label", [_vm._v("Province")]),
-        _vm._v(" "),
-        _c("multiselect", {
-          attrs: {
-            "track-by": "id",
-            "allow-empty": false,
-            placeholder: "Select Province",
-            multiple: false,
-            label: "name",
-            options: _vm.provinces
-          },
-          on: { select: _vm.loadDistricts },
-          model: {
-            value: _vm.form.province_id,
-            callback: function($$v) {
-              _vm.$set(_vm.form, "province_id", $$v)
-            },
-            expression: "form.province_id"
-          }
-        })
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "form-group col-md-4" },
-      [
-        _c("label", [_vm._v("District")]),
-        _vm._v(" "),
-        _c("multiselect", {
-          attrs: {
-            "track-by": "id",
-            "allow-empty": false,
-            placeholder: "Select District",
-            multiple: false,
-            label: "name",
-            options: _vm.districts
-          },
-          on: { select: _vm.loadSectors },
-          model: {
-            value: _vm.form.district_id,
-            callback: function($$v) {
-              _vm.$set(_vm.form, "district_id", $$v)
-            },
-            expression: "form.district_id"
-          }
-        })
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "form-group col-md-4" },
-      [
-        _c("label", [_vm._v("Sector")]),
-        _vm._v(" "),
-        _c("multiselect", {
-          attrs: {
-            "track-by": "id",
-            "allow-empty": false,
-            placeholder: "Select Sector",
-            multiple: false,
-            label: "name",
-            options: _vm.sectors
-          },
-          on: { select: _vm.loadCells },
-          model: {
-            value: _vm.form.sector_id,
-            callback: function($$v) {
-              _vm.$set(_vm.form, "sector_id", $$v)
-            },
-            expression: "form.sector_id"
-          }
-        })
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "form-group col-md-6" },
-      [
-        _c("label", [_vm._v("Cell")]),
-        _vm._v(" "),
-        _c("multiselect", {
-          attrs: {
-            "track-by": "id",
-            "allow-empty": false,
-            placeholder: "Select Cell",
-            multiple: false,
-            label: "name",
-            options: _vm.cells
-          },
-          on: { select: _vm.loadVillages },
-          model: {
-            value: _vm.form.cell_id,
-            callback: function($$v) {
-              _vm.$set(_vm.form, "cell_id", $$v)
-            },
-            expression: "form.cell_id"
-          }
-        })
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "form-group col-md-6" },
-      [
-        _c("label", [_vm._v("Village")]),
-        _vm._v(" "),
-        _c("multiselect", {
-          attrs: {
-            "track-by": "id",
-            "allow-empty": false,
-            placeholder: "Select Village",
-            multiple: false,
-            label: "name",
-            options: _vm.villages
-          },
-          model: {
-            value: _vm.form.village_id,
-            callback: function($$v) {
-              _vm.$set(_vm.form, "village_id", $$v)
-            },
-            expression: "form.village_id"
-          }
-        })
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _c("input", {
-      attrs: { type: "hidden", name: "province_id" },
-      domProps: { value: _vm.form.province_id ? _vm.form.province_id.id : "" }
-    }),
-    _vm._v(" "),
-    _c("input", {
-      attrs: { type: "hidden", name: "district_id" },
-      domProps: { value: _vm.form.district_id ? _vm.form.district_id.id : "" }
-    }),
-    _vm._v(" "),
-    _c("input", {
-      attrs: { type: "hidden", name: "sector_id" },
-      domProps: { value: _vm.form.sector_id ? _vm.form.sector_id.id : "" }
-    }),
-    _vm._v(" "),
-    _c("input", {
-      attrs: { type: "hidden", name: "cell_id" },
-      domProps: { value: _vm.form.cell_id ? _vm.form.cell_id.id : "" }
-    }),
-    _vm._v(" "),
-    _c("input", {
-      attrs: { type: "hidden", name: "village_id" },
-      domProps: { value: _vm.form.village_id ? _vm.form.village_id.id : "" }
-    })
-  ])
-}
-var staticRenderFns = []
 render._withStripped = true
 
 
@@ -76004,9 +74998,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Profile__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/Profile */ "./resources/js/components/Profile.vue");
 /* harmony import */ var _components_DeliveryFee__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/DeliveryFee */ "./resources/js/components/DeliveryFee.vue");
 /* harmony import */ var _components_EditProduct__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/EditProduct */ "./resources/js/components/EditProduct.vue");
-/* harmony import */ var _components_UserAddress__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./components/UserAddress */ "./resources/js/components/UserAddress.vue");
-/* harmony import */ var _components_Checkout__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./components/Checkout */ "./resources/js/components/Checkout.vue");
-/* harmony import */ var _components_HomeSection__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./components/HomeSection */ "./resources/js/components/HomeSection.vue");
+/* harmony import */ var _components_Checkout__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./components/Checkout */ "./resources/js/components/Checkout.vue");
+/* harmony import */ var _components_HomeSection__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./components/HomeSection */ "./resources/js/components/HomeSection.vue");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -76052,13 +75045,11 @@ vue__WEBPACK_IMPORTED_MODULE_7___default.a.component("test-chat", _components_Te
 vue__WEBPACK_IMPORTED_MODULE_7___default.a.component("app-countdown", _components_Countdown__WEBPACK_IMPORTED_MODULE_16__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_7___default.a.component("app-profile", _components_Profile__WEBPACK_IMPORTED_MODULE_17__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_7___default.a.component("app-delivery-fee", _components_DeliveryFee__WEBPACK_IMPORTED_MODULE_18__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_7___default.a.component("app-user-address", _components_UserAddress__WEBPACK_IMPORTED_MODULE_20__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_7___default.a.component("app-checkout", _components_Checkout__WEBPACK_IMPORTED_MODULE_21__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_7___default.a.component("app-home-section", _components_HomeSection__WEBPACK_IMPORTED_MODULE_22__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_7___default.a.component("app-checkout", _components_Checkout__WEBPACK_IMPORTED_MODULE_20__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_7___default.a.component("app-home-section", _components_HomeSection__WEBPACK_IMPORTED_MODULE_21__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_7___default.a.filter("currency", function (value, arg) {
   return Number(value).toLocaleString() + " " + arg;
 });
-
 
 
 
@@ -76176,14 +75167,21 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_7___default.a({
 
             _this2.products.splice(index, 1);
 
-            _this2.$swal('Deleted!', 'Category has been deleted.', 'success');
+            _this2.$swal('Deleted!', 'Item has been deleted Successfully.', 'success').then(function (result) {
+              if (result.value) {
+                window.location.reload(true);
+                return false;
+              }
+            });
           })["catch"](function (err) {
             _this2.$Progress.fail();
 
-            _this2.$swal('Deleted!', 'Category has been deleted.', 'success');
-
-            window.location.reload(true);
-            return false;
+            _this2.$swal('Deleted!', 'Item has been deleted!', 'success').then(function (result) {
+              if (result.value) {
+                window.location.reload(true);
+                return false;
+              }
+            });
           });
         }
       });
@@ -76217,7 +75215,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_7___default.a({
           })["catch"](function (err) {
             _this3.$Progress.fail();
 
-            _this3.$swal('Update Slider!', 'Product has been failed.', 'warning');
+            _this3.$swal('Update Slider!', 'Slider Update has been failed.', 'warning');
           });
         }
       });
@@ -76232,11 +75230,12 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_7___default.a({
         _this4.product = resp.data.data;
 
         _this4.$Progress.finish();
+
+        console.log(resp.data.data);
       })["catch"](function () {
         _this4.$Progress.fail();
       });
       $("#productModal").modal("show");
-      console.log(product_id);
     },
     clearDiscount: function clearDiscount() {
       this.discount.new_price = 0;
@@ -77347,75 +76346,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_User_vue_vue_type_template_id_d884f594___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_User_vue_vue_type_template_id_d884f594___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
-/***/ "./resources/js/components/UserAddress.vue":
-/*!*************************************************!*\
-  !*** ./resources/js/components/UserAddress.vue ***!
-  \*************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _UserAddress_vue_vue_type_template_id_0aa37c0e_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./UserAddress.vue?vue&type=template&id=0aa37c0e&scoped=true& */ "./resources/js/components/UserAddress.vue?vue&type=template&id=0aa37c0e&scoped=true&");
-/* harmony import */ var _UserAddress_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./UserAddress.vue?vue&type=script&lang=js& */ "./resources/js/components/UserAddress.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _UserAddress_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _UserAddress_vue_vue_type_template_id_0aa37c0e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _UserAddress_vue_vue_type_template_id_0aa37c0e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  "0aa37c0e",
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/UserAddress.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/UserAddress.vue?vue&type=script&lang=js&":
-/*!**************************************************************************!*\
-  !*** ./resources/js/components/UserAddress.vue?vue&type=script&lang=js& ***!
-  \**************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_UserAddress_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./UserAddress.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/UserAddress.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_UserAddress_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/UserAddress.vue?vue&type=template&id=0aa37c0e&scoped=true&":
-/*!********************************************************************************************!*\
-  !*** ./resources/js/components/UserAddress.vue?vue&type=template&id=0aa37c0e&scoped=true& ***!
-  \********************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UserAddress_vue_vue_type_template_id_0aa37c0e_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./UserAddress.vue?vue&type=template&id=0aa37c0e&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/UserAddress.vue?vue&type=template&id=0aa37c0e&scoped=true&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UserAddress_vue_vue_type_template_id_0aa37c0e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UserAddress_vue_vue_type_template_id_0aa37c0e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

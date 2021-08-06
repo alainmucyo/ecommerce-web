@@ -14,7 +14,6 @@
                                 <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Name</th>
                                     <th>Email</th>
                                     <th>Contact</th>
                                     <th>Joined At</th>
@@ -26,9 +25,6 @@
                                 @foreach($sellers as $seller)
                                     <tr>
                                         <td>{{$loop->iteration}}</td>
-                                        <td>
-                                            {{ $seller->name }}
-                                        </td>
                                         <td>{{ $seller->email  }}
                                         </td>
                                         <td> {{ $seller->phone }}</td>

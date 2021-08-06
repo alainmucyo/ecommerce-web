@@ -24,7 +24,7 @@
                                         <div class="list-content">
                                             <img :src="chat.avatar" alt="User" class="chat-image">
                                             <div class="person-details">
-                                                <div class="chat-name">{{ chat.name}}</div>
+<!--                                                <div class="chat-name">{{ chat.email}}</div>-->
                                                 <div class="chat-type">{{ chat.type}}</div>
                                             </div>
                                         </div>
@@ -61,7 +61,7 @@
                                     <form action="#" @submit.prevent="sendMessage">
                                         <input type="text" v-model="form.message" class="write_msg"
                                                placeholder="Type a message"/>
-                                        <button class="msg_send_btn" type="submit"><i class="fa fa-paper-plane"
+                                        <button class="msg_send_btn" type="submit"><i class="fa fa-paper-plane" title="send"
                                                                                       aria-hidden="true"></i></button>
                                     </form>
                                 </div>
@@ -137,7 +137,6 @@
                         }
                     })
                     .catch(err => {
-                        console.log("error");
                         this.$Progress.fail()
                     })
             }
@@ -145,8 +144,7 @@
         computed: {
             filteredChatList() {
                 return this.chatList.filter(c => {
-
-                    return c.name.toLowerCase().includes(this.search.toLowerCase()) || c.type.toLowerCase().includes(this.search.toLowerCase())
+                    return c.type.toLowerCase().includes(this.search.toLowerCase())
                 });
             }
         },
@@ -160,6 +158,7 @@
             setInterval(() => {
                 this.loadMessages(this.selected_chat)
             }, 10000)
+            console.log(this.filteredChatList)
         }
     }
 </script>

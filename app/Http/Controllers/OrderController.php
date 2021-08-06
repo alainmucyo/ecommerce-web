@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\DeliveryFee;
 use App\Http\Resources\OrderProductsResource;
 use App\Order;
 use App\OrderProduct;
+use App\PaymentMode;
 use App\Product;
+use App\User;
+use App\UserInformation;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -16,9 +20,9 @@ class OrderController extends Controller
         $orders = Order::where("customer_id", auth()->user()->id);
         if (\request("orders") && \request("orders") == "all")
             $orders = $orders->latest();
-         else {
-             $orders = $orders->latest()->where(function ($val){
-              $val->where("payed", 1)->where("status", 0)->orWhereDate("created_at", now());
+        else {
+            $orders = $orders->latest()->where(function ($val) {
+                $val->where("payed", 1)->where("status", 0)->orWhereDate("created_at", now());
             });
             if (!$orders->exists())
                 $orders = Order::where("customer_id", auth()->user()->id)->latest();
@@ -31,7 +35,16 @@ class OrderController extends Controller
     public function adminOrders()
     {
         $orders = Order::latest()->orderBy("delivered")->get();
-//        return $orders;
+        foreach ($orders as $order) {
+            if (!$order->user_information_id) {
+                $customer = User::where("id", $order->customer_id)->first();
+            }else{
+                $customer = UserInformation::where("id",$order->user_information_id)->first();
+            }
+            $order["customer"] = $customer;
+            $order['payment_mode'] = PaymentMode::where("id",$order->payment_mode)->first();
+            $order['deliveryFee'] = DeliveryFee::where("id",$order->delivery_fee_id)->first();
+        }
         return view("admin.orders.index", compact('orders'));
     }
 

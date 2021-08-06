@@ -20,4 +20,7 @@
     </section>
 
 @endsection
+@push("scripts")
+    <script type="text/javascript" src="/js/app.js?new_one"></script>
+@endpush
 

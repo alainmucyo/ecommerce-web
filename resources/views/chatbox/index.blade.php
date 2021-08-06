@@ -31,6 +31,6 @@
         </div>
     </section>
 @endsection
-{{--@push("scripts")--}}
-{{--    <script type="text/javascript" src="/js/new_app.js?new_one"></script>--}}
-{{--@endpush--}}
+@push("scripts")
+    <script type="text/javascript" src="/js/app.js?new_one"></script>
+@endpush

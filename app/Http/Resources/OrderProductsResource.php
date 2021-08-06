@@ -16,6 +16,8 @@ class OrderProductsResource extends JsonResource
             "product" => $this->product->title,
             "product_image" => $this->product->product_image,
             "insurance" => $this->insurance,
+            "customer" => $this->customer,
+            "delivery_fee" => $this->order->deliveryFee,
             "slug" => $this->product->slug,
             "image" => $this->product_image,
             "delivered" => $this->delivered,

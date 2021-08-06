@@ -20,8 +20,6 @@
                                         </option>
                                         <option value="times" {{ request("sort")=="times"?'selected':'' }}>Times Sold
                                         </option>
-                                        <option value="likes" {{ request("sort")=="likes"?'selected':'' }}>Likes
-                                        </option>
                                     </select>
                                 </div>
                                 <div class="form-group col-md-3">
@@ -107,19 +105,16 @@
                                                data-toggle="tooltip"
                                                data-placement="top" title="Product Images"
                                                class="btn-icon btn-icon-only btn-pill btn btn-outline-success"
-                                            ><i
-                                                    class="feather icon-image btn-icon-wrapper"> </i></a>
+                                            ><i class="feather icon-image btn-icon-wrapper"> </i></a>
                                             <a href="/product/{{$product->id}}/edit"
                                                data-toggle="tooltip"
                                                data-placement="top" title="Edit Product"
                                                class="btn-icon btn-icon-only btn-pill btn btn-outline-info"
-                                            ><i
-                                                    class="feather icon-edit btn-icon-wrapper"> </i></a>
+                                            ><i class="feather icon-edit btn-icon-wrapper"> </i></a>
                                             <a href="#" class="btn-icon btn-icon-only btn-pill btn btn-outline-danger"
                                                data-toggle="tooltip"
                                                data-placement="top" title="Delete Product"
-                                               @click="deleteCategory({{ $product}})"><i
-                                                    class="feather icon-trash btn-icon-wrapper"> </i></a>
+                                               @click="deleteCategory({{ $product}})"><i class="feather icon-trash btn-icon-wrapper"> </i></a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -190,10 +185,10 @@
                                 <div class="col-md-6">
                                     <p><b>Title:</b> @{{ product.title}} </p>
                                     <p><b>Rwandan Price:</b> @{{ product.price | currency("Rwf")}} </p>
-                                    <p><b>American Price:</b> @{{ product.price_usa | )}} </p>
-                                    <p><b>UAE Price:</b> @{{ product.price_dirham | currency("د.إ")}} </p>
+                                    <p><b>American Price:</b> @{{ product.price_usa }} $</p>
+                                    <p><b>UAE Price:</b> @{{ product.price_dirham }} د.إ</p>
                                     <p><b>Client Maximum Quantity:</b> @{{ product.client_max}} </p>
-                                    {{--                                    <p><b>Likes:</b> @{{ product.likes}}</p>--}}
+{{--                                    <p><b>Likes:</b> @{{ product.likes}}</p>--}}
                                 </div>
                                 <div class="col-md-6">
                                     <p><b>Category:</b> <span v-for="category in product.categories"
@@ -204,21 +199,6 @@
                                             v-for="size in product.sizes"
                                             class="badge badge-success ml-2">@{{ size}}</span>
                                     </p>
-                                    <p><b>Rwandan Display Price:</b> <span
-                                            class="badge badge-info">@{{ product.min_price | currency("Rwf")}}</span>
-                                        — <span
-                                            class="badge badge-info">@{{ product.max_price | currency("Rwf")}}</span>
-                                    </p>
-                                    <p><b>USA Display Price:</b> <span
-                                            class="badge badge-info">@{{ product.min_price_usa | currency("$")}}</span>
-                                        — <span
-                                            class="badge badge-info">@{{ product.max_price_usa | currency("$")}}</span>
-                                    </p>
-                                    <p><b>UAE Display Price:</b> <span
-                                            class="badge badge-info">@{{ product.min_price_dirham | currency("د.إ")}}</span>
-                                        — <span
-                                            class="badge badge-info">@{{ product.max_price_dirham | currency("د.إ")}}</span>
-                                    </p>
                                     <p><b>Created At:</b> @{{ product.created_at }} </p>
                                 </div>
 
@@ -226,32 +206,6 @@
                                     <b>Description: </b>
                                     <div v-html="product.description"></div>
                                 </div>
-                                <!--               <div class="col-md-12" v-if="on_homepage">
-                                   <div class="row justify-content-end">
-                                       &lt;!&ndash;<div class="col-md-12">
-                                           <button class="btn btn-primary btn-sm float-right"
-                                                   style="text-transform: uppercase"
-                                                   @click="add_homepage = true">Add this product on homepage
-                                           </button>
-                                       </div>&ndash;&gt;
-                                    &lt;!&ndash;   <div class="col-md-12 mt-4">
-                                           <form v-if="add_homepage" :action="'/admin/'+product.id+'/homepage'" class="col-md-6 float-right">
-                                               <div class="form-group">
-                                                   <select name="home_section_id" id="home" v-model="home_section_id" class="form-control">
-                                                       <option :value="null">None</option>
-                                                       <option v-for="home_section in home_sections"
-                                                               :key="home_section.id"
-                                                               :value="home_section.id">
-home_section.name
-                                    </option>
-                                </select>
-                            </div>
-                            <button class="btn btn-primary btn-sm float-right mb-2" type="submit">SUBMIT</button>
-                        </form>
-                    </div>&ndash;&gt;
-                                   </div>
-                               </div>-->
-
                                 <div class="col-md-12">
                                     <div class="row">
                                         <div class="col-md-12 mb-4" v-if="!product.discount">
@@ -336,5 +290,5 @@ home_section.name
 
 @endsection
 @push("scripts")
-    <script type="text/javascript" src="/js/app.js?update=true"></script>
+    <script type="text/javascript" src="/js/app.js"></script>
 @endpush

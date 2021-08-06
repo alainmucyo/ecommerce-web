@@ -41,7 +41,7 @@
                                     <td> {{ $order->products->count() }}</td>
                                     <td>
                                         @if($order->customer)
-                                            <a href="/chatbox/seller?customer={{ $order->customer->id }}" class="text-primary">
+                                            <a href="/chatbox/seller?customer={{ $order->customer_id }}" class="text-primary">
                                                 @if($order->information)
                                                     {{ $order->information->name }}
                                                     <br> {{ $order->information->phone }}
@@ -113,6 +113,7 @@
                         </center>
                         <div v-else class="row">
                             <div class="col-md-6">
+                                <p><strong>Customer Name:</strong> @{{order.customer.name}}</p>
                                 <p><strong>Customer Email:</strong> @{{ order.customer.email }}</p>
                                 <p><strong>Customer Phone:</strong> @{{ order.customer.phone }}</p>
                                 <p><strong>Payment Mode:</strong> @{{ order.payment_mode.name }}</p>
@@ -121,12 +122,11 @@
                                 <p><strong>Done At:</strong> @{{ order.created_at }}</p>
                             </div>
                             <div class="col-md-6">
-{{--                                <p><strong>Shipping:</strong><span class="badge badge-primary">@{{ order.delivery_fee.title }}</span>--}}
-{{--                                </p>--}}
-{{--                                <p><strong>Address:</strong>@{{order.user_address ? order.user_address.address : "No--}}
-{{--                                    address found!"}}</p>--}}
+                                <p><strong>Shipping:</strong><span class="badge badge-primary">@{{ order.deliveryFee.title }}</span>
+                                </p>
+                                <p><strong>Address:</strong>@{{order.customer.address }}</p>
                                 <p>
-                                    <a :href="'/chatbox/seller?customer='+order.customer.id"> <span
+                                    <a :href="'/chatbox/seller?customer='+order.customer_id"> <span
                                             class="fa fa-comment"></span> Chat with customer</a>
                                 </p>
                             </div>
@@ -146,8 +146,8 @@
                                     <tr>
                                         <td>
                                             <a class="image_link" :href="product.product_image">
-{{--                                                <img :src="product.product_image" class="product_image" alt="Image">--}}
-                                                <img src="/img/no-image.jpg" class="product_image" alt="Image">
+                                                <img :src="product.product_image" class="product_image" alt="Image">
+{{--                                                <img src="/img/no-image.jpg" class="product_image" alt="Image">--}}
                                             </a>
                                             <a :href="'/item/'+product.slug">@{{ product.product }}</a>
                                         </td>
@@ -155,7 +155,7 @@
                                             <h5>@{{ product.price | currency("Rwf") }}</h5>
                                         </td>
                                         <td>
-                                            @{{ product.seller.name }}
+                                            @{{ product.seller.email }}
                                         </td>
                                         <td>
                                             <span v-if="product.size">Size: @{{product.size}}</span>
@@ -193,9 +193,8 @@
             </div>
         </div>
     </div>
-
 @endsection
 @push("scripts")
-    <script src="/js/new_app.js" type="text/javascript"></script>
+    <script src="/js/app.js" type="text/javascript"></script>
     @include("includes.datatable")
 @endpush

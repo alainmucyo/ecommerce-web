@@ -83,11 +83,6 @@
                                 <p class="reference">Reference:<span> {{ $product->slug }}</span></p>
                                 <div class="pro-details-rating-wrap">
                                     <div class="rating-product">
-                                        <i class="ion-android-star"></i>
-                                        <i class="ion-android-star"></i>
-                                        <i class="ion-android-star"></i>
-                                        <i class="ion-android-star"></i>
-                                        <i class="ion-android-star"></i>
                                     </div>
                                     <span class="read-review"><a class="reviews" data-toggle="tab" href="#des-details3">Read reviews ({{count($reviews)}})</a></span>
                                 </div>
@@ -351,9 +346,6 @@
                                         <h2><a href="/item/{{$new_product->slug}}"
                                                class="product-link">{{$new_product->slug}}</a></h2>
                                         <div class="rating-product">
-                                            <i class="ion-android-star"></i>
-                                            <i class="ion-android-star"></i>
-                                            <i class="ion-android-star"></i>
                                         </div>
                                         <div class="pricing-meta">
                                             <ul>
@@ -445,21 +437,15 @@
                                                 </a>
                                             </div>
                                         </div>
-{{--                                        <ul class="product-flag">--}}
-{{--                                            <li class="new">New</li>--}}
-{{--                                        </ul>--}}
+                                        {{--                                        <ul class="product-flag">--}}
+                                        {{--                                            <li class="new">New</li>--}}
+                                        {{--                                        </ul>--}}
                                         <div class="product-decs">
                                             <a class="inner-link"
                                                href="shop-4-column.html"><span>{{ $recommended_product->title }}</span></a>
                                             <h2><a href="/item/{{$recommended_product->slug}}"
                                                    class="product-link">{{ $recommended_product->slug }}</a></h2>
-                                            <div class="rating-product">
-{{--                                                <i class="ion-android-star"></i>--}}
-{{--                                                <i class="ion-android-star"></i>--}}
-{{--                                                <i class="ion-android-star"></i>--}}
-{{--                                                <i class="ion-android-star"></i>--}}
-{{--                                                <i class="ion-android-star"></i>--}}
-                                            </div>
+                                            <div class="rating-product"></div>
                                             <div class="pricing-meta">
                                                 <ul>
                                                     @if($recommended_product->discount)
@@ -470,17 +456,7 @@
                                                         <h5>{{ number_format($recommended_product->discount->price) }}
                                                             Rwf</h5>
                                                     @else
-                                                        @if($recommended_product->min_price > 0 and $recommended_product->max_price > 0)
-                                                            <h5 class="d-flex justify-content-between"
-                                                                style="font-size: .93rem">
-                                                                <span> {{ number_format($recommended_product->min_price) }} Rwf</span>
-                                                                <span>-</span>
-                                                                <span> {{ number_format($recommended_product->max_price) }} Rwf</span>
-                                                            </h5>
-                                                        @else
-                                                            <h5>{{ number_format($recommended_product->price) }}
-                                                                Rwf</h5>
-                                                        @endif
+                                                        <h5>{{ number_format($recommended_product->price) }}Rwf</h5>
                                                     @endif
                                                 </ul>
                                             </div>
@@ -567,4 +543,5 @@
         })
     </script>
     <script src="/commerce/assets/js/jquery.elevatezoom.js"></script>
+    <script type="text/javascript" src="/js/app.js?new_one"></script>
 @endpush
