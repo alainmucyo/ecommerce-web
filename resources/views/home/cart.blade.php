@@ -57,12 +57,13 @@
                                                 <a href="/item/{{ $cart_product->product->slug }}">
                                                     <img class="img-responsive"
                                                          {{--                                                     src="{{ $cart_product->product->product_image }}"--}}
-                                                         src="{{ $cart_product->product->product_image }}" alt="" style="width: 140px;height: 93px"/></a>
+                                                         src="{{ $cart_product->product->product_image }}" alt=""
+                                                         style="width: 140px;height: 93px"/></a>
                                             </td>
                                             <td class="product-name"><a
                                                     href="/item/{{ $cart_product->product->slug }}">{{ $cart_product->product->title }}</a>
                                             </td>
-                                            <td class="product-price-cart"><span class="amount">{{ number_format($cart_product->price) }} Rwf</span>
+                                            <td class="product-price-cart"><span class="amount">{{ ($cart_product->product->formatted_price) }} </span>
                                             </td>
                                             <td class="product-quantity">
                                                 <div class="cart-plus-minus">
@@ -78,7 +79,7 @@
                                                                    document.getElementById('cart{{ $cart_product->id }}').submit();"></i></a>
                                             </td>
                                             <td class="product-price-cart">
-                                                {{ number_format($cart_product->price*$cart_product->quantity) }}RFW
+                                                {{ currencyConverter($cart_product->price*$cart_product->quantity) }}
                                             </td>
                                         </tr>
                                     @empty
@@ -110,18 +111,18 @@
                             </div>
                         </form>
                         @if(count($cart_products) > 0)
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12 mt-md-30px">
-                                <div class="grand-totall w-25 ml-auto">
-                                    <div class="title-wrap">
-                                        <h4 class="cart-bottom-title section-bg-gary-cart">Cart Total</h4>
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 mt-md-30px">
+                                    <div class="grand-totall w-25 ml-auto">
+                                        <div class="title-wrap">
+                                            <h4 class="cart-bottom-title section-bg-gary-cart">Cart Total</h4>
+                                        </div>
+                                        <h5>Total Product <span>{{count($cart_products)}}</span></h5>
+                                        <h4 class="grand-totall-title">Grand Total <span>{{$sum}}</span></h4>
+                                        <a href="/checkout">Proceed to Checkout</a>
                                     </div>
-                                    <h5>Total Product <span>{{count($cart_products)}}</span></h5>
-                                    <h4 class="grand-totall-title">Grand Total <span>{{$sum}}</span></h4>
-                                    <a href="/checkout">Proceed to Checkout</a>
                                 </div>
                             </div>
-                        </div>
                         @endif
                         @foreach($cart_products as $cart_product)
                             <form id="cart{{ $cart_product->id }}"

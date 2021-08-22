@@ -46,7 +46,7 @@
                                        title="Click To For More Order Details"><span
                                             class="dark-data text-primary">#{{ $order->order_id  }}</span></a>
                                 </td>
-                                <td>{{ number_format($order->price) }} Rwf</td>
+                                <td>{{ currencyConverter($order->price) }}</td>
                                 <td>
                                     @if(!$order->payed)
                                         <span class="dark-data">Unpaid</span> ({{ $order->created_at->toDateString() }})

@@ -125,12 +125,13 @@
                             <li class="pr-0">
                                 <div class="dropdown">
                                     <button type="button" id="dropdownMenuButton-2" data-toggle="dropdown"
-                                            aria-haspopup="true" aria-expanded="false">FRW F<i
+                                            aria-haspopup="true" aria-expanded="false">{{ mb_strtoupper(currentCurrency()) }}<i
                                             class="ion-ios-arrow-down ml-1"></i></button>
                                     <ul class="dropdown-menu animation slideDownIn"
                                         aria-labelledby="dropdownMenuButton-2">
-                                        <li><a href="#">FRW F</a></li>
-                                        <li><a href="#">USD $</a></li>
+                                        <li><a href="{{ route("currency.change","rwf") }}">RWF F</a></li>
+                                        <li><a href="{{ route("currency.change","usd") }}">USD $</a></li>
+                                        <li><a href="{{ route("currency.change","dirham") }}">Dirham</a></li>
                                     </ul>
                                 </div>
                             </li>

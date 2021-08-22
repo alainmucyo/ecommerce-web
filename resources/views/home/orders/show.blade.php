@@ -42,9 +42,9 @@
                                 <div class="col-md-6">
                                     <p><strong>Payment Mode: </strong>{{ $order->paymentMode?$order->paymentMode->name:'None' }}
                                     </p>
-                                    <p><strong>Shipping:</strong><span class="badge badge-primary">{{ $order->deliveryFee->title }} For {{ number_format($order->deliveryFee->amount) }} Rwf</span>
+                                    <p><strong>Shipping:</strong><span class="badge badge-primary">{{ $order->deliveryFee->title }} For {{ currencyConverter($order->deliveryFee->amount) }}</span>
                                     </p>
-                                    <p><strong>Total Price:</strong> <span class="badge badge-primary">{{ number_format($order->price)}} Rwf</span>
+                                    <p><strong>Total Price:</strong> <span class="badge badge-primary">{{ currencyConverter($order->price)}}</span>
                                     </p>
                                     <p><strong>Done At:</strong> {{ $order->created_at }}</p>
 
@@ -104,22 +104,20 @@
                                                           title="Quantity"> {{$product->quantity}} </span>
                                                     &times;
                                                     <span data-toggle="tooltip" data-placement="top"
-                                                          title="Product Price"> {{ number_format($product->price) }}</span>
+                                                          title="Product Price"> {{ currencyConverter($product->price) }}</span>
                                                     @if($product->insurance>0)
                                                         <span data-toggle="tooltip" data-placement="top"
-                                                              title="Insurance">  &plus; {{ number_format($product->insurance) }}</span>
+                                                              title="Insurance">  &plus; {{ currencyConverter($product->insurance) }}</span>
                                                     @endif
-                                                    Rwf
                                                     <div class="mobile-cart-content row">
                                                         <div class="col-xs-12">
-                                                            Total: {{ number_format($product->price*$product->quantity) }}
-                                                            Rwf
+                                                            Total: {{ currencyConverter($product->price*$product->quantity) }}
                                                         </div>
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    {{ number_format(($product->price*$product->quantity)+$product->insurance) }}
-                                                    Rwf
+                                                    {{ currencyConverter(($product->price*$product->quantity)+$product->insurance) }}
+
                                                 </td>
                                                 <td>
                                                     <a href="/chatbox/customer?seller={{ $product->seller->id }}"

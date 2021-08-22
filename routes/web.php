@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Storage;
 //Route::get('/', "ProductHomeController@index")->name("welcome");
 Route::get('/', "ProductHomeController@newIndex")->name("welcome");
 Auth::routes();
-
+Route::get("/currency/{currency}","CurrencyController@change")->name("currency.change");
 Route::middleware('CheckRole')->group(function () {
 
     Route::get('/home', 'HomeController@index')->name('home');

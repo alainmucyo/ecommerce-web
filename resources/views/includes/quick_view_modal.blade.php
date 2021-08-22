@@ -31,25 +31,25 @@
                             <div class="pricing-meta">
                                 <ul>
                                     <li v-if="modal_product.discount">
-                                        <span class="old-price text-danger">@{{ modal_product.discount.price | currency("Rwf")}}</span>
-                                        - <span>@{{ modal_product.price | currency("Rwf") }}</span>
+                                        <span class="old-price text-danger">@{{ modal_product.discount.price | currency}}</span>
+                                        - <span>@{{ modal_product.price | currency }}</span>
                                         &nbsp; <span class="badge badge-warning"
                                                      id="countdown"></span>
                                     </li>
-                                    <li class="old-price no-cut" v-else>@{{ modal_product.price | currency("Rwf") }}
+                                    <li class="old-price no-cut" v-else>@{{ modal_product.price | currency }}
                                     </li>
 
                                     {{--                                    <h4 style="display: inline" v-if="modal_product.discount">@{{ modal_product.discount.price |--}}
-                                    {{--                                        currency("Rwf") }}--}}
+                                    {{--                                        currency }}--}}
                                     {{--                                    </h4> &nbsp;--}}
                                     {{--                                    <del class="text-warning" v-if="modal_product.discount"--}}
-                                    {{--                                         style="display: inline;">@{{ modal_product.price | currency("Rwf") }}--}}
+                                    {{--                                         style="display: inline;">@{{ modal_product.price | currency }}--}}
                                     {{--                                    </del>--}}
                                     {{--                                    &nbsp;--}}
                                     {{--                                    <app-countdown v-if="modal_product.discount"--}}
                                     {{--                                                   :time="modal_product.discount.end_time"></app-countdown>--}}
-                                    {{--                                    <h3 v-if="!modal_product.discount">@{{ modal_product.price | currency("Rwf") }}</h3>--}}
-                                    {{--                                    <h3 style="display: inline">@{{ modal_product.price | currency("Rwf") }}</h3>--}}
+                                    {{--                                    <h3 v-if="!modal_product.discount">@{{ modal_product.price | currency }}</h3>--}}
+                                    {{--                                    <h3 style="display: inline">@{{ modal_product.price | currency }}</h3>--}}
                                     {{--                                    <app-countdown></app-countdown>--}}
                                 </ul>
                             </div>

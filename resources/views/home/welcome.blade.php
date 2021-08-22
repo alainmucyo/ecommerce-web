@@ -6,7 +6,9 @@
                     <div class="header-menu-vertical bg-blue">
                         <h4 class="menu-title be-af-none">All Categories</h4>
                         <ul class="menu-content display-block">
+                            <li class="menu-item"><a  href="/shop">All</a></li>
                             @foreach($categories as $category)
+
                                 <li class="menu-item"><a
                                         href="/shop?category={{$category->slug}}">{{ $category->name }}</a></li>
                             @endforeach
@@ -377,15 +379,13 @@
                                             <div class="pricing-meta">
                                                 <ul>
                                                     @if($product->discount)
-                                                        <li class="old-price not-cut">{{ number_format($product->price) }}
-                                                            Rwf
+                                                        <li class="old-price not-cut">{{ ($product->formatted_price) }}
                                                         </li>
                                                         &nbsp;
                                                         <span
-                                                            class="text-right">{{ number_format($product->discount->price) }} Rwf</span>
+                                                            class="text-right">{{ currencyConverter($product->discount->price) }}</span>
                                                     @else
-                                                        <li class="old-price not-cut">{{ number_format($product->price) }}
-                                                            Rwf
+                                                        <li class="old-price not-cut">{{ ($product->formatted_price) }}
                                                         </li>
                                                     @endif
                                                 </ul>
@@ -477,5 +477,8 @@
     @endif
 </div>
 @push("scripts")
+    <script type="text/javascript">
+        window.currency = {"amount": 1000, "label": `{{currentCurrency() }}`}
+    </script>
     <script type="text/javascript" src="/js/app.js?new_one"></script>
 @endpush

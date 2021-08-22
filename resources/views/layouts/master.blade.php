@@ -129,12 +129,13 @@ $categories = \App\Category::get();
                             <li class="pr-0">
                                 <div class="dropdown">
                                     <button type="button" id="dropdownMenuButton-2" data-toggle="dropdown"
-                                            aria-haspopup="true" aria-expanded="false">FRW F<i
+                                            aria-haspopup="true" aria-expanded="false">{{ mb_strtoupper(currentCurrency()) }}<i
                                             class="ion-ios-arrow-down ml-1"></i></button>
                                     <ul class="dropdown-menu animation slideDownIn"
                                         aria-labelledby="dropdownMenuButton-2">
-                                        <li><a href="#">FRW F</a></li>
-                                        <li><a href="#">USD $</a></li>
+                                        <li><a href="{{ route("currency.change","rwf") }}">RWF F</a></li>
+                                        <li><a href="{{ route("currency.change","usd") }}">USD $</a></li>
+                                        <li><a href="{{ route("currency.change","dirham") }}">Dirham</a></li>
                                     </ul>
                                 </div>
                             </li>
@@ -287,7 +288,7 @@ $categories = \App\Category::get();
                                         class="icon-bag"></i><span>{{$sum}}</span></a>
                             @else
                                 <a href="#offcanvas-cart" class="bag offcanvas-toggle text-decoration-none"
-                                   data-number="0"><i class="icon-bag"></i><span>0.00 RFW</span></a>
+                                   data-number="0"><i class="icon-bag"></i><span>0.00</span></a>
                             @endif
                         </div>
                         <div class="mobile-menu-toggle">
@@ -404,7 +405,7 @@ $categories = \App\Category::get();
                                 <div class="content">
                                     <a href="/item/{{$cart_product->product->slug}}"
                                        class="title">{{$cart_product->product->title}}</a>
-                                    <span class="quantity-price">{{ $cart_product->quantity }} x <span class="amount">{{ number_format($cart_product->price) }}RWF</span></span>
+                                    <span class="quantity-price">{{ $cart_product->quantity }} x <span class="amount">{{ currencyConverter($cart_product->price) }}</span></span>
                                     <a href="#" class="remove"
                                        onclick="if(!confirm('Remove {{$cart_product->product->title}} From Cart?' ))return;event.preventDefault();
                                            document.getElementById('cart{{ $cart_product->id }}').submit();">×</a>
@@ -665,6 +666,9 @@ $categories = \App\Category::get();
 
 <!-- Main Activation JS -->
 <script src="/assets/js/main.js"></script>
+<script type="text/javascript">
+    window.currency = {"amount": 1000, "label": `{{currentCurrency() }}`}
+</script>
 @stack("scripts")
 </body>
 </html>

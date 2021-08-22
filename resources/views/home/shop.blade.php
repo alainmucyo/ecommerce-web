@@ -106,16 +106,13 @@
                                                             <div class="pricing-meta">
                                                                 <ul>
                                                                     @if($product->discount)
-                                                                        <li class="old-price not-cut">{{ number_format($product->price) }}
-                                                                            Rwf
+                                                                        <li class="old-price not-cut">{{ ($product->formatted_price) }}
                                                                         </li>
-                                                                        <li class="current-price">{{ number_format($product->discount->price) }}
-                                                                            Rwf
+                                                                        <li class="current-price">{{ currencyConverter($product->discount->price) }}
                                                                         </li>
                                                                     @else
-                                                                            <li class="old-price not-cut">{{ number_format($product->price) }}
-                                                                                Rwf
-                                                                            </li>
+                                                                        <li class="old-price not-cut">{{ ($product->formatted_price) }}
+                                                                        </li>
                                                                     @endif
                                                                 </ul>
                                                             </div>
@@ -222,16 +219,13 @@
                                                                         <div class="pricing-meta">
                                                                             <ul>
                                                                                 @if($product->discount)
-                                                                                    <li class="old-price not-cut">{{ number_format($product->price) }}
-                                                                                        Rwf
+                                                                                    <li class="old-price not-cut">{{ ($product->formatted_price) }}
                                                                                     </li>
-                                                                                    <li class="current-price">{{ number_format($product->discount->price) }}
-                                                                                        Rwf
+                                                                                    <li class="current-price">{{ currencyConverter($product->discount->price) }}
                                                                                     </li>
                                                                                 @else
-                                                                                        <li class="old-price not-cut">{{ number_format($product->price) }}
-                                                                                            Rwf
-                                                                                        </li>
+                                                                                    <li class="old-price not-cut">{{ ($product->formatted_price) }}
+                                                                                    </li>
                                                                                 @endif
                                                                             </ul>
                                                                         </div>

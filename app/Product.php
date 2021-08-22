@@ -85,4 +85,17 @@ class Product extends Model
         return "/img/no-image.jpg";
     }
 
+    public function getFormattedPriceAttribute()
+    {
+        if (currentCurrency() == "rwf")
+            return number_format($this->price) . " RWF";
+
+        if (currentCurrency() == "usd") {
+            if($this->price == 0) return "$0";
+            return "$" . number_format($this->price / 1000);
+        }
+
+        return number_format($this->price) . " Dirham";
+    }
+
 }

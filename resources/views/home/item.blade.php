@@ -90,13 +90,13 @@
                                     <ul>
                                         @if($product->discount)
                                             <li>
-                                                <span class="old-price text-danger">{{ number_format($product->discount->price) }}Rwf</span>
-                                                - <span>{{ number_format($product->price) }}Rwf</span>
+                                                <span class="old-price text-danger">{{ currencyConverter($product->discount->price) }}</span>
+                                                - <span>{{ ($product->formatted_price) }}</span>
                                                 &nbsp; <span class="badge badge-warning"
                                                              id="countdown"></span>
                                             </li>
                                         @else
-                                            <li class="old-price no-cut">{{ number_format($product->price) }} Rwf</li>
+                                            <li class="old-price no-cut">{{ ($product->formatted_price) }} </li>
                                         @endif
                                     </ul>
                                 </div>
@@ -350,15 +350,12 @@
                                         <div class="pricing-meta">
                                             <ul>
                                                 @if($new_product->discount)
-                                                    <li class="current-price text-black-50">{{ number_format($new_product->price) }}
-                                                        Rwf
+                                                    <li class="current-price text-black-50">{{ ($new_product->formatted_price) }}
                                                     </li>
-                                                    <li class="old-price">{{ number_format($new_product->discount->price) }}
-                                                        Rwf
+                                                    <li class="old-price">{{ currencyConverter($new_product->discount->price) }}
                                                     </li>
                                                 @else
-                                                    <li class="current-price text-black-50">{{ number_format($new_product->price) }}
-                                                        Rwf
+                                                    <li class="current-price text-black-50">{{ ($new_product->formatted_price) }}
                                                     </li>
                                                 @endif
                                             </ul>
@@ -450,13 +447,13 @@
                                                 <ul>
                                                     @if($recommended_product->discount)
                                                         <del
-                                                            class="text-warning">{{ number_format($recommended_product->price) }}
-                                                            Rwf
+                                                            class="text-warning">{{ ($recommended_product->formatted_price) }}
+
                                                         </del>
-                                                        <h5>{{ number_format($recommended_product->discount->price) }}
-                                                            Rwf</h5>
+                                                        <h5>{{ currencyConverter($recommended_product->discount->price) }}
+                                                            </h5>
                                                     @else
-                                                        <h5>{{ number_format($recommended_product->price) }}Rwf</h5>
+                                                        <h5>{{ ($recommended_product->formatted_price) }}</h5>
                                                     @endif
                                                 </ul>
                                             </div>

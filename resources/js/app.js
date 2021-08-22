@@ -42,9 +42,16 @@ Vue.component("app-profile", Profile);
 Vue.component("app-delivery-fee", DeliveryFee);
 Vue.component("app-checkout", Checkout);
 Vue.component("app-home-section", HomeSection);
-Vue.filter("currency", (value, arg) => {
-    return Number(value).toLocaleString() + " " + arg
-})
+Vue.filter("currency", (value) => {
+    // console.log(window.currency);
+    const currency = window.currency
+    if (currency.label.toLocaleLowerCase() === "usd") {
+        if (Number(value) == 0) return "$0";
+        return "$" + (Number(value) / currency.amount).toLocaleString();
+    }
+    return (Number(value)).toLocaleString() + " " + currency.label
+    // return Number(value).toLocaleString() + " Rwf"
+});
 import Vue from 'vue'
 import Category from "./components/Category";
 import User from "./components/User";

@@ -75047,8 +75047,16 @@ vue__WEBPACK_IMPORTED_MODULE_7___default.a.component("app-profile", _components_
 vue__WEBPACK_IMPORTED_MODULE_7___default.a.component("app-delivery-fee", _components_DeliveryFee__WEBPACK_IMPORTED_MODULE_18__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_7___default.a.component("app-checkout", _components_Checkout__WEBPACK_IMPORTED_MODULE_20__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_7___default.a.component("app-home-section", _components_HomeSection__WEBPACK_IMPORTED_MODULE_21__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_7___default.a.filter("currency", function (value, arg) {
-  return Number(value).toLocaleString() + " " + arg;
+vue__WEBPACK_IMPORTED_MODULE_7___default.a.filter("currency", function (value) {
+  // console.log(window.currency);
+  var currency = window.currency;
+
+  if (currency.label.toLocaleLowerCase() === "usd") {
+    if (Number(value) == 0) return "$0";
+    return "$" + (Number(value) / currency.amount).toLocaleString();
+  }
+
+  return Number(value).toLocaleString() + " " + currency.label; // return Number(value).toLocaleString() + " Rwf"
 });
 
 
@@ -76358,7 +76366,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/dedsec/Documents/ecommerce-demo/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /var/www/webs/salim-ecom/resources/js/app.js */"./resources/js/app.js");
 
 
 /***/ })

@@ -32,7 +32,7 @@ class AppServiceProvider extends ServiceProvider
                 }
             } else
                 $cart_products = [];
-            $sum = number_format($sum) . " Rwf";
+            $sum = currencyConverter($sum);
             $view->with(["cart_products" => $cart_products, "sum" => $sum]);
         });
 
