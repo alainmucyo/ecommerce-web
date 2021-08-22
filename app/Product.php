@@ -87,15 +87,16 @@ class Product extends Model
 
     public function getFormattedPriceAttribute()
     {
+        $currency = CurrencyExchange::latest()->first();
         if (currentCurrency() == "rwf")
             return number_format($this->price) . " RWF";
 
         if (currentCurrency() == "usd") {
-            if($this->price == 0) return "$0";
-            return "$" . number_format($this->price / 1000);
+            if ($this->price == 0) return "$0";
+            return "$" . number_format((float)$this->price / (float)$currency->american);
         }
 
-        return number_format($this->price) . " Dirham";
+        return number_format((float)$this->price / (float)$currency->dirham) . " Dirham";
     }
 
 }

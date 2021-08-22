@@ -21,11 +21,6 @@ class ProductImageResource extends JsonResource
             "categories" => $this->categories,
             "discount"=>$this->discount,
             "images" => $this->images,
-            "max_price_usa" => $this->max_price_usa?:0,
-            "min_price_usa" => $this->min_price_usa?:0,
-            "price_dirham" => $this->price_dirham,
-            "max_price_dirham" => $this->max_price_dirham?:0,
-            "min_price_dirham" => $this->min_price_dirham?:0
         ];
     }
 }

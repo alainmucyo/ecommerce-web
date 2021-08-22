@@ -44,7 +44,6 @@
                                     <th>Price</th>
                                     <th>Seller_Email</th>
                                     <th>Times Sold</th>
-                                    {{--                                    <th>Likes</th>--}}
                                     <th>Discount</th>
                                     <th>Homepage</th>
                                     <th>Slider</th>
@@ -185,10 +184,9 @@
                                 <div class="col-md-6">
                                     <p><b>Title:</b> @{{ product.title}} </p>
                                     <p><b>Rwandan Price:</b> @{{ product.price | currency("Rwf")}} </p>
-                                    <p><b>American Price:</b> @{{ product.price_usa }} $</p>
-                                    <p><b>UAE Price:</b> @{{ product.price_dirham }} د.إ</p>
+{{--                                    <p><b>American Price:</b> @{{ product.price_usa }} $</p>--}}
+{{--                                    <p><b>UAE Price:</b> @{{ product.price_dirham }} د.إ</p>--}}
                                     <p><b>Client Maximum Quantity:</b> @{{ product.client_max}} </p>
-{{--                                    <p><b>Likes:</b> @{{ product.likes}}</p>--}}
                                 </div>
                                 <div class="col-md-6">
                                     <p><b>Category:</b> <span v-for="category in product.categories"
@@ -290,5 +288,5 @@
 
 @endsection
 @push("scripts")
-    <script type="text/javascript" src="/js/app.js"></script>
+    <script type="text/javascript" src="/js/app.js?update=true"></script>
 @endpush

@@ -2606,19 +2606,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -2640,15 +2627,7 @@ __webpack_require__.r(__webpack_exports__);
         client_max: '',
         category: [],
         size: [],
-        description: '',
-        min_price: 0,
-        max_price: 0,
-        price_usa: '',
-        min_price_usa: 0,
-        max_price_usa: 0,
-        price_dirham: '',
-        min_price_dirham: 0,
-        max_price_dirham: 0
+        description: ''
       })
     };
   },
@@ -3119,9 +3098,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         client_max: '',
         category: [],
         size: [],
-        description: '',
-        price_usa: '',
-        price_dirham: ''
+        description: ''
       })
     };
   },
@@ -3160,8 +3137,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.form.put("/product/".concat(this.product.id)).then(function (resp) {
         _this2.$Progress.finish();
 
-        _this2.form.clear(); // this.form.reset();
-
+        _this2.form.clear();
 
         _this2.toast("Congratulations", resp.data);
 
@@ -56901,88 +56877,6 @@ var render = function() {
           "div",
           { staticClass: "form-group col-md-6" },
           [
-            _c("label", [
-              _vm._v(
-                "Price USA (" +
-                  _vm._s(_vm._f("currency")(_vm.form.price_usa, "$")) +
-                  ")"
-              )
-            ]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.form.price_usa,
-                  expression: "form.price_usa"
-                }
-              ],
-              staticClass: "form-control",
-              class: { "is-invalid": _vm.form.errors.has("price_usa") },
-              attrs: { type: "number" },
-              domProps: { value: _vm.form.price_usa },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.form, "price_usa", $event.target.value)
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c("has-error", { attrs: { form: _vm.form, field: "price_usa" } })
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "form-group col-md-6" },
-          [
-            _c("label", [
-              _vm._v(
-                "Price Dirham (" +
-                  _vm._s(_vm._f("currency")(_vm.form.price_dirham, "د.إ")) +
-                  ")"
-              )
-            ]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.form.price_dirham,
-                  expression: "form.price_dirham"
-                }
-              ],
-              staticClass: "form-control",
-              class: { "is-invalid": _vm.form.errors.has("price_dirham") },
-              attrs: { type: "number" },
-              domProps: { value: _vm.form.price_dirham },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.form, "price_dirham", $event.target.value)
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c("has-error", {
-              attrs: { form: _vm.form, field: "price_dirham" }
-            })
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "form-group col-md-6" },
-          [
             _c("label", [_vm._v("Category")]),
             _vm._v(" "),
             _c("multiselect", {
@@ -57512,88 +57406,6 @@ var render = function() {
           "div",
           { staticClass: "form-group col-md-6" },
           [
-            _c("label", [
-              _vm._v(
-                "Price USA (" +
-                  _vm._s(_vm._f("currency")(_vm.form.price_usa, "$")) +
-                  ")"
-              )
-            ]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.form.price_usa,
-                  expression: "form.price_usa"
-                }
-              ],
-              staticClass: "form-control",
-              class: { "is-invalid": _vm.form.errors.has("price_usa") },
-              attrs: { type: "number" },
-              domProps: { value: _vm.form.price_usa },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.form, "price_usa", $event.target.value)
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c("has-error", { attrs: { form: _vm.form, field: "price_usa" } })
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "form-group col-md-6" },
-          [
-            _c("label", [
-              _vm._v(
-                "Price Dirham (" +
-                  _vm._s(_vm._f("currency")(_vm.form.price_dirham, "د.إ")) +
-                  ")"
-              )
-            ]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.form.price_dirham,
-                  expression: "form.price_dirham"
-                }
-              ],
-              staticClass: "form-control",
-              class: { "is-invalid": _vm.form.errors.has("price_dirham") },
-              attrs: { type: "number" },
-              domProps: { value: _vm.form.price_dirham },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.form, "price_dirham", $event.target.value)
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c("has-error", {
-              attrs: { form: _vm.form, field: "price_dirham" }
-            })
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "form-group col-md-6" },
-          [
             _c("label", [_vm._v("Category")]),
             _vm._v(" "),
             _c("multiselect", {
@@ -57684,7 +57496,7 @@ var render = function() {
         _vm.form.description.trim() != ""
           ? _c("div", { staticClass: "form-group col-md-12" }, [
               _c("button", { staticClass: "btn btn-primary float-right" }, [
-                _vm._v("Submit\n      ")
+                _vm._v("Submit\n        ")
               ])
             ])
           : _vm._e()
@@ -75051,12 +74863,12 @@ vue__WEBPACK_IMPORTED_MODULE_7___default.a.filter("currency", function (value) {
   // console.log(window.currency);
   var currency = window.currency;
 
-  if (currency.label.toLocaleLowerCase() === "usd") {
+  if (currency.label && currency.label.toLocaleLowerCase() === "usd") {
     if (Number(value) == 0) return "$0";
     return "$" + (Number(value) / currency.amount).toLocaleString();
   }
 
-  return Number(value).toLocaleString() + " " + currency.label; // return Number(value).toLocaleString() + " Rwf"
+  return Number(value).toLocaleString() + " " + "".concat(currency.label && currency.label);
 });
 
 
@@ -76366,7 +76178,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /var/www/webs/salim-ecom/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/dedsec/Documents/ecommerce-demo/resources/js/app.js */"./resources/js/app.js");
 
 
 /***/ })

@@ -27,7 +27,6 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::where("status", 1)->where("seller_id", auth()->user()->id)->withCount("likes")->paginate(30);
-//         $home_sections = HomeSection::get();
         return view("seller.product.index", compact('products'));
     }
 
@@ -42,9 +41,6 @@ class ProductController extends Controller
         $request->validate([
             "title" => "required",
             "price" => "required|numeric",
-//            "client_max" => "required|numeric",
-//            "min_price" => "required|numeric",
-//            "max_price" => "required|numeric",
             "category" => "required",
             "description" => "required"
         ]);
@@ -55,14 +51,6 @@ class ProductController extends Controller
             "description" => $request['description'],
             "seller_id" => auth()->user()->id,
             "sizes" => count($request['size']) == 0 ? null : json_encode($request['size']),
-            "min_price" => $request['min_price'],
-            "max_price" => $request['max_price'],
-            "price_usa" => $request['price_usa'],
-            "max_price_usa" => $request['max_price_usa'],
-            "min_price_usa" => $request['min_price_usa'],
-            "price_dirham" => $request['price_dirham'],
-            "max_price_dirham" => $request['max_price_dirham'],
-            "min_price_dirham" => $request['min_price_dirham']
         ]);
         /* foreach ($request['category'] as $category) {
              DB::table("category_product")->insert(["category_id" => $category['id'], "product_id" => $product->id]);
@@ -132,8 +120,6 @@ class ProductController extends Controller
             "title" => "required",
             "price" => "required|numeric",
             "client_max" => "required|numeric",
-//            "min_price" => "required|numeric",
-//            "max_price" => "required|numeric",
             "category" => "required",
             "description" => "required"
         ]);
@@ -143,14 +129,6 @@ class ProductController extends Controller
             "client_max" => $request['client_max'],
             "description" => $request['description'],
             "sizes" => count($request['size']) == 0 ? null : json_encode($request['size']),
-            "min_price" => $request['min_price'],
-            "max_price" => $request['max_price'],
-            "price_usa" => $request['price_usa'],
-            "max_price_usa" => $request['max_price_usa'],
-            "min_price_usa" => $request['min_price_usa'],
-            "price_dirham" => $request['price_dirham'],
-            "max_price_dirham" => $request['max_price_dirham'],
-            "min_price_dirham" => $request['min_price_dirham']
         ]);
         /* foreach ($request['category'] as $category) {
              DB::table("category_product")->insert(["category_id" => $category['id'], "product_id" => $product->id]);

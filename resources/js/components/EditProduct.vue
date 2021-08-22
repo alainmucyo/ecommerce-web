@@ -19,18 +19,18 @@
                :class="{ 'is-invalid': form.errors.has('price') }"/>
         <has-error :form="form" field="price"></has-error>
       </div>
-      <div class="form-group col-md-6">
-        <label>Price USA ({{ form.price_usa | currency('$') }})</label>
-        <input type="number" class="form-control" v-model="form.price_usa"
-               :class="{ 'is-invalid': form.errors.has('price_usa') }"/>
-        <has-error :form="form" field="price_usa"></has-error>
-      </div>
-      <div class="form-group col-md-6">
-        <label>Price Dirham ({{ form.price_dirham | currency('د.إ') }})</label>
-        <input type="number" class="form-control" v-model="form.price_dirham"
-               :class="{ 'is-invalid': form.errors.has('price_dirham') }"/>
-        <has-error :form="form" field="price_dirham"></has-error>
-      </div>
+<!--      <div class="form-group col-md-6">-->
+<!--        <label>Price USA ({{ form.price_usa | currency('$') }})</label>-->
+<!--        <input type="number" class="form-control" v-model="form.price_usa"-->
+<!--               :class="{ 'is-invalid': form.errors.has('price_usa') }"/>-->
+<!--        <has-error :form="form" field="price_usa"></has-error>-->
+<!--      </div>-->
+<!--      <div class="form-group col-md-6">-->
+<!--        <label>Price Dirham ({{ form.price_dirham | currency('د.إ') }})</label>-->
+<!--        <input type="number" class="form-control" v-model="form.price_dirham"-->
+<!--               :class="{ 'is-invalid': form.errors.has('price_dirham') }"/>-->
+<!--        <has-error :form="form" field="price_dirham"></has-error>-->
+<!--      </div>-->
       <div class="form-group col-md-6">
         <label>Category</label>
         <multiselect v-model="form.category" track-by="id" :allow-empty="false" placeholder="Select Category"
@@ -87,8 +87,6 @@ export default {
         category: [],
         size: [],
         description: '',
-        price_usa: '',
-        price_dirham: '',
       })
     }
   },
@@ -127,7 +125,6 @@ export default {
           .then(resp => {
             this.$Progress.finish();
             this.form.clear();
-            // this.form.reset();
             this.toast("Congratulations", resp.data)
             window.location.href = "/admin/products"
           })

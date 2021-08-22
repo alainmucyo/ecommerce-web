@@ -25,7 +25,7 @@
                                             <h4>{{ $cart_product->title }}</h4>
                                         </a>
                                         <h4>
-                                            <span>{{ $cart_product->quantity }} x {{ number_format($cart_product->price) }} Rwf</span>
+                                            <span>{{ $cart_product->quantity }} x {{ currencyConverter($cart_product->price) }}</span>
                                         </h4>
                                     </div>
                                 </div>
