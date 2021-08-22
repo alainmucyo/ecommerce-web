@@ -251,7 +251,7 @@ $categories = \App\Category::get();
                                                 class="icon-bag"></i><span>{{$sum}}</span></a>
                                     @else
                                         <a href="#offcanvas-cart" class="bag offcanvas-toggle text-decoration-none"
-                                           data-number="0"><i class="icon-bag"></i><span>0.00 RFW</span></a>
+                                           data-number="0"><i class="icon-bag"></i><span>{{$sum}}</span></a>
                                     @endif
                                 </div>
                             </div>
@@ -288,7 +288,7 @@ $categories = \App\Category::get();
                                         class="icon-bag"></i><span>{{$sum}}</span></a>
                             @else
                                 <a href="#offcanvas-cart" class="bag offcanvas-toggle text-decoration-none"
-                                   data-number="0"><i class="icon-bag"></i><span>0.00</span></a>
+                                   data-number="0"><i class="icon-bag"></i><span>{{$sum}}</span></a>
                             @endif
                         </div>
                         <div class="mobile-menu-toggle">
@@ -493,7 +493,7 @@ $categories = \App\Category::get();
                                     class="icon-bag"></i><span>{{$sum}}</span></a>
                         @else
                             <a href="#offcanvas-cart" class="bag offcanvas-toggle text-decoration-none"
-                               data-number="0"><i class="icon-bag"></i><span>0.00 RFW</span></a>
+                               data-number="0"><i class="icon-bag"></i><span>{{$sum}}</span></a>
                         @endif
                     </div>
                 </div>

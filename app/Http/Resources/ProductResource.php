@@ -15,8 +15,6 @@ class ProductResource extends JsonResource
             "client_max" => $this->client_max,
             "sizes" => json_decode($this->sizes),
             "images" => $this->images,
-            "price_usa" => $this->price_usa,
-            "price_dirham" => $this->price_dirham,
             "seller" => $this->seller,
             "description" => $this->description,
             "categories" => $this->categories,

@@ -14,7 +14,7 @@ class RemoveColumnFromProductsTable extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->dropColumn(['max_price','min_price','max_price_usa','min_price_usa','max_price_dirham','min_price_dirham']);
+            $table->dropColumn(['max_price','min_price','currency','price_usa','price_dirham','max_price_usa','min_price_usa','max_price_dirham','min_price_dirham']);
         });
     }
 

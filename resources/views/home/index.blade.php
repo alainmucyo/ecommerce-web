@@ -249,7 +249,7 @@
                                                 class="icon-bag"></i><span>{{$sum}}</span></a>
                                     @else
                                         <a href="#offcanvas-cart" class="bag offcanvas-toggle text-decoration-none"
-                                           data-number="0"><i class="icon-bag"></i><span>0.00 RFW</span></a>
+                                           data-number="0"><i class="icon-bag"></i><span>{{$sum}}</span></a>
                                     @endif
                                 </div>
                             </div>
@@ -285,7 +285,7 @@
                                         class="icon-bag"></i><span>{{$sum}}</span></a>
                             @else
                                 <a href="#offcanvas-cart" class="bag offcanvas-toggle text-decoration-none"
-                                   data-number="0"><i class="icon-bag"></i><span>0.00 RFW</span></a>
+                                   data-number="0"><i class="icon-bag"></i><span>{{$sum}}</span></a>
                             @endif
                         </div>
                         <div class="mobile-menu-toggle">
@@ -402,7 +402,7 @@
                                 <div class="content">
                                     <a href="/item/{{$cart_product->product->slug}}"
                                        class="title">{{$cart_product->product->title}}</a>
-                                    <span class="quantity-price">{{ $cart_product->quantity }} x <span class="amount">{{ number_format($cart_product->price) }}RWF</span></span>
+                                    <span class="quantity-price">{{ $cart_product->quantity }} x <span class="amount">{{ currencyConverter($cart_product->price) }}</span></span>
                                     <a href="#" class="remove"
                                        onclick="if(!confirm('Remove {{$cart_product->product->title}} From Cart?' ))return;event.preventDefault();
                                            document.getElementById('cart{{ $cart_product->id }}').submit();">×</a>
@@ -491,7 +491,7 @@
                                     class="icon-bag"></i><span>{{$sum}}</span></a>
                         @else
                             <a href="#offcanvas-cart" class="bag offcanvas-toggle text-decoration-none"
-                               data-number="0"><i class="icon-bag"></i><span>0.00 RFW</span></a>
+                               data-number="0"><i class="icon-bag"></i><span>{{$sum}}</span></a>
                         @endif
                     </div>
                 </div>

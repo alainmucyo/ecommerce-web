@@ -58,6 +58,7 @@ Route::middleware('CheckRole')->group(function () {
         Route::get("/orders", "OrderController@adminOrders");
         Route::resource("ad-product", "AdProductController");
         Route::put("/seller/{user}/home", "UsersController@addOnHomepage");
+        Route::resource("/currencies", "CurrencyExchangeController");
     });
 
     Route::post("/profile/{user}", "UsersController@profile")->middleware('auth');

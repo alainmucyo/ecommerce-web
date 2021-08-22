@@ -9,7 +9,7 @@ class CategoryResource extends JsonResource
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function toArray($request)
@@ -18,9 +18,8 @@ class CategoryResource extends JsonResource
             "id" => $this->id,
             "name" => $this->name,
             "products" => $this->products->count(),
-            "insurance"=>$this->insurance,
+            "insurance" => $this->insurance,
             "created_at" => $this->created_at->toDateString()
-
         ];
     }
 }

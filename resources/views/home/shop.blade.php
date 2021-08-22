@@ -78,13 +78,6 @@
                                                                          src="{{json_decode($product->images)[1] }}"
                                                                          alt=""/>
                                                                 @endif
-                                                                {{--                                                                <img class="first-img"--}}
-                                                                {{--                                                                     src="assets/images/product-image/7.jpg"--}}
-                                                                {{--                                                                     --}}{{--                                                                     src="{{ $product->product_image }}"--}}
-                                                                {{--                                                                     alt=""/>--}}
-                                                                {{--                                                                <img class="second-img"--}}
-                                                                {{--                                                                     src="assets/images/product-image/8.jpg"--}}
-                                                                {{--                                                                     alt=""/>--}}
                                                             </a>
                                                             <div class="quick-view">
                                                                 <a class="quick_view" href="#"
@@ -177,13 +170,6 @@
                                                                                      src="{{json_decode($product->images)[1] }}"
                                                                                      alt=""/>
                                                                             @endif
-                                                                            {{--                                                                            <img class="first-img"--}}
-                                                                            {{--                                                                                 src="assets/images/product-image/7.jpg"--}}
-                                                                            {{--                                                                                 alt=""/>--}}
-                                                                            {{--                                                                            --}}{{--                                                                    src="{{ $product->product_image }}"}}--}}
-                                                                            {{--                                                                            <img class="second-img"--}}
-                                                                            {{--                                                                                 src="assets/images/product-image/8.jpg"--}}
-                                                                            {{--                                                                                 alt=""/>--}}
                                                                         </a>
                                                                         <div class="quick-view">
                                                                             <a class="quick_view" href="#"

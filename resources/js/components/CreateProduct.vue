@@ -20,18 +20,6 @@
                 <has-error :form="form" field="price"></has-error>
             </div>
             <div class="form-group col-md-6">
-                <label>Price USA ({{ form.price_usa | currency('$') }})</label>
-                <input type="number" class="form-control" v-model="form.price_usa"
-                       :class="{ 'is-invalid': form.errors.has('price_usa') }"/>
-                <has-error :form="form" field="price_usa"></has-error>
-            </div>
-            <div class="form-group col-md-6">
-                <label>Price Dirham ({{ form.price_dirham | currency('د.إ') }})</label>
-                <input type="number" class="form-control" v-model="form.price_dirham"
-                       :class="{ 'is-invalid': form.errors.has('price_dirham') }"/>
-                <has-error :form="form" field="price_dirham"></has-error>
-            </div>
-            <div class="form-group col-md-6">
                 <label>Category</label>
                 <multiselect v-model="form.category" track-by="id" :allow-empty="false" placeholder="Select Category"
                              :multiple="false" label="name"
@@ -46,7 +34,6 @@
             </div>
             <div class="form-group col-md-12" style="height: 350px">
                 <label>Product Description</label>
-                <!--                <vue-editor v-model="form.description"></vue-editor>-->
                 <div class="example">
                     <quill-editor v-model="form.description" style="height: 250px" class="editor"
                                   :class="{ 'is-invalid': form.errors.has('description') }"
@@ -83,14 +70,6 @@ export default {
                 category: [],
                 size: [],
                 description: '',
-                min_price: 0,
-                max_price: 0,
-                price_usa: '',
-                min_price_usa: 0,
-                max_price_usa: 0,
-                price_dirham: '',
-                min_price_dirham: 0,
-                max_price_dirham: 0
             })
         }
     },

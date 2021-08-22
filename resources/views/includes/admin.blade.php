@@ -50,6 +50,17 @@
                     </a>
                 </li>
             </ul>
+            <div class="pcoded-navigation-label">Currency Exchange</div>
+            <ul class="pcoded-item pcoded-left-item">
+                <li>
+                    <a class="waves-effect waves-dark" href="{{ route("currencies.create") }}">
+                        <span class="pcoded-micon">
+                        <i class="fas fa-money-bill-alt text-c-white f-18"></i>
+                        </span>
+                        <span class="pcoded-mtext">Currency Section</span>
+                    </a>
+                </li>
+            </ul>
             <div class="pcoded-navigation-label">Products Management</div>
             <ul class="pcoded-item pcoded-left-item">
                 <li>
@@ -105,25 +116,6 @@
             </ul>
             <div class="pcoded-navigation-label">Users</div>
             <ul class="pcoded-item pcoded-left-item">
-
-{{--                <li class="pcoded-hasmenu">--}}
-{{--                    <a class="waves-effect waves-dark" href="javascript:void(0)">--}}
-{{--                        <span class="pcoded-micon"><i class="feather icon-user-plus"></i></span>--}}
-{{--                        <span class="pcoded-mtext">Sellers</span>--}}
-{{--                    </a>--}}
-{{--                    <ul class="pcoded-submenu">--}}
-{{--                        <li>--}}
-{{--                            <a class="waves-effect waves-dark" href="/users/sellers">--}}
-{{--                                <span class="pcoded-mtext">Sellers Request</span>--}}
-{{--                            </a>--}}
-{{--                        </li>--}}
-{{--                        <li>--}}
-{{--                            <a class="waves-effect waves-dark" href="/admin/sellers">--}}
-{{--                                <span class="pcoded-mtext">Sellers List</span>--}}
-{{--                            </a>--}}
-{{--                        </li>--}}
-{{--                    </ul>--}}
-{{--                </li>--}}
                 <li>
                     <a class="waves-effect waves-dark" href="/admin/users">
                         <span class="pcoded-micon">
