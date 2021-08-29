@@ -45,11 +45,16 @@ Vue.component("app-home-section", HomeSection);
 Vue.filter("currency", (value) => {
     // console.log(window.currency);
     const currency = window.currency
-    if (currency.label && currency.label.toLocaleLowerCase() === "usd") {
-        if (Number(value) == 0) return "$0";
-        return "$" + (Number(value) / currency.amount).toLocaleString();
+    switch (currency.current.toLowerCase()){
+        case "rwf":
+            return (Number(value)).toLocaleString() + " Rwf"
+        case "usd":
+            if (Number(value) == 0) return "$0";
+            return "$" + (Number(value) / currency.usd).toLocaleString();
+        default:
+            if (Number(value) == 0) return "0 Dirham";
+            return (Number(value)/currency.dirham).toLocaleString() + " Dirham"
     }
-    return (Number(value)).toLocaleString() + " " + `${currency.label && currency.label}`
 });
 import Vue from 'vue'
 import Category from "./components/Category";

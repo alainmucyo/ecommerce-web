@@ -667,7 +667,11 @@ $categories = \App\Category::get();
 <!-- Main Activation JS -->
 <script src="/assets/js/main.js"></script>
 <script type="text/javascript">
-    window.currency = {"amount": 1000, "label": `{{currentCurrency() }}`}
+    window.currency = {
+        "usd": {{ \App\CurrencyExchange::latest()->first()->american }},
+        "dirham": {{ \App\CurrencyExchange::latest()->first()->dirham }},
+        "current": `{{currentCurrency() }}`
+    }
 </script>
 @stack("scripts")
 </body>

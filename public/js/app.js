@@ -2307,6 +2307,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2321,6 +2334,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       insurances: [],
       delivery_fees: [],
       shipping: null,
+      payment: false,
+      current_currency: {},
       form_buy: new vform__WEBPACK_IMPORTED_MODULE_0__["Form"]({
         mobile_money: ''
       }),
@@ -2330,7 +2345,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         email: "",
         phone: "",
         address: "",
-        reuse: 0,
+        reuse: 1,
         user_id: ""
       },
       errors: {}
@@ -2411,21 +2426,28 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       var _final = _objectSpread(_objectSpread({}, this.form_buy), {}, {
         products: products,
+        payment: this.payment,
         delivery_fee: this.shipping,
         address: this.address,
         id: this.information_id
       });
 
-      axios.post('/api/buy', _final).then(function (data) {
+      axios.post('/api/buy', _final).then(function (_ref) {
+        var data = _ref.data;
+
         /*
         this.form_buy.clear();
         this.form_buy.reset();*/
         _this3.form_buy.busy = false; // this.$toastr('success', 'Payment Done', 'Payment Done Successfully! Please check your phone for payment!');
         // loader.hide();
 
-        _this3.$Progress.finish();
+        _this3.$Progress.finish(); // window.location = "/orders"
 
-        window.location = "/orders";
+
+        if (data.link != null) {
+          window.location = data.link;
+        } else {// window.location = "/orders"
+        }
       })["catch"](function (err) {
         _this3.form_buy.busy = false; // loader.hide();
 
@@ -2435,9 +2457,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           _this3.errors = err.response.data;
         }
 
-        if (err.response.status === 400) {
+        if (err.response.status === 500) {
           // this.$toastr("error", "Error", err.response.data)
-          window.location = "/orders";
+          alert("Something went wrong, reload and try again.");
         }
 
         _this3.$Progress.fail();
@@ -2477,6 +2499,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     this.loadProducts();
     this.loadDeliveryFees();
     this.loadUserDetails();
+    this.current_currency = window.currency;
   }
 });
 
@@ -56622,6 +56645,114 @@ var render = function() {
                                 ]
                               ),
                               _vm._v(" "),
+                              _vm.current_currency.current == "rwf"
+                                ? _c("div", { staticClass: "form-group" }, [
+                                    _c("label", [
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.payment,
+                                            expression: "payment"
+                                          }
+                                        ],
+                                        staticClass: "ml-2",
+                                        attrs: {
+                                          type: "checkbox",
+                                          name: "reuse"
+                                        },
+                                        domProps: {
+                                          checked: Array.isArray(_vm.payment)
+                                            ? _vm._i(_vm.payment, null) > -1
+                                            : _vm.payment
+                                        },
+                                        on: {
+                                          change: function($event) {
+                                            var $$a = _vm.payment,
+                                              $$el = $event.target,
+                                              $$c = $$el.checked ? true : false
+                                            if (Array.isArray($$a)) {
+                                              var $$v = null,
+                                                $$i = _vm._i($$a, $$v)
+                                              if ($$el.checked) {
+                                                $$i < 0 &&
+                                                  (_vm.payment = $$a.concat([
+                                                    $$v
+                                                  ]))
+                                              } else {
+                                                $$i > -1 &&
+                                                  (_vm.payment = $$a
+                                                    .slice(0, $$i)
+                                                    .concat($$a.slice($$i + 1)))
+                                              }
+                                            } else {
+                                              _vm.payment = $$c
+                                            }
+                                          }
+                                        }
+                                      }),
+                                      _vm._v(
+                                        "\n                                                    Pay with Mobile Money or Card\n                                                "
+                                      )
+                                    ])
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.current_currency.current == "usd"
+                                ? _c("div", { staticClass: "form-group" }, [
+                                    _c("label", [
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.payment,
+                                            expression: "payment"
+                                          }
+                                        ],
+                                        staticClass: "ml-2",
+                                        attrs: {
+                                          type: "checkbox",
+                                          name: "reuse"
+                                        },
+                                        domProps: {
+                                          checked: Array.isArray(_vm.payment)
+                                            ? _vm._i(_vm.payment, null) > -1
+                                            : _vm.payment
+                                        },
+                                        on: {
+                                          change: function($event) {
+                                            var $$a = _vm.payment,
+                                              $$el = $event.target,
+                                              $$c = $$el.checked ? true : false
+                                            if (Array.isArray($$a)) {
+                                              var $$v = null,
+                                                $$i = _vm._i($$a, $$v)
+                                              if ($$el.checked) {
+                                                $$i < 0 &&
+                                                  (_vm.payment = $$a.concat([
+                                                    $$v
+                                                  ]))
+                                              } else {
+                                                $$i > -1 &&
+                                                  (_vm.payment = $$a
+                                                    .slice(0, $$i)
+                                                    .concat($$a.slice($$i + 1)))
+                                              }
+                                            } else {
+                                              _vm.payment = $$c
+                                            }
+                                          }
+                                        }
+                                      }),
+                                      _vm._v(
+                                        "\n                                                    Pay with Card Or Bank\n                                                "
+                                      )
+                                    ])
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
                               _vm._m(2)
                             ])
                           : _c("div", [
@@ -56672,19 +56803,17 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "payment-box" }, [
       _c("div", { staticClass: "Place-order mt-25" }, [
-        _c("a", { staticClass: "btn-hover mb-2", attrs: { href: "/cart" } }, [
-          _vm._v(
-            "\n                                                        Back To Cart List\n                                                    "
-          )
-        ]),
-        _vm._v(" "),
         _c("a", { staticClass: "btn-hover p-0", attrs: { href: "#" } }, [
           _c(
             "button",
-            { staticClass: "text-white py-3 w-100", attrs: { type: "submit" } },
+            {
+              staticClass: "text-white py-3 w-100",
+              staticStyle: { "font-size": "1.3rem" },
+              attrs: { type: "submit" }
+            },
             [
               _vm._v(
-                "Place\n                                                            Order\n                                                        "
+                "\n                                                            PLACE ORDER\n                                                        "
               )
             ]
           )
@@ -74863,12 +74992,18 @@ vue__WEBPACK_IMPORTED_MODULE_7___default.a.filter("currency", function (value) {
   // console.log(window.currency);
   var currency = window.currency;
 
-  if (currency.label && currency.label.toLocaleLowerCase() === "usd") {
-    if (Number(value) == 0) return "$0";
-    return "$" + (Number(value) / currency.amount).toLocaleString();
-  }
+  switch (currency.current.toLowerCase()) {
+    case "rwf":
+      return Number(value).toLocaleString() + " Rwf";
 
-  return Number(value).toLocaleString() + " " + "".concat(currency.label && currency.label);
+    case "usd":
+      if (Number(value) == 0) return "$0";
+      return "$" + (Number(value) / currency.usd).toLocaleString();
+
+    default:
+      if (Number(value) == 0) return "0 Dirham";
+      return (Number(value) / currency.dirham).toLocaleString() + " Dirham";
+  }
 });
 
 
@@ -76178,7 +76313,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/dedsec/Documents/ecommerce-demo/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /var/www/webs/salim-ecom/resources/js/app.js */"./resources/js/app.js");
 
 
 /***/ })

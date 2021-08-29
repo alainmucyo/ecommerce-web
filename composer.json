@@ -12,7 +12,7 @@
         "cloudinary-labs/cloudinary-laravel": "^1.0",
         "consoletvs/charts": "6.*",
         "fideloper/proxy": "^4.0",
-        "guzzlehttp/guzzle": "^6.5",
+        "guzzlehttp/guzzle": "^7.3",
         "intervention/image": "^2.5",
         "jeremykenedy/laravel-roles": "^3.0",
         "laravel/framework": "^6.2",

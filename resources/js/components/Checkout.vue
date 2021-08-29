@@ -124,14 +124,27 @@
                                                         </ul>
                                                     </div>
                                                 </div>
+                                                <div class="form-group" v-if="current_currency.current=='rwf'">
+                                                    <label>
+                                                        <input type="checkbox" class="ml-2" name="reuse"
+                                                               v-model="payment">
+                                                        Pay with Mobile Money or Card
+                                                    </label>
+                                                </div>
+                                                <div class="form-group" v-if="current_currency.current=='usd'">
+                                                    <label>
+                                                        <input type="checkbox" class="ml-2" name="reuse"
+                                                               v-model="payment">
+                                                        Pay with Card Or Bank
+                                                    </label>
+                                                </div>
                                                 <div class="payment-box">
                                                     <div class="Place-order mt-25">
-                                                        <a class="btn-hover mb-2" href="/cart">
-                                                            Back To Cart List
-                                                        </a>
+
                                                         <a class="btn-hover p-0" href="#">
-                                                            <button type="submit" class="text-white py-3 w-100">Place
-                                                                Order
+                                                            <button type="submit" class="text-white py-3 w-100"
+                                                                    style="font-size: 1.3rem">
+                                                                PLACE ORDER
                                                             </button>
                                                         </a>
                                                     </div>
@@ -171,6 +184,8 @@ export default {
             insurances: [],
             delivery_fees: [],
             shipping: null,
+            payment: false,
+            current_currency: {},
             form_buy: new Form({
                 mobile_money: ''
             }),
@@ -180,7 +195,7 @@ export default {
                 email: "",
                 phone: "",
                 address: "",
-                reuse: 0,
+                reuse: 1,
                 user_id: ""
             },
             errors: {}
@@ -254,19 +269,25 @@ export default {
             const final = {
                 ...this.form_buy,
                 products,
+                payment: this.payment,
                 delivery_fee: this.shipping,
                 address: this.address,
                 id: this.information_id
             };
             axios.post('/api/buy', final)
-                .then(data => {/*
+                .then(({data}) => {/*
                     this.form_buy.clear();
                     this.form_buy.reset();*/
                     this.form_buy.busy = false;
                     // this.$toastr('success', 'Payment Done', 'Payment Done Successfully! Please check your phone for payment!');
                     // loader.hide();
                     this.$Progress.finish();
-                    window.location = "/orders"
+                    // window.location = "/orders"
+                    if (data.link != null) {
+                        window.location = data.link
+                    } else {
+                        // window.location = "/orders"
+                    }
                 })
                 .catch(err => {
                     this.form_buy.busy = false;
@@ -275,9 +296,9 @@ export default {
                         this.form_buy.errors.set(err.response.data)
                         this.errors = err.response.data
                     }
-                    if (err.response.status === 400) {
+                    if (err.response.status === 500) {
                         // this.$toastr("error", "Error", err.response.data)
-                        window.location = "/orders"
+                        alert("Something went wrong, reload and try again.")
                     }
                     this.$Progress.fail()
                 })
@@ -314,6 +335,7 @@ export default {
         this.loadProducts();
         this.loadDeliveryFees();
         this.loadUserDetails();
+        this.current_currency = window.currency
     }
 }
 </script>

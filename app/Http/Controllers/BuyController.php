@@ -3,17 +3,53 @@
 namespace App\Http\Controllers;
 
 use App\Cart;
+use App\CurrencyExchange;
 use App\Order;
 use App\OrderProduct;
 use App\UserInformation;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class BuyController extends Controller
 {
     public function __construct()
     {
         $this->middleware("auth");
+    }
+
+    private function pay($tx_ref, $price, $userinfo, $title)
+    {
+        $URL = env("FLUTTERWAVE_API_URL");
+        $SECRET_KEY = env("FLUTTERWAVE_SECRET_KEY");
+        $client = new \GuzzleHttp\Client(["headers" => ["Authorization" => $SECRET_KEY]]);
+
+        $currency = strtoupper(currentCurrency());
+        $mainCurrencies = CurrencyExchange::latest()->first();
+        if ($currency == "USD")
+            $price = $price / $mainCurrencies->american;
+
+        $response = $client->post($URL,
+            ["json" => [
+                "tx_ref" => $tx_ref,
+                "amount" => $price,
+                "currency" => $currency,
+                "redirect_url" => env("APP_URL") . "orders",
+                "payment_options" => "card",
+                "customer" => [
+                    "email" => $userinfo->email,
+                    "phonenumber" => $userinfo->phone,
+                    "name" => $userinfo->name
+                ],
+                "customizations" => [
+                    "title" => "David's High Deals",
+                    "description" => "Products payments",
+                    "logo" => "https://res.cloudinary.com/alainmucyo/image/upload/v1629698896/david-high-deal_qdbet0.png"
+                ]
+            ]
+            ]
+        );
+        return json_decode($response->getBody(), true);
     }
 
     public function buyMomo(Request $request)
@@ -29,7 +65,7 @@ class BuyController extends Controller
         $validators = validator()->make($request->all()['address'], [
             "name" => "required",
             "email" => "required",
-            "phone" => "required|regex:/^(07[8,2,3,9])[0-9]{7}$/",
+            "phone" => "required",
             "address" => "required",
         ]);
         if ($validators->fails()) {
@@ -56,6 +92,7 @@ class BuyController extends Controller
         $cart_products = auth()->user()->cartProducts;
         $request_products = $request->all()['products'];
         $sum = 0;
+        $transaction_id = uniqid() . '-' . random_int(10000, 99999);
         if ($cart_products->count() > 0) {
             foreach ($request_products as $request_product) {
                 $cart_product = $cart_products->where("id", $request_product['id'])->first();
@@ -65,64 +102,44 @@ class BuyController extends Controller
         $delivery_fee_id = $request->all()['delivery_fee']['id'];
         $sum += $request->all()['delivery_fee']['amount'];
 
-        /*   $client = new Client([
-               'headers' => ['Content-Type' => 'application/json']
-           ]);
-           $trans_id = uniqid();*/
-        /*    $response = $client->post('
-        ',
-                ['body' => json_encode(
-                    [
-                        'token' => '21EOp10VMTfSJUv2tItJS4lSARYN4QPW',
-                        'amount' => $sum,
-                        'msisdn' => $phonenumber,
-                        'external_transaction_id' => $trans_id,
-                        'from_msg' => 'E-Commerce Payment ',
-                        'to_msg' => 'Thank You for Business with us'
-                    ]
-                )]
-            );*/
-
-//            $data = json_decode($response->getBody()->getContents(), true);
-        $data = [];
-//            if ($request['mobile_money'] && trim($request['mobile_money'])){
-//                auth()->user()->update(["phone"=>$request['mobile_money']]);
-//            }
-        if (true or array_key_exists('action', $data)) {
-            if (true or $data['action'] == 200) {
-                $order = Order::create([
-                    "order_id" => rand(100000, 999999),
-                    "customer_id" => auth()->user()->id,
-                    "price" => $sum,
-                    "payment_mode" => 1,
-                    "payed" => true,
-                    "payed_at" => now(),
-                    "user_information_id" => $userinfo->id,
-                    "delivery_fee_id" => $delivery_fee_id
-                ]);
-                foreach ($request_products as $request_product) {
-                    $cart_product = $cart_products->where("id", $request_product['id'])->first();
-                    OrderProduct::create([
-                        "order_id" => $order->id,
-                        "quantity" => $cart_product->quantity,
-                        "price" => $cart_product->price,
-                        "product_id" => $cart_product->product_id,
-                        "size" => $cart_product->size,
-                        "customer_id" => auth()->user()->id,
-                        "seller_id" => $cart_product->seller_id,
-                        "paid" => true,
-                        "insurance" => $request_product['insurance']
-                    ]);
-                }
-                foreach ($request_products as $request_product) {
-                    Cart::where("id", $request_product['id'])->delete();
-                }
-                return "ok";
-            } else {
-                return response($data['message'], 400);
-            }
-        } else {
-            return response($data['response'], 400);
+        $order = Order::create([
+            "order_id" => $transaction_id,
+            "customer_id" => auth()->user()->id,
+            "price" => $sum,
+            "payment_mode" => 1,
+            "payed" => false,
+            "payed_at" => now(),
+            "user_information_id" => $userinfo->id,
+            "delivery_fee_id" => $delivery_fee_id,
+        ]);
+        foreach ($request_products as $request_product) {
+            $cart_product = $cart_products->where("id", $request_product['id'])->first();
+            OrderProduct::create([
+                "order_id" => $order->id,
+                "quantity" => $cart_product->quantity,
+                "price" => $cart_product->price,
+                "product_id" => $cart_product->product_id,
+                "size" => $cart_product->size,
+                "customer_id" => auth()->user()->id,
+                "seller_id" => $cart_product->seller_id,
+                "paid" => true,
+                "insurance" => $request_product['insurance']
+            ]);
         }
+        $link = null;
+        if ($request->payment) {
+            $response = $this->pay(
+                $transaction_id,
+                $sum,
+                $userinfo,
+                "David's High Deals payments"
+            );
+            $link = $response["data"]["link"];
+        }
+        /*  foreach ($request_products as $request_product) {
+              Cart::where("id", $request_product['id'])->delete();
+          }*/
+        return response(["link" => $link, "done" => "yes"], 200);
+
     }
 }

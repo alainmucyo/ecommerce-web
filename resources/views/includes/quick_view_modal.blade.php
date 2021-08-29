@@ -80,6 +80,7 @@
                                         <button type="submit" class="btn btn-primary">add to cart</button>
                                     @else
                                         <a href="/login" class="btn btn-primary">Login
+                                        <a href="/login" class="btn btn-primary">Login
                                         </a>
                                     @endauth
                                     <a :href="'/item/'+modal_product.slug" class="btn btn-primary">view detail</a>

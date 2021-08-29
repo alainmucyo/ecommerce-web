@@ -6,7 +6,7 @@
                     <div class="header-menu-vertical bg-blue">
                         <h4 class="menu-title be-af-none">All Categories</h4>
                         <ul class="menu-content display-block">
-                            <li class="menu-item"><a  href="/shop">All</a></li>
+                            <li class="menu-item"><a href="/shop">All</a></li>
                             @foreach($categories as $category)
 
                                 <li class="menu-item"><a
@@ -478,7 +478,11 @@
 </div>
 @push("scripts")
     <script type="text/javascript">
-        window.currency = {"amount": 1000, "label": `{{currentCurrency() }}`}
+        window.currency = {
+            "usd": {{ \App\CurrencyExchange::latest()->first()->american }},
+            "dirham": {{ \App\CurrencyExchange::latest()->first()->dirham }},
+            "current": `{{currentCurrency() }}`
+        }
     </script>
     <script type="text/javascript" src="/js/app.js?new_one"></script>
 @endpush
