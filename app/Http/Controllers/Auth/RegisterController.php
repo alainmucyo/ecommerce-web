@@ -37,9 +37,9 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'phone' => ['required','regex:/^(07)[0-9]{8}$/'],
+            'phone' => ['required', 'regex:/^(07)[0-9]{8}$/'],
             'address' => ['required'],
-            'password' => ['required', 'string', 'confirmed',"min:6"],
+            'password' => ['required', 'string', 'confirmed', "min:6"],
         ]);
     }
 
@@ -52,15 +52,10 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'status' => 1,
             'confirmed' => 1,
-            "shop_name"=>isset($data['shop_name'])?$data['shop_name']:null
         ]);
-        if ($data['type'] == "customer") {
-            $role = Role::where("slug", "customer")->first();
-            $user->attachRole($role);
-        } else {
-            $role = Role::where("slug", "seller")->first();
-            $user->attachRole($role);
-        }
+
+        $role = Role::where("slug", "customer")->first();
+        $user->attachRole($role);
         return $user;
     }
 
