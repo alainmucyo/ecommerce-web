@@ -40,11 +40,6 @@ class RegisterController extends Controller
             'phone' => ['required','regex:/^(07)[0-9]{8}$/'],
             'address' => ['required'],
             'password' => ['required', 'string', 'confirmed',"min:6"],
-//            'village_id' => ["required"],
-//            "cell_id" => ["required"],
-//            "sector_id" => ["required"],
-//            "district_id" => ["required"],
-//            "province_id" => ["required"]
         ]);
     }
 
@@ -55,13 +50,8 @@ class RegisterController extends Controller
             'phone' => $data['phone'],
             'address' => $data['address'],
             'password' => Hash::make($data['password']),
-            'status' => $data['type'] == "customer" ? 1 : 0,
-            'confirmed' => $data['type'] == "customer" ? 1 : 0,
-//            'village_id' =>$data['village_id'],
-//            "cell_id" => $data['cell_id'],
-//            "sector_id" =>$data['sector_id'],
-//            "district_id" =>$data['district_id'],
-//            "province_id" => $data['province_id'],
+            'status' => 1,
+            'confirmed' => 1,
             "shop_name"=>isset($data['shop_name'])?$data['shop_name']:null
         ]);
         if ($data['type'] == "customer") {
