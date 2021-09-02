@@ -91,16 +91,6 @@ class ProductController extends Controller
         return $images;
     }
 
-    public function deleteImages(ProductImage $image)
-    {
-        $path = storage_path() . "/app/public" . substr($image->image, 8);
-        if (file_exists($path)) {
-            unlink($path);
-        }
-        $image->delete();
-        return "ok";
-    }
-
 
     public function edit(Product $product)
     {
@@ -130,9 +120,6 @@ class ProductController extends Controller
             "description" => $request['description'],
             "sizes" => count($request['size']) == 0 ? null : json_encode($request['size']),
         ]);
-        /* foreach ($request['category'] as $category) {
-             DB::table("category_product")->insert(["category_id" => $category['id'], "product_id" => $product->id]);
-         }*/
         DB::table("category_product")->where("product_id", $product->id)->update(["category_id" => $request['category']['id']]);
         return "Product Updated Successfully!";
     }
