@@ -48,7 +48,7 @@
                                                                                          name="password"
                                                                                          required
                                                                                          autocomplete="current-password">
-                                                    <i class="cursor-pointer fa fa-eye border-0 w-auto px-0 pt-2 mt-1 form-control"
+                                                    <i class="cursor-pointer fa fa-eye-slash border-0 w-auto px-0 pt-2 mt-1 form-control"
                                                        id="togglePassword" style="margin-left: -30px"></i>
                                                 </div>
                                                 @error('password')
@@ -92,8 +92,16 @@
         const password = document.querySelector('#password');
         togglePassword.addEventListener('click', function (e) {
             const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            console.log(type)
             password.setAttribute('type', type);
-            this.classList.toggle('fa-eye-slash');
+            if(type=="text"){
+                togglePassword.classList.remove("fa-eye-slash")
+                togglePassword.classList.add("fa-eye")
+            }else{
+                togglePassword.classList.remove("fa-eye")
+                togglePassword.classList.add("fa-eye-slash")
+            }
+            // this.classList.toggle('fa-eye-slash');
         });
     </script>
 @endpush

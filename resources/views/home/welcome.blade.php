@@ -115,7 +115,7 @@
         </div>
         <!-- container -->
         <!-- Static Area Start -->
-        <div class="static-area  ptb-40px">
+        <div class="static-area ptb-40px ">
             <div class="mx-5">
                 <div class="static-area-wrap">
                     <div class="row">
@@ -270,7 +270,7 @@
         </div>
         <!-- container -->
         <!-- Static Area Start -->
-        <div class="static-area  ptb-40px">
+        <div class="static-area  ptb-40px hide-small">
             <div class="mx-5">
                 <div class="static-area-wrap">
                     <div class="row">

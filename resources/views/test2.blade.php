@@ -7,13 +7,19 @@
     <meta name="robots" content="noindex, follow"/>
     <meta name="description" content="david's high deals for shopping different styles you need"/>
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="/img/dhd_logo.png"/>
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon/favicon.png"/>
+
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>David's-High-Deals | @yield("title")</title>
+
+    <title>David's-High-Deals | Home</title>
+
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+
     <!-- Styles -->
     <style>
         body {
@@ -70,20 +76,16 @@
         }
     </style>
     <!-- Styles -->
-    <link rel="stylesheet" href="/assets/css/vendor/vendor.min.css"/>
-    <link rel="stylesheet" href="/assets/css/plugins/plugins.min.css"/>
-    <link rel="stylesheet" href="/assets/css/style.css">
-    <link rel="stylesheet" href="/assets/css/style.min.css">
-
+    <link rel="stylesheet" href="assets/css/vendor/vendor.min.css"/>
+    <link rel="stylesheet" href="assets/css/plugins/plugins.min.css"/>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style.min.css">
 
     <link href="/assets/files/assets/icon/feather/css/feather.css" rel="stylesheet" type="text/css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @stack("style")
 </head>
 <body id="top">
-<?php
-$categories = \App\Category::get();
-?>
 <div id="app">
     {{-- @include('sweet::alert') --}}
     <header class="header-wrapper">
@@ -95,7 +97,6 @@ $categories = \App\Category::get();
                         <p class="mb-0">Welcome to Dh-Deals!</p>
                     </div>
                     <div class="header-menu-nav">
-
                         <ul class="menu-nav mb-0">
                             @guest
                                 <li><a href="/login">Sign in</a></li>
@@ -163,33 +164,35 @@ $categories = \App\Category::get();
                         </div>
                         <div class="logo">
                             <a href="/"><img class="img-responsive h-100" src="/img/DHD2_logo.jpg"
-                                             style="width: 85%" alt="logo.png"/></a>
+                                             style="width: 85%"
+                                             alt="logo.png"/></a>
                         </div>
                     </div>
                     <div class="col-md-9 align-self-center">
                         <div class="header-right-element d-flex">
                             <div class="search-element media-body mr-120px">
-                                <form action="/shop" class="d-flex search-header">
+                                <form class="d-flex" action="/shop">
                                     <div class="search-category">
                                         <select name="category">
                                             <option value="all">All categories</option>
-                                            @if($categories->count())>0)
-                                            @foreach($categories as $category)
-                                                <option value="{{ $category->slug }}"
-                                                        id="{{ $category->name }}">{{ $category->name }}</option>
-                                            @endforeach
+                                            @if($categories->count() >0)
+                                                @foreach($categories as $category)
+                                                    <option value="{{ $category->slug }}"
+                                                            id="{{ $category->name }}">{{ $category->name }}</option>
+                                                @endforeach
                                             @else
-                                                <option value="all" disabled class="text-danger">No Categories Found
+                                                <option value="null" disabled class="text-danger">No Categories Found
                                                 </option>
                                             @endif
                                         </select>
                                     </div>
-                                    <input type="search" name="query" value="{{ request("query") }}"
+                                    <input type="text" name="query" value="{{ request("query") }}"
                                            placeholder="Enter your search key ... "/>
                                     <button type="submit"><i class="icon-magnifier"></i></button>
                                 </form>
                             </div>
                             <!--Cart info Start -->
+
                             <div class="header-tools d-flex">
                                 @role("customer")
                                 <div class="dropdown-primary dropdown">
@@ -270,11 +273,11 @@ $categories = \App\Category::get();
                 <!-- Header Logo Start -->
                 <div class="col">
                     <div class="header-logo">
-                        <a href="#"><img class="img-responsive" src="/img/DHD2_logo.jpg" alt="logo.png"
-                                         style="height: 65px;width: 183px;"/></a>
+                        <a href="#"><img class="img-responsive" src="/img/dhd_logo.png" alt="logo.png"/></a>
                     </div>
                 </div>
                 <!-- Header Logo End -->
+
                 <!-- Header Tools Start -->
                 <div class="col-auto">
                     <div class="header-tools justify-content-end">
@@ -326,7 +329,7 @@ $categories = \App\Category::get();
                                                 id="{{ $category->name }}">{{ $category->name }}</option>
                                     @endforeach
                                     @else
-                                        <option value="null" disabled class="text-danger">No Categories Found
+                                        <option value="all" disabled class="text-danger">No Categories Found
                                         </option>
                                     @endif
                                 </select>
@@ -359,7 +362,7 @@ $categories = \App\Category::get();
                             <ul>
                                 @if($categories->count()>0)
                                     @foreach($categories as $category)
-                                        <li><a href="/shop?category={{$category->slug}}">{{ $category->name }}</a></li>
+                                        <li><a href="#">{{ $category->name }}</a></li>
                                     @endforeach
                                 @else
                                     <li class="text-danger"><a href="#">No Categories Found</a></li>
@@ -402,8 +405,7 @@ $categories = \App\Category::get();
                                 <div class="content">
                                     <a href="/item/{{$cart_product->product->slug}}"
                                        class="title">{{$cart_product->product->title}}</a>
-                                    <span class="quantity-price">{{ $cart_product->quantity }} x <span
-                                            class="amount">{{ currencyConverter($cart_product->price) }}</span></span>
+                                    <span class="quantity-price">{{ $cart_product->quantity }} x <span class="amount">{{ currencyConverter($cart_product->price) }}</span></span>
                                     <a href="#" class="remove"
                                        onclick="if(!confirm('Remove {{$cart_product->product->title}} From Cart?' ))return;event.preventDefault();
                                            document.getElementById('cart{{ $cart_product->id }}').submit();">×</a>
@@ -470,7 +472,8 @@ $categories = \App\Category::get();
                     <li><a href="/contact-us" class="text-decoration-none">Contact Us</a></li>
                     <li><a href="#" class="text-decoration-none"><span class="menu-text">About-Us</span></a></li>
                     <li><a href="/cart" class="text-decoration-none"><span class="menu-text">Cart</span></a></li>
-                    <li><a href="#" class="text-decoration-none"><span class="menu-text">Checkout</span></a></li>
+                    <li><a href="/checkout" class="text-decoration-none"><span class="menu-text">Checkout</span></a>
+                    </li>
                     @guest
                         <li><a href="/login" class="text-decoration-none"><span
                                     class="menu-text">Login & Register</span></a>
@@ -523,7 +526,7 @@ $categories = \App\Category::get();
     <!-- Brand area end -->
 
     <main class="py-4">
-        @yield('content')
+        @include("home.welcome")
     </main>
     <!-- Footer Area Start -->
     <div class="footer-area">
@@ -534,14 +537,14 @@ $categories = \App\Category::get();
                         <div class="col-md-6 col-lg-4 mb-md-30px mb-lm-30px">
                             <div class="single-wedge">
                                 <h4 class="footer-herading">ABOUT US</h4>
-                                <p class="text-infor">We are a team of designers and developers that create high quality
-                                </p>
+                                <p class="text-infor">We are a team of fashion and design that create high quality
+                                    style</p>
                                 <div class="need-help">
                                     <p class="phone-info">
                                         NEED HELP?
                                         <span>
-                                        0788888888 <br/>
-                                        0788888888
+                                        078888888888 <br/>
+                                        078888888888
                                     </span>
                                     </p>
                                 </div>
@@ -646,7 +649,7 @@ $categories = \App\Category::get();
                             <p class="copy-text"> © {{now()->year}} <strong>David's High Deals</strong></p>
                         </div>
                         <div class="col-md-6 text-right">
-                            <img class="payment-img" src="/assets/images/icons/payment.png" alt=""/>
+                            <img class="payment-img" src="assets/images/icons/payment.png" alt=""/>
                         </div>
                     </div>
                 </div>
@@ -655,22 +658,15 @@ $categories = \App\Category::get();
     </div>
 </div>
 {{--<a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647;"><i class="ion-android-arrow-up"></i></a>--}}
-<!--<script src="/assets/js/vendor/vendor.min.js"></script>
-<script src="/assets/js/plugins/plugins.min.js"></script>
-<script src="/assets/js/jquery-v3.4.1.js"></script>
-<script src="/assets/js/main.js"></script>-->
-<script src="/assets/js/vendor/vendor.min.js"></script>
-<script src="/assets/js/plugins/plugins.min.js"></script>
+<!--<script src="assets/js/vendor/vendor.min.js"></script>
+<script src="assets/js/plugins/plugins.min.js"></script>
+<script src="assets/js/jquery-v3.4.1.js"></script>
+<script src="assets/js/main.js"></script>-->
+<script src="assets/js/vendor/vendor.min.js"></script>
+<script src="assets/js/plugins/plugins.min.js"></script>
 
 <!-- Main Activation JS -->
-<script src="/assets/js/main.js"></script>
-<script type="text/javascript">
-    window.currency = {
-        "usd": {{ \App\CurrencyExchange::latest()->first()->american }},
-        "dirham": {{ \App\CurrencyExchange::latest()->first()->dirham }},
-        "current": `{{currentCurrency() }}`
-    }
-</script>
+<script src="assets/js/main.js"></script>
 @stack("scripts")
 </body>
 </html>

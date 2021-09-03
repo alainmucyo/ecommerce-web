@@ -146,7 +146,6 @@ class UsersController extends Controller
 
     public function profile(Request $request, User $user)
     {
-
         $validators = validator()->make($request->all(), [
             'address' => ['required', 'max:255'],
             'phone' => 'required',

@@ -7,7 +7,7 @@
     <meta name="robots" content="noindex, follow"/>
     <meta name="description" content="david's high deals for shopping different styles you need"/>
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon/favicon.png"/>
+    <link rel="shortcut icon" type="image/x-icon" href="/img/dhd_logo.png"/>
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -73,6 +73,13 @@
 
         .media-body {
             flex: 1;
+        }
+
+        /* 1200px */
+        @media only screen and (max-width: 75em) {
+            .hide-small{
+                display: none;
+            }
         }
     </style>
     <!-- Styles -->
@@ -273,7 +280,7 @@
                 <!-- Header Logo Start -->
                 <div class="col">
                     <div class="header-logo">
-                        <a href="#"><img class="img-responsive" src="/img/dhd_logo.png" alt="logo.png"/></a>
+                        <a href="#"><img class="img-responsive" src="/img/DHD2_logo.jpg" alt="logo.png" height="55px" /></a>
                     </div>
                 </div>
                 <!-- Header Logo End -->
