@@ -50,6 +50,9 @@ class ChatboxController extends Controller
                     array_push($new_seller_ids, $req_seller_id);
             }
             $sellers = User::whereIn("id", $new_seller_ids)->get();
+            if (count($sellers) == 0) {
+                $sellers = User::where("email", "admin@admin.com")->get();
+            }
             return CustomerChatList::collection($sellers);
         } else {
             $order_ids = OrderProduct::where("seller_id", auth()->user()->id)->pluck("order_id");

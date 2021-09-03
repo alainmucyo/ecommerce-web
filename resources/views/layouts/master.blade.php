@@ -98,38 +98,42 @@ $categories = \App\Category::get();
             <div class="mx-5">
                 <div class="header-nav-wrapper d-md-flex d-sm-flex d-xl-flex d-lg-flex justify-content-between">
                     <div class="header-static-nav">
-                        <p class="mb-0">Welcome you to High Deals!</p>
+                        <p class="mb-0">Welcome to Dh-Deals!</p>
                     </div>
                     <div class="header-menu-nav">
+
                         <ul class="menu-nav mb-0">
-                            <li>
-                                <div class="dropdown">
-                                    <button type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                                            aria-haspopup="true" aria-expanded="false">Setting <i
-                                            class="ion-ios-arrow-down"></i></button>
-                                    <ul class="dropdown-menu animation slideDownI" aria-labelledby="dropdownMenuButton">
-                                        <li><a href="/checkout">Checkout</a></li>
-                                        @guest
-                                            <li><a href="/login">Sign in</a></li>
-                                            <li><a href="/register">Register</a></li>
-                                        @else
+                            @guest
+                                <li><a href="/login">Sign in</a></li>
+                                <li><a href="/register">Register</a></li>
+                            @else
+                                <li>
+                                    <div class="dropdown">
+                                        <button type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                                                aria-haspopup="true" aria-expanded="false">Setting <i
+                                                class="ion-ios-arrow-down"></i></button>
+                                        <ul class="dropdown-menu animation slideDownI"
+                                            aria-labelledby="dropdownMenuButton">
+                                            <li><a href="/checkout">Checkout</a></li>
+
                                             @role("customer")
-                                                <li><a href="/chatbox/customer">Message</a></li>
-                                                <li><a href="/orders">Orders</a></li>
-                                                <li><a href="/customer/profile">My account</a></li>
+                                            <li><a href="/chatbox/customer">Message</a></li>
+                                            <li><a href="/orders">Orders</a></li>
+                                            <li><a href="/customer/profile">My account</a></li>
                                             @endrole
                                             @role("admin" || "seller")
-                                                <li><a href="/home">Dashboard</a></li>
+                                            <li><a href="/home">Dashboard</a></li>
                                             @endrole
                                             <li><a href="/logout">Logout</a></li>
-                                        @endguest
-                                    </ul>
-                                </div>
-                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            @endguest
                             <li class="pr-0">
                                 <div class="dropdown">
                                     <button type="button" id="dropdownMenuButton-2" data-toggle="dropdown"
-                                            aria-haspopup="true" aria-expanded="false">{{ mb_strtoupper(currentCurrency()) }}<i
+                                            aria-haspopup="true"
+                                            aria-expanded="false">{{ mb_strtoupper(currentCurrency()) }}<i
                                             class="ion-ios-arrow-down ml-1"></i></button>
                                     <ul class="dropdown-menu animation slideDownIn"
                                         aria-labelledby="dropdownMenuButton-2">
@@ -194,55 +198,55 @@ $categories = \App\Category::get();
                             <!--Cart info Start -->
                             <div class="header-tools d-flex">
                                 @role("customer")
-                                    <div class="dropdown-primary dropdown">
-                                        <div class="cart-info d-flex align-self-center mr-3 dropdown-toggle"
-                                             data-toggle="dropdown">
-                                            @if($undelivered>0 || $unread_messages>0)
-                                                <a href="javascript:void(0)" class="bag text-decoration-none"
-                                                   data-number="{{ $undelivered + $unread_messages}}"><i
-                                                        class="feather icon-bell"></i></a>
-                                            @else
-                                                <a href="javascript:void(0)" class="text-decoration-none"
-                                                   data-number="0"><i class="feather icon-bell"></i></a>
-                                            @endif
-                                        </div>
+                                <div class="dropdown-primary dropdown">
+                                    <div class="cart-info d-flex align-self-center mr-3 dropdown-toggle"
+                                         data-toggle="dropdown">
                                         @if($undelivered>0 || $unread_messages>0)
-                                            <ul class="show-notification notification-view dropdown-menu"
-                                                data-dropdown-in="fadeIn"
-                                                data-dropdown-out="fadeOut"
-                                                style="min-width: 225px;right: -25% !important;top: 15px !important;">
-                                                <li class="d-flex">
-                                                    <h6>Notifications</h6>
-                                                    @if( $undelivered>0 || $unread_messages>0)
-                                                        <label class="label label-danger ml-auto h-100">New</label>
-                                                    @endif
-                                                </li>
-                                                <li>
-                                                    <div class="media">
-                                                        <div class="media-body">
-                                                            @if($undelivered>0)
-                                                                <h5 class="notification-user"><b>Undelivered
-                                                                        orders</b></h5>
-                                                                <p class="notification-msg mb-0">You
-                                                                    have {{ $undelivered }}
-                                                                    undelivered
-                                                                    product(s)
-                                                                    orders.</p>
-                                                            @endif
-                                                            @if($unread_messages>0)
-                                                                <h5 class="notification-user"><b>Unread messages</b>
-                                                                </h5>
-                                                                <p class="notification-msg">You
-                                                                    have {{ $unread_messages }}
-                                                                    unread
-                                                                    messages from seller(s).</p>
-                                                            @endif
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            </ul>
+                                            <a href="javascript:void(0)" class="bag text-decoration-none"
+                                               data-number="{{ $undelivered + $unread_messages}}"><i
+                                                    class="feather icon-bell"></i></a>
+                                        @else
+                                            <a href="javascript:void(0)" class="text-decoration-none"
+                                               data-number="0"><i class="feather icon-bell"></i></a>
                                         @endif
                                     </div>
+                                    @if($undelivered>0 || $unread_messages>0)
+                                        <ul class="show-notification notification-view dropdown-menu"
+                                            data-dropdown-in="fadeIn"
+                                            data-dropdown-out="fadeOut"
+                                            style="min-width: 225px;right: -25% !important;top: 15px !important;">
+                                            <li class="d-flex">
+                                                <h6>Notifications</h6>
+                                                @if( $undelivered>0 || $unread_messages>0)
+                                                    <label class="label label-danger ml-auto h-100">New</label>
+                                                @endif
+                                            </li>
+                                            <li>
+                                                <div class="media">
+                                                    <div class="media-body">
+                                                        @if($undelivered>0)
+                                                            <h5 class="notification-user"><b>Undelivered
+                                                                    orders</b></h5>
+                                                            <p class="notification-msg mb-0">You
+                                                                have {{ $undelivered }}
+                                                                undelivered
+                                                                product(s)
+                                                                orders.</p>
+                                                        @endif
+                                                        @if($unread_messages>0)
+                                                            <h5 class="notification-user"><b>Unread messages</b>
+                                                            </h5>
+                                                            <p class="notification-msg">You
+                                                                have {{ $unread_messages }}
+                                                                unread
+                                                                messages from seller(s).</p>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    @endif
+                                </div>
                                 @endrole
                                 <div class="cart-info d-flex align-self-center">
                                     @if(count($cart_products)>0)
@@ -405,7 +409,8 @@ $categories = \App\Category::get();
                                 <div class="content">
                                     <a href="/item/{{$cart_product->product->slug}}"
                                        class="title">{{$cart_product->product->title}}</a>
-                                    <span class="quantity-price">{{ $cart_product->quantity }} x <span class="amount">{{ currencyConverter($cart_product->price) }}</span></span>
+                                    <span class="quantity-price">{{ $cart_product->quantity }} x <span
+                                            class="amount">{{ currencyConverter($cart_product->price) }}</span></span>
                                     <a href="#" class="remove"
                                        onclick="if(!confirm('Remove {{$cart_product->product->title}} From Cart?' ))return;event.preventDefault();
                                            document.getElementById('cart{{ $cart_product->id }}').submit();">×</a>

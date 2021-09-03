@@ -94,38 +94,41 @@
             <div class="mx-5">
                 <div class="header-nav-wrapper d-md-flex d-sm-flex d-xl-flex d-lg-flex justify-content-between">
                     <div class="header-static-nav">
-                        <p class="mb-0">Welcome you to High Deals!</p>
+                        <p class="mb-0">Welcome to Dh-Deals!</p>
                     </div>
                     <div class="header-menu-nav">
                         <ul class="menu-nav mb-0">
-                            <li>
-                                <div class="dropdown">
-                                    <button type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                                            aria-haspopup="true" aria-expanded="false">Setting <i
-                                            class="ion-ios-arrow-down"></i></button>
-                                    <ul class="dropdown-menu animation slideDownI" aria-labelledby="dropdownMenuButton">
-                                        <li><a href="/checkout">Checkout</a></li>
-                                        @guest
-                                            <li><a href="/login">Sign in</a></li>
-                                            <li><a href="/register">Register</a></li>
-                                        @else
+                            @guest
+                                <li><a href="/login">Sign in</a></li>
+                                <li><a href="/register">Register</a></li>
+                            @else
+                                <li>
+                                    <div class="dropdown">
+                                        <button type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                                                aria-haspopup="true" aria-expanded="false">Setting <i
+                                                class="ion-ios-arrow-down"></i></button>
+                                        <ul class="dropdown-menu animation slideDownI"
+                                            aria-labelledby="dropdownMenuButton">
+                                            <li><a href="/checkout">Checkout</a></li>
+
                                             @role("customer")
-                                                <li><a href="/chatbox/customer">Message</a></li>
-                                                <li><a href="/orders">Orders</a></li>
-                                                <li><a href="/customer/profile">My account</a></li>
+                                            <li><a href="/chatbox/customer">Message</a></li>
+                                            <li><a href="/orders">Orders</a></li>
+                                            <li><a href="/customer/profile">My account</a></li>
                                             @endrole
                                             @role("admin" || "seller")
-                                                <li><a href="/home">Dashboard</a></li>
+                                            <li><a href="/home">Dashboard</a></li>
                                             @endrole
                                             <li><a href="/logout">Logout</a></li>
-                                        @endguest
-                                    </ul>
-                                </div>
-                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            @endguest
                             <li class="pr-0">
                                 <div class="dropdown">
                                     <button type="button" id="dropdownMenuButton-2" data-toggle="dropdown"
-                                            aria-haspopup="true" aria-expanded="false">{{ mb_strtoupper(currentCurrency()) }}<i
+                                            aria-haspopup="true"
+                                            aria-expanded="false">{{ mb_strtoupper(currentCurrency()) }}<i
                                             class="ion-ios-arrow-down ml-1"></i></button>
                                     <ul class="dropdown-menu animation slideDownIn"
                                         aria-labelledby="dropdownMenuButton-2">
