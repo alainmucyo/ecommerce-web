@@ -168,8 +168,13 @@
                         <li class="user-profile header-notification">
                             <div class="dropdown-primary dropdown">
                                 <div class="dropdown-toggle" data-toggle="dropdown">
-                                    <img alt="User-Profile-Image" class="img-radius"
-                                         src="/img/user.png">
+                                    @if(auth()->user()->avatar != null)
+                                        <img alt="User-Profile-Image" class="img-radius"
+                                             src="{{auth()->user()->avatar}}" style="height: 40px">
+                                    @else
+                                        <img alt="User-Profile-Image" class="img-radius"
+                                             src="/img/user.png" style="height: 40px">
+                                    @endif
                                     <span>{{ auth()->user()->email }}</span>
                                     <i class="feather icon-chevron-down"></i>
                                 </div>
@@ -332,6 +337,8 @@
             toastr.success('{{ session("success") }}')
         })
 
+
+
     </script>
 @endif
 @if(session("info"))
@@ -341,6 +348,8 @@
             toastr.options.timeOut = '10000';
             toastr.info('{{ session("info") }}')
         })
+
+
 
 
 
@@ -360,6 +369,8 @@
 
 
 
+
+
     </script>
 @endif
 @if(count($errors))
@@ -369,6 +380,8 @@
             toastr.options.timeOut = '10000';
             toastr.error('Please, make sure all fields are filled correctly!')
         })
+
+
 
 
 

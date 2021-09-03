@@ -17,10 +17,16 @@ class UsersController extends Controller
         $this->middleware('auth');
     }
 
+    private function imageUploader($image): string
+    {
+        $uploadedFileUrl = Cloudinary()->upload($image)->getSecurePath();
+        return $uploadedFileUrl;
+    }
+
     public function users()
     {
         $auth = auth()->user();
-        return view("admin.users.index",compact("auth"));
+        return view("admin.users.index", compact("auth"));
     }
 
     public function sellers()
@@ -148,8 +154,6 @@ class UsersController extends Controller
         if ($validators->fails()) {
             return response()->json($validators->errors(), 422);
         }
-        $user->update(["address" => $request->address, "email" => $request->email, "phone" => $request->phone]);
-
         if ($request->old_password && trim($request->old_password) != "") {
 
             $old_password = $user->getAuthPassword();
@@ -166,6 +170,11 @@ class UsersController extends Controller
 
             }
         }
+        if ($request["avatar"] !== $user->avatar) {
+            $request["avatar"] = $this->imageUploader($request->avatar);
+        }
+        $user->update(["address" => $request->address, "avatar" => $request->avatar, "email" => $request->email, "phone" => $request->phone]);
+
 
         return $user;
 

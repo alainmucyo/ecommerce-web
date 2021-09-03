@@ -42,10 +42,15 @@
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                                 @enderror
-                                                <input id="password" type="password" placeholder="Password"
-                                                       class="form-control @error('password') is-invalid @enderror"
-                                                       name="password"
-                                                       required autocomplete="current-password">
+                                                <div class="password-area d-flex"><input id="password" type="password"
+                                                                                         placeholder="Password"
+                                                                                         class="form-control @error('password') is-invalid @enderror"
+                                                                                         name="password"
+                                                                                         required
+                                                                                         autocomplete="current-password">
+                                                    <i class="cursor-pointer fa fa-eye border-0 w-auto px-0 pt-2 mt-1 form-control"
+                                                       id="togglePassword" style="margin-left: -30px"></i>
+                                                </div>
                                                 @error('password')
                                                 <span class="invalid-feedback" role="alert">
                                                      <strong>{{ $message }}</strong>
@@ -58,7 +63,8 @@
                                                         <a class="flote-none" href="javascript:void(0)">Remember me</a>
                                                         @if (Route::has('password.request'))
                                                             <div class="row mx-0 justify-content-lg-between">
-                                                                <a class="btn btn-link pl-0" href="/register">Create Account</a>
+                                                                <a class="btn btn-link pl-0" href="/register">Create
+                                                                    Account</a>
                                                                 <a class="btn btn-link"
                                                                    href="#">
                                                                     {{ __('Forgot Your Password?') }}
@@ -80,4 +86,14 @@
         </div>
     </div>
 @endsection
-
+@push("scripts")
+    <script>
+        const togglePassword = document.querySelector('#togglePassword');
+        const password = document.querySelector('#password');
+        togglePassword.addEventListener('click', function (e) {
+            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
+            this.classList.toggle('fa-eye-slash');
+        });
+    </script>
+@endpush

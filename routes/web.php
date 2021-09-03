@@ -93,7 +93,6 @@ Route::middleware('auth')->group(function () {
 Route::get("/product/category/{category}", "ProductController@getByCategories");
 Route::get("/product/image/{product}", "ProductController@image")->middleware('auth');
 Route::post("/product/image/{product}", "ProductController@storeImages")->middleware('auth');
-Route::delete("/product/image/{image}", "ProductController@deleteImages")->middleware('auth');
 Route::get("/item/{slug}", "ItemController@show");
 
 Route::get("/shop", "ItemController@index");
