@@ -61,9 +61,10 @@ Route::middleware('CheckRole')->group(function () {
         Route::resource("/currencies", "CurrencyExchangeController");
     });
 
-    Route::post("/profile/{user}", "UsersController@profile")->middleware('auth');
-    Route::get("/profile", "UsersController@getProfile")->middleware('auth');
 });
+
+Route::post("/profile/{user}", "UsersController@profile")->middleware('auth');
+Route::get("/profile", "UsersController@getProfile")->middleware('auth');
 Route::middleware('auth')->group(function () {
     Route::put("/cart/update", "CartController@update");
     Route::resource("/cart", "CartController");

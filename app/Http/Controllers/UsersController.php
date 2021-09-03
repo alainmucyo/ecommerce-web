@@ -149,7 +149,7 @@ class UsersController extends Controller
 
         $validators = validator()->make($request->all(), [
             'address' => ['required', 'max:255'],
-            'phone' => 'required|regex:/^(07[8,2,3,9])[0-9]{7}$/',
+            'phone' => 'required',
         ]);
         if ($validators->fails()) {
             return response()->json($validators->errors(), 422);
