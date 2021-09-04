@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <meta http-equiv="x-ua-compatible" content="ie=edge"/>
     <meta name="robots" content="noindex, follow"/>
-    <meta name="description" content="david's high deals for shopping different styles you need"/>
+    <meta name="description" content="dh deals for shopping different styles you need"/>
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="/img/dhd_logo.png"/>
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>David's-High-Deals | @yield("title")</title>
+    <title>DH-Deals | @yield("title")</title>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -526,7 +526,7 @@ $categories = \App\Category::get();
         @yield('content')
     </main>
     <!-- Footer Area Start -->
-    <div class="footer-area">
+<!--    <div class="footer-area">
         <div class="footer-container">
             <div class="footer-top">
                 <div class="mx-5">
@@ -571,33 +571,33 @@ $categories = \App\Category::get();
                                         <li><a href="#">Prices Drop</a></li>
                                         <li><a href="/shop">Products</a></li>
                                         @guest
-                                            <li><a href="/login" class="text-decoration-none"><span
-                                                        class="menu-text">Login & Register</span></a>
-                                            </li>
-                                        @else
-                                            <li><a href="/customer/profile" class="text-decoration-none"><span
-                                                        class="menu-text">My Account</span></a></li>
-                                        @endguest
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-4 ">
-                            <div class="single-wedge">
-                                <h4 class="footer-herading">NEWS LETTER</h4>
-                                <div class="subscrib-text">
-                                    <p>You may unsubscribe at any moment. For that purpose, please find our contact info
-                                        in the legal notice.</p>
-                                </div>
-                                <div id="mc_embed_signup" class="subscribe-form">
-                                    <form
-                                        id="mc-embedded-subscribe-form"
-                                        class="validate"
-                                        novalidate=""
-                                        target="_blank"
-                                        name="mc-embedded-subscribe-form"
-                                        method="post"
-                                        action="http://devitems.us11.list-manage.com/subscribe/post?u=6bbb9b6f5827bd842d9640c82&amp;id=05d85f18ef"
+    <li><a href="/login" class="text-decoration-none"><span
+                class="menu-text">Login & Register</span></a>
+    </li>
+@else
+    <li><a href="/customer/profile" class="text-decoration-none"><span
+                class="menu-text">My Account</span></a></li>
+@endguest
+    </ul>
+</div>
+</div>
+</div>
+<div class="col-md-6 col-lg-4 ">
+<div class="single-wedge">
+<h4 class="footer-herading">NEWS LETTER</h4>
+<div class="subscrib-text">
+    <p>You may unsubscribe at any moment. For that purpose, please find our contact info
+        in the legal notice.</p>
+</div>
+<div id="mc_embed_signup" class="subscribe-form">
+    <form
+        id="mc-embedded-subscribe-form"
+        class="validate"
+        novalidate=""
+        target="_blank"
+        name="mc-embedded-subscribe-form"
+        method="post"
+        action="http://devitems.us11.list-manage.com/subscribe/post?u=6bbb9b6f5827bd842d9640c82&amp;id=05d85f18ef"
                                     >
                                         <div id="mc_embed_signup_scroll" class="mc-form">
                                             <input class="email" type="email" required=""
@@ -647,6 +647,102 @@ $categories = \App\Category::get();
                         </div>
                         <div class="col-md-6 text-right">
                             <img class="payment-img" src="/assets/images/icons/payment.png" alt=""/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>-->
+    <div class="footer-area">
+        <div class="footer-container">
+            <div class="footer-top">
+                <div class="mx-5">
+                    <div class="row">
+                        <div class="col-md-6 col-lg-4 mb-md-30px mb-lm-30px">
+                            <div class="single-wedge">
+                                <h4 class="footer-herading">ABOUT US</h4>
+                                <p class="text-infor">
+                                    We are known for our quality services and panctuality on deliveries.
+                                </p>
+                                <div class="need-help">
+                                    <p class="phone-info">
+                                        NEED HELP?
+                                        <span>
+                                        +250 788 739 675 <br/>
+                                        +971 55 222 5089
+                                    </span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-2 mb-md-30px mb-lm-30px">
+                            <div class="single-wedge">
+                                <h4 class="footer-herading">Information</h4>
+                                <div class="footer-links">
+                                    <ul>
+                                        <li><a href="#">About Us</a></li>
+                                        <li><a href="/contact-us">Contact Us</a></li>
+                                        <li><a href="/contact-us#viewMap">Sitemap</a></li>
+                                        <li><a href="/shop">Stores</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-2 mb-sm-30px mb-lm-30px">
+                            <div class="single-wedge">
+                                <h4 class="footer-herading">CUSTOM LINKS</h4>
+                                <div class="footer-links">
+                                    <ul>
+                                        <li><a href="/shop">Products</a></li>
+                                        @guest
+                                            <li><a href="/login" class="text-decoration-none"><span
+                                                        class="menu-text">Login & Register</span></a>
+                                            </li>
+                                        @else
+                                            <li><a href="/customer/profile" class="text-decoration-none"><span
+                                                        class="menu-text">My Account</span></a></li>
+                                        @endguest
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4 ">
+                            <div class="single-wedge">
+                                <div class="social-info">
+                                    <ul>
+                                        <li>
+                                            <a href="#"><i class="icon-social-facebook"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="icon-social-twitter"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="https://www.instagram.com/dhd_group.ltd"><i
+                                                    class="icon-social-instagram"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="icon-social-instagram"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+
+                            <p class="copy-text"> © {{now()->year}} <strong>DH Deals</strong></p>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            {{--                            <img class="payment-img" src="assets/images/icons/payment.png" alt=""/>--}}
+                            <img src="/img/mtn.jpg" alt="" style="height: 32px">
+                            <img src="/img/airtel.jpg" alt="" style="height: 32px">
+                            <img src="/img/mastercard.png" alt="" style="height: 32px">
+                            <img src="/img/visa.png" alt="" style="height: 32px">
                         </div>
                     </div>
                 </div>

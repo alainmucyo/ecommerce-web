@@ -12,7 +12,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>David's-High-Deals | Home</title>
+    <title>DH-Deals | Home</title>
 
 
     <!-- Fonts -->
@@ -545,7 +545,7 @@
                             <div class="single-wedge">
                                 <h4 class="footer-herading">ABOUT US</h4>
                                 <p class="text-infor">
-                                We are known for our quality services and panctuality on deliveries.
+                                    We are known for our quality services and panctuality on deliveries.
                                 </p>
                                 <div class="need-help">
                                     <p class="phone-info">
@@ -600,7 +600,8 @@
                                             <a href="#"><i class="icon-social-twitter"></i></a>
                                         </li>
                                         <li>
-                                            <a href="https://www.instagram.com/dhd_group.ltd"><i class="icon-social-instagram"></i></a>
+                                            <a href="https://www.instagram.com/dhd_group.ltd"><i
+                                                    class="icon-social-instagram"></i></a>
                                         </li>
                                         <li>
                                             <a href="#"><i class="icon-social-instagram"></i></a>
@@ -620,7 +621,11 @@
                             <p class="copy-text"> © {{now()->year}} <strong>DH Deals</strong></p>
                         </div>
                         <div class="col-md-6 text-right">
-                            <img class="payment-img" src="assets/images/icons/payment.png" alt=""/>
+                            {{--                            <img class="payment-img" src="assets/images/icons/payment.png" alt=""/>--}}
+                            <img src="/img/mtn.jpg" alt="" style="height: 32px">
+                            <img src="/img/airtel.jpg" alt="" style="height: 32px">
+                            <img src="/img/mastercard.png" alt="" style="height: 32px">
+                            <img src="/img/visa.png" alt="" style="height: 32px">
                         </div>
                     </div>
                 </div>
