@@ -42,7 +42,7 @@ class BuyController extends Controller
                     "name" => $userinfo->name
                 ],
                 "customizations" => [
-                    "title" => "David's High Deals",
+                    "title" => "DH Deals",
                     "description" => "Products payments",
                     "logo" => "https://res.cloudinary.com/alainmucyo/image/upload/v1629698896/david-high-deal_qdbet0.png"
                 ]
@@ -132,7 +132,7 @@ class BuyController extends Controller
                 $transaction_id,
                 $sum,
                 $userinfo,
-                "David's High Deals payments"
+                "DH Deals payments"
             );
             $link = $response["data"]["link"];
         }

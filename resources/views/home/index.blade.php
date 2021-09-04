@@ -101,7 +101,7 @@
             <div class="mx-5">
                 <div class="header-nav-wrapper d-md-flex d-sm-flex d-xl-flex d-lg-flex justify-content-between">
                     <div class="header-static-nav">
-                        <p class="mb-0">Welcome to Dh-Deals!</p>
+                        <p class="mb-0">Welcome to DH-Deals!</p>
                     </div>
                     <div class="header-menu-nav">
                         <ul class="menu-nav mb-0">
@@ -544,14 +544,15 @@
                         <div class="col-md-6 col-lg-4 mb-md-30px mb-lm-30px">
                             <div class="single-wedge">
                                 <h4 class="footer-herading">ABOUT US</h4>
-                                <p class="text-infor">We are a team of fashion and design that create high quality
-                                    style</p>
+                                <p class="text-infor">
+                                We are known for our quality services and panctuality on deliveries.
+                                </p>
                                 <div class="need-help">
                                     <p class="phone-info">
                                         NEED HELP?
                                         <span>
-                                        078888888888 <br/>
-                                        078888888888
+                                        +250 788 739 675 <br/>
+                                        +971 55 222 5089
                                     </span>
                                     </p>
                                 </div>
@@ -562,9 +563,7 @@
                                 <h4 class="footer-herading">Information</h4>
                                 <div class="footer-links">
                                     <ul>
-                                        <li><a href="#">Delivery</a></li>
                                         <li><a href="#">About Us</a></li>
-                                        <li><a href="#">Secure Payment</a></li>
                                         <li><a href="/contact-us">Contact Us</a></li>
                                         <li><a href="/contact-us#viewMap">Sitemap</a></li>
                                         <li><a href="/shop">Stores</a></li>
@@ -577,8 +576,6 @@
                                 <h4 class="footer-herading">CUSTOM LINKS</h4>
                                 <div class="footer-links">
                                     <ul>
-                                        <li><a href="#">Legal Notice</a></li>
-                                        <li><a href="#">Prices Drop</a></li>
                                         <li><a href="/shop">Products</a></li>
                                         @guest
                                             <li><a href="/login" class="text-decoration-none"><span
@@ -594,36 +591,6 @@
                         </div>
                         <div class="col-md-6 col-lg-4 ">
                             <div class="single-wedge">
-                                <h4 class="footer-herading">NEWS LETTER</h4>
-                                <div class="subscrib-text">
-                                    <p>You may unsubscribe at any moment. For that purpose, please find our contact info
-                                        in the legal notice.</p>
-                                </div>
-                                <div id="mc_embed_signup" class="subscribe-form">
-                                    <form
-                                        id="mc-embedded-subscribe-form"
-                                        class="validate"
-                                        novalidate=""
-                                        target="_blank"
-                                        name="mc-embedded-subscribe-form"
-                                        method="post"
-                                        action="http://devitems.us11.list-manage.com/subscribe/post?u=6bbb9b6f5827bd842d9640c82&amp;id=05d85f18ef"
-                                    >
-                                        <div id="mc_embed_signup_scroll" class="mc-form">
-                                            <input class="email" type="email" required=""
-                                                   placeholder="Enter your email here.." name="EMAIL" value=""/>
-                                            <div class="mc-news" aria-hidden="true"
-                                                 style="position: absolute; left: -5000px;">
-                                                <input type="text" value="" tabindex="-1"
-                                                       name="b_6bbb9b6f5827bd842d9640c82_05d85f18ef"/>
-                                            </div>
-                                            <div class="clear">
-                                                <input id="mc-embedded-subscribe" class="button" type="submit"
-                                                       name="subscribe" value="Sign Up"/>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
                                 <div class="social-info">
                                     <ul>
                                         <li>
@@ -633,10 +600,7 @@
                                             <a href="#"><i class="icon-social-twitter"></i></a>
                                         </li>
                                         <li>
-                                            <a href="#"><i class="icon-social-instagram"></i></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="icon-social-google"></i></a>
+                                            <a href="https://www.instagram.com/dhd_group.ltd"><i class="icon-social-instagram"></i></a>
                                         </li>
                                         <li>
                                             <a href="#"><i class="icon-social-instagram"></i></a>
@@ -653,7 +617,7 @@
                     <div class="row">
                         <div class="col-md-6">
 
-                            <p class="copy-text"> © {{now()->year}} <strong>David's High Deals</strong></p>
+                            <p class="copy-text"> © {{now()->year}} <strong>DH Deals</strong></p>
                         </div>
                         <div class="col-md-6 text-right">
                             <img class="payment-img" src="assets/images/icons/payment.png" alt=""/>

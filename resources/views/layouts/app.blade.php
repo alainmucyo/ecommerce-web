@@ -2,7 +2,7 @@
 <html lang="en">
 <meta content="text/html;charset=UTF-8" http-equiv="content-type"/><!-- /Added by HTTrack -->
 <head>
-    <title>David's High Deals Dashboard</title>
+    <title>DH Deals Dashboard</title>
     <!--[if lt IE 10]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -17,6 +17,7 @@
           content="David High Deals, store market , market place , market , africa ,   e commerce, rwanda, online, modern, shop, secure, clothes, accessories, watches, women, jewels, kigali">
     <meta name="author" content="David High Deals Marketplace">
     <!-- Global site tag (gtag.js) - Google Analytics -->
+    <link rel="shortcut icon" type="image/x-icon" href="/img/dhd_logo.png"/>
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-175795975-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -98,7 +99,7 @@
                 <div class="navbar-logo">
                     <a href="/home">
                         <img alt="Logo" class="img-fluid" src="/img/dhd_logo.png"
-                             style="width: 45%;"/>
+                             style="width: 25%;"/>
                     </a>
                     <a class="mobile-menu" href="#!" id="mobile-collapse">
                         <i class="feather icon-menu icon-toggle-right"></i>
@@ -221,8 +222,8 @@
                                 <div class="page-header-title">
                                     <i class="feather icon-watch bg-c-blue"></i>
                                     <div class="d-inline">
-                                        <h5>David's High Deals shopping</h5>
-                                        <span>Welcome to David's High Deals buying and selling.</span>
+                                        <h5>DH Deals shopping</h5>
+                                        <span>Welcome to DH Deals buying and selling.</span>
                                     </div>
                                 </div>
                             </div>

@@ -94,7 +94,7 @@
             <div class="mx-5">
                 <div class="header-nav-wrapper d-md-flex d-sm-flex d-xl-flex d-lg-flex justify-content-between">
                     <div class="header-static-nav">
-                        <p class="mb-0">Welcome to Dh-Deals!</p>
+                        <p class="mb-0">Welcome to DH-Deals!</p>
                     </div>
                     <div class="header-menu-nav">
                         <ul class="menu-nav mb-0">
@@ -646,7 +646,7 @@
                     <div class="row">
                         <div class="col-md-6">
 
-                            <p class="copy-text"> © {{now()->year}} <strong>David's High Deals</strong></p>
+                            <p class="copy-text"> © {{now()->year}} <strong>DH Deals</strong></p>
                         </div>
                         <div class="col-md-6 text-right">
                             <img class="payment-img" src="assets/images/icons/payment.png" alt=""/>

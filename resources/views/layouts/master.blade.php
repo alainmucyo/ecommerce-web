@@ -643,7 +643,7 @@ $categories = \App\Category::get();
                     <div class="row">
                         <div class="col-md-6">
 
-                            <p class="copy-text"> © {{now()->year}} <strong>David's High Deals</strong></p>
+                            <p class="copy-text"> © {{now()->year}} <strong>DH Deals</strong></p>
                         </div>
                         <div class="col-md-6 text-right">
                             <img class="payment-img" src="/assets/images/icons/payment.png" alt=""/>
