@@ -195,7 +195,7 @@
                                                                                class="product-link">{{ $product->slug }}</a>
                                                                         </h2>
                                                                         <div class="product-intro-info">
-                                                                            {!! $product->description !!}
+                                                                            {!! str_limit($product->description,220) !!}
                                                                         </div>
                                                                     </div>
                                                                     <div class="box-inner">

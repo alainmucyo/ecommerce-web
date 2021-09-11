@@ -3,6 +3,8 @@
         <div class="mx-5">
             <div class="checkout-page">
                 <div class="checkout-form">
+
+
                     <form method="post" action="/checkout" @submit.prevent="buySubmit">
                         <div class="row">
                             <div class="col-lg-7">
@@ -60,7 +62,10 @@
                                 <div class="checkout-details">
                                     <div class="your-order-area">
                                         <h3>Your order</h3>
-                                        <div class="your-order-wrap gray-bg-4">
+                                        <div class="your-order-wrap gray-bg-4 relative">
+                                            <div class="loader-container" v-if="loading">
+                                                <div class="lds-dual-ring"></div>
+                                            </div>
                                             <div v-if="cart_products && cart_products.length > 0">
                                                 <div class="your-order-product-info">
                                                     <div class="your-order-top">
@@ -164,6 +169,7 @@
                             </div>
                         </div>
                     </form>
+
                 </div>
             </div>
         </div>
@@ -185,6 +191,7 @@ export default {
             delivery_fees: [],
             shipping: null,
             payment: false,
+            loading: false,
             current_currency: {},
             form_buy: new Form({
                 mobile_money: ''
@@ -204,10 +211,11 @@ export default {
     methods: {
         loadProducts() {
             this.$Progress.start();
+            this.loading = true;
             axios.get("/api/checkout")
                 .then(resp => {
                     this.$Progress.finish();
-
+                    this.loading = false;
                     this.cart_products = resp.data.products
                     this.address.name = resp.data.information.name
                     this.address.email = resp.data.information.email
@@ -218,18 +226,22 @@ export default {
                     }
                 })
                 .catch(() => {
+                    this.loading = false;
                     this.$Progress.fail();
                 })
         },
         loadDeliveryFees() {
             this.$Progress.start();
+            this.loading = false;
             axios.get("/api/delivery-fees")
                 .then(resp => {
                     this.$Progress.finish();
+                    this.loading = false;
                     this.delivery_fees = resp.data;
                     this.shipping = resp.data[0]
                 })
                 .catch(() => {
+                    this.loading = false;
                     this.$Progress.fail();
                 })
         },
@@ -239,6 +251,7 @@ export default {
                    canCancel: false,
                    opacity: 0.3
                });*/
+            this.loading = true;
             this.$Progress.start();
             /*  if (this.form_buy.payment_mode == 2) {
                   const form = {...this.form_buy};
@@ -278,6 +291,7 @@ export default {
                 .then(({data}) => {/*
                     this.form_buy.clear();
                     this.form_buy.reset();*/
+                    this.loading=false;
                     this.form_buy.busy = false;
                     // this.$toastr('success', 'Payment Done', 'Payment Done Successfully! Please check your phone for payment!');
                     // loader.hide();
@@ -292,6 +306,7 @@ export default {
                 .catch(err => {
                     this.form_buy.busy = false;
                     // loader.hide();
+                    this.loading=false;
                     if (err.response.status === 422) {
                         this.form_buy.errors.set(err.response.data)
                         this.errors = err.response.data
@@ -341,5 +356,45 @@ export default {
 </script>
 
 <style scoped>
+.relative {
+    position: relative;
+}
+
+.loader-container {
+    position: absolute;
+    width: 90%;
+    background-color: rgba(246, 246, 246, .7);
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.lds-dual-ring {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+}
+
+.lds-dual-ring:after {
+    content: " ";
+    display: block;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border-radius: 50%;
+    border: 6px solid #146cda;
+    border-color: #146cda transparent #146cda transparent;
+    animation: lds-dual-ring 1.2s linear infinite;
+}
+
+@keyframes lds-dual-ring {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
 
 </style>

@@ -108,7 +108,6 @@ class BuyController extends Controller
             "price" => $sum,
             "payment_mode" => 1,
             "payed" => false,
-            "payed_at" => now(),
             "user_information_id" => $userinfo->id,
             "delivery_fee_id" => $delivery_fee_id,
         ]);
@@ -141,5 +140,9 @@ class BuyController extends Controller
           }*/
         return response(["link" => $link, "done" => "yes"], 200);
 
+    }
+
+    public function callback(Request $request){
+        return $request;
     }
 }
