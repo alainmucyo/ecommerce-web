@@ -1,5 +1,5 @@
 @extends("layouts.master")
-@section("title","Products-List")
+@section("title","Products")
 @section("content")
     <section class="breadcrumb-section section-b-space">
         <div class="breadcrumb-area">

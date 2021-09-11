@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <meta http-equiv="x-ua-compatible" content="ie=edge"/>
     <meta name="robots" content="noindex, follow"/>
-    <meta name="description" content="david's high deals for shopping different styles you need"/>
+    <meta name="description" content="DH deals online shop of the best products from Dubai on the best price"/>
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="/img/dhd_logo.png"/>
-
+    <meta name="keywords"
+          content="business, property, products, phone, clothes, electronics, shop, rwanda, online, cheap, discount, kigali, dubai, dh, david deals">
+    <meta name="author" content="Dh deals">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -91,6 +93,15 @@
     <link href="/assets/files/assets/icon/feather/css/feather.css" rel="stylesheet" type="text/css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @stack("style")
+<!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-592Y7FG2FL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-592Y7FG2FL');
+    </script>
 </head>
 <body id="top">
 <div id="app">

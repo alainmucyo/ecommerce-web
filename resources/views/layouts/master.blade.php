@@ -6,6 +6,10 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge"/>
     <meta name="robots" content="noindex, follow"/>
     <meta name="description" content="dh deals for shopping different styles you need"/>
+    <meta name="description" content="@yield('title')"/>
+    <meta name="keywords"
+          content="business, property, products, phone, clothes, electronics, shop, rwanda, online, cheap, discount, kigali, dubai, dh, david deals">
+    <meta name="author" content="Dh deals">
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="/img/dhd_logo.png"/>
     <!-- CSRF Token -->
@@ -79,6 +83,15 @@
     <link href="/assets/files/assets/icon/feather/css/feather.css" rel="stylesheet" type="text/css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @stack("style")
+<!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-592Y7FG2FL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-592Y7FG2FL');
+    </script>
 </head>
 <body id="top">
 <?php

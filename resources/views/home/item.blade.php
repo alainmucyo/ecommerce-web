@@ -1,5 +1,5 @@
 @extends("layouts.master",['like_product'=>$product])
-@section("title","Product-Details")
+@section("title",$product->title)
 @section("content")
     @if (\Session::has('success'))
         <div class="alert alert-success ml-auto mt-2" style="width: fit-content">
