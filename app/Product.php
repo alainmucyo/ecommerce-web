@@ -79,7 +79,7 @@ class Product extends Model
 
     public function getProductImageAttribute()
     {
-        if ($this->images) {
+        if ($this->images && json_decode($this->images)) {
             return json_decode($this->images)[0];
         }
         return "/img/no-image.jpg";

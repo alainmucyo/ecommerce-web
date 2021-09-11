@@ -167,25 +167,6 @@
                                         </a>
                                     </div>
                                 </div>
-                                <div class="pro-details-social-info">
-                                    <span>Share</span>
-                                    <div class="social-info">
-                                        <ul>
-                                            <li>
-                                                <a title="Facebook" href="#"><i class="ion-social-facebook"></i></a>
-                                            </li>
-                                            <li>
-                                                <a title="Twitter" href="#"><i class="ion-social-twitter"></i></a>
-                                            </li>
-                                            <li>
-                                                <a title="Google+" href="#"><i class="ion-social-google"></i></a>
-                                            </li>
-                                            <li>
-                                                <a title="Instagram" href="#"><i class="ion-social-instagram"></i></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
                             </form>
                             <div class="pro-details-policy">
                                 <ul>
@@ -541,4 +522,6 @@
     </script>
     <script src="/commerce/assets/js/jquery.elevatezoom.js"></script>
     <script type="text/javascript" src="/js/app.js?new_one"></script>
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-613ca68c53c551f6"></script>
 @endpush
