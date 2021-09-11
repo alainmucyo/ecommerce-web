@@ -34,14 +34,14 @@
         <section class="product-details-area mtb-60px">
             <div class="mx-5">
                 <div class="row">
-                    <div class="col-xl-6 col-lg-6 col-md-12">
+                    <div class="col-xl-5 col-lg-5 col-md-12">
                         <div class="product-details-img product-details-tab">
                             <div class="zoompro-wrap zoompro-2">
                                 <div class="zoompro-border zoompro-span mb-3">
                                     @if(json_decode($product->images) > 0)
                                         <img class="zoompro" src="{{$product->product_image}}"
                                              data-zoom-image="{{$product->product_image}}" alt=""
-                                             style="object-position: center;object-fit: contain;"/>
+                                             style="object-position: center;object-fit: contain;height: 100px"/>
                                     @else
                                         <img src="{{$product->product_image}}"
                                              alt="" style="object-position: center;object-fit: contain;"/>
